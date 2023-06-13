@@ -1,22 +1,26 @@
 PODS:
+  - Alamofire (5.7.1)
   - SnapKit (5.6.0)
   - XCoordinator (2.2.1):
     - XCoordinator/Core (= 2.2.1)
   - XCoordinator/Core (2.2.1)
 
 DEPENDENCIES:
+  - Alamofire
   - SnapKit (~> 5.6.0)
   - XCoordinator (~> 2.0)
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - SnapKit
     - XCoordinator
 
 SPEC CHECKSUMS:
+  Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   XCoordinator: 2cf9f72e10998b7a4a4bbeac3d07e071ea82fca3
 
-PODFILE CHECKSUM: 281a706969954250e8c69f4dd000ebeaf0c0b526
+PODFILE CHECKSUM: b30a918ee7794957fd31f13386856e10675d2e38
 
 COCOAPODS: 1.12.1

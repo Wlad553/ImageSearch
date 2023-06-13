@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if #unavailable(iOS 13.0) {
             window = UIWindow()
-            let navigationController = UINavigationController(rootViewController: SearchView())
+            let navigationController = UINavigationController(rootViewController: SearchViewController())
             window?.rootViewController = navigationController
             window?.makeKeyAndVisible()
         }

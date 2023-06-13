@@ -8,4 +8,5 @@ target 'ImageSearch' do
   # Pods for WebsiteFilter
 pod 'SnapKit', '~> 5.6.0'
 pod 'XCoordinator', '~> 2.0'
+pod 'Alamofire'
 end
