@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F541DEC12A3B5F2B00D4626E /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F541DEC02A3B5F2B00D4626E /* SearchTextField.swift */; };
+		F541DEC32A3B62C900D4626E /* BlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F541DEC22A3B62C900D4626E /* BlueButton.swift */; };
 		F543ADD02A361DCA00C9CC60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F543ADCF2A361DCA00C9CC60 /* AppDelegate.swift */; };
 		F543ADD42A361DCA00C9CC60 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F543ADD32A361DCA00C9CC60 /* SearchViewController.swift */; };
 		F543ADD92A361DCB00C9CC60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F543ADD82A361DCB00C9CC60 /* Assets.xcassets */; };
@@ -14,8 +16,13 @@
 		F543ADE42A361DDB00C9CC60 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = F543ADE32A361DDB00C9CC60 /* .gitignore */; };
 		F543ADE82A36246000C9CC60 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F543ADE72A36245F00C9CC60 /* SceneDelegate.swift */; };
 		F543ADEB2A364B7700C9CC60 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F543ADEA2A364B7700C9CC60 /* SearchView.swift */; };
-		F543ADEE2A364C4900C9CC60 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F543ADED2A364C4900C9CC60 /* SearchViewModel.swift */; };
+		F543ADEE2A364C4900C9CC60 /* SearchViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F543ADED2A364C4900C9CC60 /* SearchViewViewModel.swift */; };
 		F543ADF32A365D1100C9CC60 /* UIColor+colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F543ADF22A365D1100C9CC60 /* UIColor+colors.swift */; };
+		F59A42422A39EA2300E2433E /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59A42412A39EA2300E2433E /* ResultView.swift */; };
+		F59A42442A39EA2F00E2433E /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59A42432A39EA2F00E2433E /* ResultViewController.swift */; };
+		F59A42482A3A375700E2433E /* Pattaya-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F59A42472A3A375700E2433E /* Pattaya-Regular.ttf */; };
+		F5D2EB5F2A3CC31100489918 /* UIView+activateEqualToSuperviewConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D2EB5E2A3CC31100489918 /* UIView+activateEqualToSuperviewConstraints.swift */; };
+		F5D2EB642A3CC9BF00489918 /* ResultViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D2EB632A3CC9BF00489918 /* ResultViewViewModel.swift */; };
 		F5D4EDC52A38E33F00B4C5C0 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5D4EDC22A38E33F00B4C5C0 /* OpenSans-Regular.ttf */; };
 		F5D4EDC62A38E33F00B4C5C0 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5D4EDC32A38E33F00B4C5C0 /* OpenSans-SemiBold.ttf */; };
 		F5D4EDC72A38E33F00B4C5C0 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5D4EDC42A38E33F00B4C5C0 /* OpenSans-ExtraBold.ttf */; };
@@ -24,6 +31,8 @@
 /* Begin PBXFileReference section */
 		1FF92F18B6FA549A226FBFB3 /* Pods-ImageSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageSearch.release.xcconfig"; path = "Target Support Files/Pods-ImageSearch/Pods-ImageSearch.release.xcconfig"; sourceTree = "<group>"; };
 		A95FE058F15E29662379F5FE /* Pods-ImageSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageSearch.debug.xcconfig"; path = "Target Support Files/Pods-ImageSearch/Pods-ImageSearch.debug.xcconfig"; sourceTree = "<group>"; };
+		F541DEC02A3B5F2B00D4626E /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
+		F541DEC22A3B62C900D4626E /* BlueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueButton.swift; sourceTree = "<group>"; };
 		F543ADCF2A361DCA00C9CC60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F543ADD32A361DCA00C9CC60 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		F543ADD82A361DCB00C9CC60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -32,9 +41,14 @@
 		F543ADE32A361DDB00C9CC60 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		F543ADE72A36245F00C9CC60 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F543ADEA2A364B7700C9CC60 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
-		F543ADED2A364C4900C9CC60 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		F543ADED2A364C4900C9CC60 /* SearchViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewViewModel.swift; sourceTree = "<group>"; };
 		F543ADF22A365D1100C9CC60 /* UIColor+colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+colors.swift"; sourceTree = "<group>"; };
-		F5D4EDBF2A38DA9C00B4C5C0 /* ImageSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F59A42412A39EA2300E2433E /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		F59A42432A39EA2F00E2433E /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		F59A42472A3A375700E2433E /* Pattaya-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pattaya-Regular.ttf"; sourceTree = "<group>"; };
+		F5D2EB592A3C575C00489918 /* ImageSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5D2EB5E2A3CC31100489918 /* UIView+activateEqualToSuperviewConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+activateEqualToSuperviewConstraints.swift"; sourceTree = "<group>"; };
+		F5D2EB632A3CC9BF00489918 /* ResultViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewViewModel.swift; sourceTree = "<group>"; };
 		F5D4EDC22A38E33F00B4C5C0 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		F5D4EDC32A38E33F00B4C5C0 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		F5D4EDC42A38E33F00B4C5C0 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -60,13 +74,22 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		F541DEBF2A3B5F0B00D4626E /* UIElements */ = {
+			isa = PBXGroup;
+			children = (
+				F541DEC02A3B5F2B00D4626E /* SearchTextField.swift */,
+				F541DEC22A3B62C900D4626E /* BlueButton.swift */,
+			);
+			path = UIElements;
+			sourceTree = "<group>";
+		};
 		F543ADC32A361DCA00C9CC60 = {
 			isa = PBXGroup;
 			children = (
 				F543ADE32A361DDB00C9CC60 /* .gitignore */,
 				F543ADCE2A361DCA00C9CC60 /* ImageSearch */,
 				2F271A294DDDD0B9825A2502 /* Pods */,
-				F5D4EDBF2A38DA9C00B4C5C0 /* ImageSearch.app */,
+				F5D2EB592A3C575C00489918 /* ImageSearch.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,8 +98,9 @@
 			children = (
 				F543ADCF2A361DCA00C9CC60 /* AppDelegate.swift */,
 				F543ADE72A36245F00C9CC60 /* SceneDelegate.swift */,
-				F543ADE92A36283200C9CC60 /* Views */,
-				F543ADEC2A364B8700C9CC60 /* ViewModels */,
+				F5D2EB602A3CC6AD00489918 /* SearchScreen */,
+				F5D2EB612A3CC6B800489918 /* ResultScreen */,
+				F541DEBF2A3B5F0B00D4626E /* UIElements */,
 				F543ADF12A365CE200C9CC60 /* Extensions */,
 				F543ADE52A361ED600C9CC60 /* Supporting Files */,
 				F543ADE62A361EE100C9CC60 /* Resources */,
@@ -102,18 +126,10 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		F543ADE92A36283200C9CC60 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				F543ADF02A3658A700C9CC60 /* SearchView */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		F543ADEC2A364B8700C9CC60 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				F543ADED2A364C4900C9CC60 /* SearchViewModel.swift */,
+				F543ADED2A364C4900C9CC60 /* SearchViewViewModel.swift */,
 				F543ADEF2A364D2500C9CC60 /* Protocols */,
 			);
 			path = ViewModels;
@@ -139,13 +155,58 @@
 			isa = PBXGroup;
 			children = (
 				F543ADF22A365D1100C9CC60 /* UIColor+colors.swift */,
+				F5D2EB5E2A3CC31100489918 /* UIView+activateEqualToSuperviewConstraints.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F59A42402A39E9E800E2433E /* ResultView */ = {
+			isa = PBXGroup;
+			children = (
+				F59A42412A39EA2300E2433E /* ResultView.swift */,
+				F59A42432A39EA2F00E2433E /* ResultViewController.swift */,
+			);
+			path = ResultView;
+			sourceTree = "<group>";
+		};
+		F59A42462A3A374000E2433E /* Pattaya */ = {
+			isa = PBXGroup;
+			children = (
+				F59A42472A3A375700E2433E /* Pattaya-Regular.ttf */,
+			);
+			path = Pattaya;
+			sourceTree = "<group>";
+		};
+		F5D2EB602A3CC6AD00489918 /* SearchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F543ADF02A3658A700C9CC60 /* SearchView */,
+				F543ADEC2A364B8700C9CC60 /* ViewModels */,
+			);
+			path = SearchScreen;
+			sourceTree = "<group>";
+		};
+		F5D2EB612A3CC6B800489918 /* ResultScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F59A42402A39E9E800E2433E /* ResultView */,
+				F5D2EB622A3CC88200489918 /* ViewModels */,
+			);
+			path = ResultScreen;
+			sourceTree = "<group>";
+		};
+		F5D2EB622A3CC88200489918 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F5D2EB632A3CC9BF00489918 /* ResultViewViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		F5D4EDC02A38E2BF00B4C5C0 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				F59A42462A3A374000E2433E /* Pattaya */,
 				F5D4EDC12A38E2C400B4C5C0 /* OpenSans */,
 			);
 			path = Fonts;
@@ -180,7 +241,7 @@
 			);
 			name = ImageSearch;
 			productName = ImageSearch;
-			productReference = F5D4EDBF2A38DA9C00B4C5C0 /* ImageSearch.app */;
+			productReference = F5D2EB592A3C575C00489918 /* ImageSearch.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -222,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F543ADE42A361DDB00C9CC60 /* .gitignore in Resources */,
+				F59A42482A3A375700E2433E /* Pattaya-Regular.ttf in Resources */,
 				F543ADDC2A361DCB00C9CC60 /* LaunchScreen.storyboard in Resources */,
 				F5D4EDC62A38E33F00B4C5C0 /* OpenSans-SemiBold.ttf in Resources */,
 				F5D4EDC52A38E33F00B4C5C0 /* OpenSans-Regular.ttf in Resources */,
@@ -280,11 +342,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				F543ADEB2A364B7700C9CC60 /* SearchView.swift in Sources */,
+				F541DEC32A3B62C900D4626E /* BlueButton.swift in Sources */,
+				F5D2EB5F2A3CC31100489918 /* UIView+activateEqualToSuperviewConstraints.swift in Sources */,
 				F543ADF32A365D1100C9CC60 /* UIColor+colors.swift in Sources */,
-				F543ADEE2A364C4900C9CC60 /* SearchViewModel.swift in Sources */,
+				F543ADEE2A364C4900C9CC60 /* SearchViewViewModel.swift in Sources */,
+				F59A42442A39EA2F00E2433E /* ResultViewController.swift in Sources */,
+				F5D2EB642A3CC9BF00489918 /* ResultViewViewModel.swift in Sources */,
 				F543ADD42A361DCA00C9CC60 /* SearchViewController.swift in Sources */,
 				F543ADD02A361DCA00C9CC60 /* AppDelegate.swift in Sources */,
+				F59A42422A39EA2300E2433E /* ResultView.swift in Sources */,
 				F543ADE82A36246000C9CC60 /* SceneDelegate.swift in Sources */,
+				F541DEC12A3B5F2B00D4626E /* SearchTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,7 +501,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -467,7 +535,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

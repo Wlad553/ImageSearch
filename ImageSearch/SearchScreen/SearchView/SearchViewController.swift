@@ -7,8 +7,8 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
-    let viewModel = SearchViewModel()
+final class SearchViewController: UIViewController {
+    let viewModel = SearchViewViewModel()
     let searchView = SearchView()
     
     override func loadView() {

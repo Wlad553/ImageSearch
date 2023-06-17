@@ -8,24 +8,21 @@
 import UIKit
 import SnapKit
 
-class SearchView: UIView {
+final class SearchView: UIView {
     let imageView = UIImageView(image: UIImage(named: "Alberta"))
     let welcomeLabel = UILabel()
-    let searchTextField = UITextField()
-    let searchButton = UIButton(type: .system)
+    let searchTextField = SearchTextField()
+    let searchButton = BlueButton(title: "Search", image: UIImage(systemName: "magnifyingglass")!)
     let searchStackView = UIStackView()
     
     override init(frame: CGRect) {
-        if #available(iOS 13.0, *) {
-            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { fatalError("No windowScene found") }
-            super.init(frame: windowScene.screen.bounds)
-        } else {
-            super.init(frame: UIScreen.main.bounds)
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
+            super.init(frame: .zero)
+            return
         }
+        super.init(frame: windowScene.screen.bounds)
         setUpImageView()
         setUpTopLabel()
-        setUpSearchTextField()
-        setUpSearchButton()
         setUpSearchStackView()
         addConstraints()
     }
@@ -61,9 +58,9 @@ class SearchView: UIView {
         searchTextField.backgroundColor = UIColor.searchTextFieldBackground
         searchTextField.placeholder = "Search images, vectors and more"
         
-        let magnifyingGlassImageView = UIImageView(image: UIImage(named: "magnifyingglass"))
+        let magnifyingGlassImageView = UIImageView(image: UIImage(systemName: "magnifyingglass"))
         magnifyingGlassImageView.contentMode = .scaleAspectFit
-        magnifyingGlassImageView.tintColor = .darkGray
+        magnifyingGlassImageView.tintColor = .magnifyingGlass
         magnifyingGlassImageView.frame = CGRect(x: 12, y: -8, width: 20, height: 16)
         
         searchTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: searchTextField.frame.size.height))
@@ -76,29 +73,6 @@ class SearchView: UIView {
         searchTextField.autocorrectionType = .no
         searchTextField.autocapitalizationType = .none
         searchTextField.clearButtonMode = .whileEditing
-    }
-    
-    private func setUpSearchButton() {
-        searchButton.titleLabel?.font = UIFont(name: "OpenSans-SemiBold", size: 18)
-        searchButton.setTitle("Search", for: .normal)
-        searchButton.setTitleColor(.white, for: .normal)
-        
-        searchButton.setImage(UIImage(named: "magnifyingglass"), for: .normal)
-        searchButton.tintColor = .white
-        searchButton.imageView?.contentMode = .scaleAspectFit
-        
-        searchButton.titleLabel?.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
-        }
-        
-        searchButton.imageView?.snp.makeConstraints { make in
-            make.width.equalTo(40)
-        }
-        searchButton.imageView?.layer.transform = CATransform3DMakeScale(0.65, 0.65, 0.65)
-
-        
-        searchButton.backgroundColor = .searchButtonBackground
-        searchButton.layer.cornerRadius = 5
     }
     
     private func setUpSearchStackView() {
