@@ -9,16 +9,14 @@ import UIKit
 import SnapKit
 
 final class ResultView: UIView {
-     let topView = UIView()
+    private let topView = UIView()
     private let topStackView = UIStackView()
-    let headerStackView = UIStackView()
     
-    let resultNumberLabel = UILabel()
-    let categoriesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     let logoLabel = UILabel()
     let searchTextField = SearchTextField()
     let optionsButton = UIButton()
-    let resultsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+    let imageResultsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+    var imageResultsHeaderView: ImageResultsHeaderView?
     
     override init(frame: CGRect) {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
@@ -31,15 +29,17 @@ final class ResultView: UIView {
         setUpLogoLabel()
         setUpSearchTextField()
         setUpOptionsButton()
-        setUpHeaderStackView()
-        setUpResultNumberLabel()
-        setUpCategoriesCollectionView()
-        setUpResultsCollectionView()
+        setUpImageResultsCollectionView()
         addConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func assignCollectionViewsDelegates<T>(to delegate: T) where T: UICollectionViewDataSource & UICollectionViewDelegate {
+        imageResultsCollectionView.dataSource = delegate
+        imageResultsCollectionView.delegate = delegate
     }
     
     // MARK: TopView
@@ -93,38 +93,14 @@ final class ResultView: UIView {
         optionsButton.tintColor = .optionsButton
     }
     
-    // MARK: HeaderStackView
-    private func setUpHeaderStackView() {
-        headerStackView.axis = .vertical
-        headerStackView.spacing = 8
-        headerStackView.alignment = .fill
-        headerStackView.distribution = .fillEqually
-        
-        headerStackView.addArrangedSubview(resultNumberLabel)
-        headerStackView.addArrangedSubview(categoriesCollectionView)
-    }
-    
-    private func setUpResultNumberLabel() {
-        resultNumberLabel.font = UIFont(name: "OpenSans-SemiBold", size: 18)
-        resultNumberLabel.textColor = .black
-        resultNumberLabel.textAlignment = .left
-        resultNumberLabel.numberOfLines = 1
-        resultNumberLabel.layer.transform = CATransform3DMakeTranslation(16, 0, 0)
-        resultNumberLabel.text = "xxx xxx Free Images"
-    }
-    
-    private func setUpCategoriesCollectionView() {
-        categoriesCollectionView.setCollectionViewLayout(setUpCategoriesCollectionViewLayout(), animated: false)
-        categoriesCollectionView.backgroundColor = .searchTextFieldBackground
-        categoriesCollectionView.showsHorizontalScrollIndicator = false
-    }
-    
     // MARK: ResultsCollectionView
-    private func setUpResultsCollectionView() {
-        resultsCollectionView.setCollectionViewLayout(setUpResultsCollectionViewLayout(), animated: false)
-        resultsCollectionView.backgroundColor = .searchTextFieldBackground
-        resultsCollectionView.showsVerticalScrollIndicator = false
-        addSubview(resultsCollectionView)
+    private func setUpImageResultsCollectionView() {
+        imageResultsCollectionView.setCollectionViewLayout(imageResultsCollectionViewLayout(), animated: false)
+        imageResultsCollectionView.backgroundColor = .searchTextFieldBackground
+        imageResultsCollectionView.showsVerticalScrollIndicator = false
+        imageResultsCollectionView.register(ImageResultCell.self, forCellWithReuseIdentifier: ImageResultCell.reuseIdentifier)
+        imageResultsCollectionView.register(ImageResultsHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ImageResultsHeaderView.reuseIdentifier)
+        addSubview(imageResultsCollectionView)
     }
     
     // MARK: Constraints
@@ -155,33 +131,21 @@ final class ResultView: UIView {
             make.height.width.equalTo(52)
         }
         
-        resultsCollectionView.snp.makeConstraints { make in
+        imageResultsCollectionView.snp.makeConstraints { make in
             make.top.equalTo(topView.snp_bottomMargin).offset(9)
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
 }
 
-// MARK: UICollectionView Layouts
+// MARK: ImageResultsCollectionViewLayout
 extension ResultView {
-    private func setUpResultsCollectionViewLayout() -> UICollectionViewFlowLayout {
+    private func imageResultsCollectionViewLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: frame.width - 32, height: 200) // размер ячейки
+        layout.itemSize = CGSize(width: frame.width - 32, height: 250)
         layout.minimumLineSpacing = 16
-//        layout.sectionInset = .init(top: 12, left: 0, bottom: 0, right: 0) // отступы секции от краев
-        layout.headerReferenceSize = CGSize(width: frame.size.width, height: 80) // размеры секций
-        return layout
-    }
-    
-    private func setUpCategoriesCollectionViewLayout() -> UICollectionViewFlowLayout {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: 32, height: 24)
-//        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        layout.minimumLineSpacing = 16
-        layout.sectionInset = .init(top: 0, left: 0, bottom: 0, right: 0)
-        layout.headerReferenceSize = CGSize(width: 72, height: 24)
+        layout.headerReferenceSize = CGSize(width: frame.size.width, height: 88)
         return layout
     }
 }

@@ -7,5 +7,18 @@
 
 import Foundation
 
-class ResultViewViewModel {
+final class ResultViewViewModel: ResultViewViewModelType {
+    let testArray = ["Forest Background", "Tree", "Nature", "World"]
+    
+    func numberOfImageResultItems() -> Int {
+        testArray.count
+    }
+    
+    func numberOfRelatedCategoryItems() -> Int {
+        testArray.count
+    }
+    
+    func categoryCellViewModel(at indexPath: IndexPath) -> CategoryCellViewModelType {
+        return CategoryCellViewModel(categoryLabelText: testArray[indexPath.row])
+    }
 }

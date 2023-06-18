@@ -18,6 +18,13 @@
 		F543ADEB2A364B7700C9CC60 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F543ADEA2A364B7700C9CC60 /* SearchView.swift */; };
 		F543ADEE2A364C4900C9CC60 /* SearchViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F543ADED2A364C4900C9CC60 /* SearchViewViewModel.swift */; };
 		F543ADF32A365D1100C9CC60 /* UIColor+colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F543ADF22A365D1100C9CC60 /* UIColor+colors.swift */; };
+		F54D340D2A3F44A20087ADDE /* ResultViewViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D340C2A3F44A20087ADDE /* ResultViewViewModelType.swift */; };
+		F54D340F2A3F563F0087ADDE /* ImageResultsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D340E2A3F563F0087ADDE /* ImageResultsHeaderView.swift */; };
+		F54D34112A3F565D0087ADDE /* ImageResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D34102A3F565D0087ADDE /* ImageResultCell.swift */; };
+		F54D34132A3F7C920087ADDE /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D34122A3F7C920087ADDE /* CategoryCell.swift */; };
+		F54D34152A3F820B0087ADDE /* CategoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D34142A3F820B0087ADDE /* CategoryCellViewModel.swift */; };
+		F54D34172A3F83E90087ADDE /* CategoryCellViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D34162A3F83E90087ADDE /* CategoryCellViewModelType.swift */; };
+		F54D34192A3F99620087ADDE /* SearchViewViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D34182A3F99620087ADDE /* SearchViewViewModelType.swift */; };
 		F59A42422A39EA2300E2433E /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59A42412A39EA2300E2433E /* ResultView.swift */; };
 		F59A42442A39EA2F00E2433E /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59A42432A39EA2F00E2433E /* ResultViewController.swift */; };
 		F59A42482A3A375700E2433E /* Pattaya-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F59A42472A3A375700E2433E /* Pattaya-Regular.ttf */; };
@@ -43,6 +50,13 @@
 		F543ADEA2A364B7700C9CC60 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		F543ADED2A364C4900C9CC60 /* SearchViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewViewModel.swift; sourceTree = "<group>"; };
 		F543ADF22A365D1100C9CC60 /* UIColor+colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+colors.swift"; sourceTree = "<group>"; };
+		F54D340C2A3F44A20087ADDE /* ResultViewViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewViewModelType.swift; sourceTree = "<group>"; };
+		F54D340E2A3F563F0087ADDE /* ImageResultsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResultsHeaderView.swift; sourceTree = "<group>"; };
+		F54D34102A3F565D0087ADDE /* ImageResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResultCell.swift; sourceTree = "<group>"; };
+		F54D34122A3F7C920087ADDE /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		F54D34142A3F820B0087ADDE /* CategoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCellViewModel.swift; sourceTree = "<group>"; };
+		F54D34162A3F83E90087ADDE /* CategoryCellViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCellViewModelType.swift; sourceTree = "<group>"; };
+		F54D34182A3F99620087ADDE /* SearchViewViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewViewModelType.swift; sourceTree = "<group>"; };
 		F59A42412A39EA2300E2433E /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		F59A42432A39EA2F00E2433E /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		F59A42472A3A375700E2433E /* Pattaya-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pattaya-Regular.ttf"; sourceTree = "<group>"; };
@@ -138,6 +152,7 @@
 		F543ADEF2A364D2500C9CC60 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				F54D34182A3F99620087ADDE /* SearchViewViewModelType.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -160,10 +175,22 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		F54D340B2A3F44830087ADDE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F54D340C2A3F44A20087ADDE /* ResultViewViewModelType.swift */,
+				F54D34162A3F83E90087ADDE /* CategoryCellViewModelType.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		F59A42402A39E9E800E2433E /* ResultView */ = {
 			isa = PBXGroup;
 			children = (
 				F59A42412A39EA2300E2433E /* ResultView.swift */,
+				F54D340E2A3F563F0087ADDE /* ImageResultsHeaderView.swift */,
+				F54D34102A3F565D0087ADDE /* ImageResultCell.swift */,
+				F54D34122A3F7C920087ADDE /* CategoryCell.swift */,
 				F59A42432A39EA2F00E2433E /* ResultViewController.swift */,
 			);
 			path = ResultView;
@@ -199,6 +226,8 @@
 			isa = PBXGroup;
 			children = (
 				F5D2EB632A3CC9BF00489918 /* ResultViewViewModel.swift */,
+				F54D34142A3F820B0087ADDE /* CategoryCellViewModel.swift */,
+				F54D340B2A3F44830087ADDE /* Protocols */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -341,6 +370,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F54D34152A3F820B0087ADDE /* CategoryCellViewModel.swift in Sources */,
+				F54D340D2A3F44A20087ADDE /* ResultViewViewModelType.swift in Sources */,
 				F543ADEB2A364B7700C9CC60 /* SearchView.swift in Sources */,
 				F541DEC32A3B62C900D4626E /* BlueButton.swift in Sources */,
 				F5D2EB5F2A3CC31100489918 /* UIView+activateEqualToSuperviewConstraints.swift in Sources */,
@@ -348,10 +379,15 @@
 				F543ADEE2A364C4900C9CC60 /* SearchViewViewModel.swift in Sources */,
 				F59A42442A39EA2F00E2433E /* ResultViewController.swift in Sources */,
 				F5D2EB642A3CC9BF00489918 /* ResultViewViewModel.swift in Sources */,
+				F54D34192A3F99620087ADDE /* SearchViewViewModelType.swift in Sources */,
 				F543ADD42A361DCA00C9CC60 /* SearchViewController.swift in Sources */,
 				F543ADD02A361DCA00C9CC60 /* AppDelegate.swift in Sources */,
+				F54D34112A3F565D0087ADDE /* ImageResultCell.swift in Sources */,
+				F54D34132A3F7C920087ADDE /* CategoryCell.swift in Sources */,
 				F59A42422A39EA2300E2433E /* ResultView.swift in Sources */,
+				F54D340F2A3F563F0087ADDE /* ImageResultsHeaderView.swift in Sources */,
 				F543ADE82A36246000C9CC60 /* SceneDelegate.swift in Sources */,
+				F54D34172A3F83E90087ADDE /* CategoryCellViewModelType.swift in Sources */,
 				F541DEC12A3B5F2B00D4626E /* SearchTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

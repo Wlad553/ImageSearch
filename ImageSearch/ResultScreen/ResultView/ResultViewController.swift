@@ -8,9 +8,17 @@
 import UIKit
 
 final class ResultViewController: UIViewController {
-    let viewModel = ResultViewViewModel()
+    let viewModel: ResultViewViewModelType
     let resultView = ResultView()
-    let testArray = ["123", "234", "345", "234", "234", "234", "234", "234"]
+    
+    init(viewModel: ResultViewViewModelType) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         super.loadView()
@@ -20,14 +28,7 @@ final class ResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
-        resultView.categoriesCollectionView.dataSource = self
-        resultView.categoriesCollectionView.delegate = self
-        resultView.resultsCollectionView.dataSource = self
-        resultView.resultsCollectionView.delegate = self
-        resultView.categoriesCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "label")
-        resultView.categoriesCollectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CategoriesHeader")
-        resultView.resultsCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "imageViewCell")
-        resultView.resultsCollectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "resultsHeader")
+        resultView.assignCollectionViewsDelegates(to: self)
     }
 }
 
@@ -38,55 +39,45 @@ extension ResultViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        testArray.count
+        var numberOfItemsInSection = 0
+
+        if collectionView == resultView.imageResultsCollectionView {
+            numberOfItemsInSection = viewModel.numberOfImageResultItems()
+        } else if resultView.imageResultsHeaderView?.relatedCategoriesCollectionView == collectionView {
+            numberOfItemsInSection = viewModel.numberOfRelatedCategoryItems()
+        }
+        
+        return numberOfItemsInSection
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            var view = UICollectionReusableView()
-            
-            if collectionView == resultView.resultsCollectionView {
-                view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "resultsHeader", for: indexPath)
-                view.addSubview(resultView.headerStackView)
-                resultView.headerStackView.activateEqualToSuperviewConstraints(topOffset: 8, bottomOffset: -12)
-            } else if collectionView == resultView.categoriesCollectionView {
-                view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CategoriesHeader", for: indexPath)
-                let label = UILabel()
-                label.textColor = .black
-                label.numberOfLines = 1
-                label.font = UIFont.systemFont(ofSize: 12)
-                label.text = "Related"
-                view.addSubview(label)
-                label.activateEqualToSuperviewConstraints(leadingOffset: 16)
-            }
-            
-            return view
-        default:
-            return UICollectionReusableView()
+        var view = UICollectionReusableView()
+        guard kind == UICollectionView.elementKindSectionHeader else { return view }
+        
+        if collectionView == resultView.imageResultsCollectionView {
+            guard let imageResultsHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ImageResultsHeaderView.reuseIdentifier, for: indexPath) as? ImageResultsHeaderView else { return view }
+            imageResultsHeader.relatedCategoriesCollectionView.delegate = self
+            imageResultsHeader.relatedCategoriesCollectionView.dataSource = self
+            resultView.imageResultsHeaderView = imageResultsHeader
+            view = imageResultsHeader
+        } else if resultView.imageResultsHeaderView?.relatedCategoriesCollectionView == collectionView {
+            view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ImageResultsHeaderView.categoriesHeaderReuseIdentifier, for: indexPath)
+            resultView.imageResultsHeaderView?.setUpHeaderViewForRelatedCategoriesCollectionView(superview: view)
         }
+        
+        return view
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell = UICollectionViewCell()
         
-        if collectionView == resultView.resultsCollectionView {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageViewCell", for: indexPath)
-            let imageView = UIImageView(image: UIImage(named: "ImagePlaceholder"))
-            imageView.contentMode = .scaleAspectFit
-            cell.backgroundColor = .imagePlaceholderBackground
-            cell.addSubview(imageView)
-            imageView.activateEqualToSuperviewConstraints()
-        } else if collectionView == resultView.categoriesCollectionView {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "label", for: indexPath)
-            let label = UILabel()
-            label.backgroundColor = .white
-            label.textColor = .black
-            label.numberOfLines = 1
-            label.font = UIFont.systemFont(ofSize: 12)
-            label.text = testArray[indexPath.row]
-            cell.addSubview(label)
-            label.activateEqualToSuperviewConstraints()
+        if collectionView == resultView.imageResultsCollectionView {
+            guard let imageResultCell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageResultCell.reuseIdentifier, for: indexPath) as? ImageResultCell else { return cell }
+            cell = imageResultCell
+        } else if resultView.imageResultsHeaderView?.relatedCategoriesCollectionView == collectionView {
+            guard let categoryCell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.reuseIdentifier, for: indexPath) as? CategoryCell else { return cell }
+            categoryCell.viewModel = viewModel.categoryCellViewModel(at: indexPath)
+            cell = categoryCell
         }
         
         return cell
@@ -95,4 +86,13 @@ extension ResultViewController: UICollectionViewDataSource {
 
 // MARK: UICollectionViewDelegate
 extension ResultViewController: UICollectionViewDelegate {
+}
+
+// MARK: UIScrollViewDelegate
+extension ResultViewController {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if resultView.imageResultsCollectionView.isTracking && resultView.searchTextField.isFirstResponder {
+            resultView.searchTextField.resignFirstResponder()
+        }
+    }
 }
