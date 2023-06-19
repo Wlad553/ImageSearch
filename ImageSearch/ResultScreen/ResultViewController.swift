@@ -58,6 +58,7 @@ extension ResultViewController: UICollectionViewDataSource {
             guard let imageResultsHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ImageResultsHeaderView.reuseIdentifier, for: indexPath) as? ImageResultsHeaderView else { return view }
             imageResultsHeader.relatedCategoriesCollectionView.delegate = self
             imageResultsHeader.relatedCategoriesCollectionView.dataSource = self
+            imageResultsHeader.viewModel = viewModel.imageResultsHeaderViewViewModel()
             resultView.imageResultsHeaderView = imageResultsHeader
             view = imageResultsHeader
         } else if resultView.imageResultsHeaderView?.relatedCategoriesCollectionView == collectionView {
@@ -72,8 +73,9 @@ extension ResultViewController: UICollectionViewDataSource {
         var cell = UICollectionViewCell()
         
         if collectionView == resultView.imageResultsCollectionView {
-            guard let imageResultCell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageResultCell.reuseIdentifier, for: indexPath) as? ImageResultCell else { return cell }
-            cell = imageResultCell
+            guard let imageResultsCell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageResultsCell.reuseIdentifier, for: indexPath) as? ImageResultsCell else { return cell }
+            imageResultsCell.viewModel = viewModel.imageResultsCellViewModel(at: indexPath)
+            cell = imageResultsCell
         } else if resultView.imageResultsHeaderView?.relatedCategoriesCollectionView == collectionView {
             guard let categoryCell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.reuseIdentifier, for: indexPath) as? CategoryCell else { return cell }
             categoryCell.viewModel = viewModel.categoryCellViewModel(at: indexPath)

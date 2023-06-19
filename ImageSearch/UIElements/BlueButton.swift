@@ -24,7 +24,7 @@ final class BlueButton: UIButton {
     }
     
     private func setUp(title: String?, image: UIImage?) {
-        titleLabel?.font = UIFont(name: "OpenSans-SemiBold", size: 18)
+        titleLabel?.font = UIFont(name: Fonts.OpenSans.SemiBold.rawValue, size: 18)
         setTitle(title, for: .normal)
         setTitleColor(.white, for: .normal)
         

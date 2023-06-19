@@ -1,5 +1,5 @@
 //
-//  RelatedHeaderView.swift
+//  ImageResultsHeaderView.swift
 //  ImageSearch
 //
 //  Created by Vladyslav Petrenko on 18/06/2023.
@@ -14,6 +14,20 @@ final class ImageResultsHeaderView: UICollectionReusableView {
     private let stackView = UIStackView()
     let resultsNumberLabel = UILabel()
     let relatedCategoriesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+    
+    var viewModel: ImageResultsHeaderViewViewModelType? {
+        willSet(viewModel) {
+            guard let viewModel = viewModel else { return }
+            let numberFormatter = NumberFormatter()
+            numberFormatter.groupingSeparator = " "
+            numberFormatter.numberStyle = .decimal
+            if let formattedResultsNumber = numberFormatter.string(from: NSNumber(value: viewModel.resultsNumber)) {
+                resultsNumberLabel.text = "\(formattedResultsNumber) Free Images"
+            } else {
+                resultsNumberLabel.text = "0 Free Images"
+            }
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,7 +45,7 @@ final class ImageResultsHeaderView: UICollectionReusableView {
         let label = UILabel()
         label.textColor = .optionsButton
         label.numberOfLines = 1
-        label.font = UIFont(name: "OpenSans-Regular", size: 14)
+        label.font = UIFont(name: Fonts.OpenSans.Regular.rawValue, size: 14)
         label.text = "Related"
         superview.addSubview(label)
         label.activateEqualToSuperviewConstraints(leadingOffset: 16)
@@ -49,12 +63,11 @@ final class ImageResultsHeaderView: UICollectionReusableView {
     }
     
     private func setUpResultNumberLabel() {
-        resultsNumberLabel.font = UIFont(name: "OpenSans-SemiBold", size: 18)
+        resultsNumberLabel.font = UIFont(name: Fonts.OpenSans.SemiBold.rawValue, size: 18)
         resultsNumberLabel.textColor = .black
         resultsNumberLabel.textAlignment = .left
         resultsNumberLabel.numberOfLines = 1
         resultsNumberLabel.layer.transform = CATransform3DMakeTranslation(16, 0, 0)
-        resultsNumberLabel.text = "345 456 Free Images"
     }
     
     // MARK: RelatedCategoriesCollectionView

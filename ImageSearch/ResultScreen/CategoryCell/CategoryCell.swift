@@ -37,8 +37,7 @@ final class CategoryCell: UICollectionViewCell {
     
     private func setUpCategoryLabel() {
         categoryLabel.textColor = .black
-        categoryLabel.text = "Forest Background"
-        categoryLabel.font = UIFont(name: "OpenSans-Regular", size: 14)
+        categoryLabel.font = UIFont(name: Fonts.OpenSans.Regular.rawValue, size: 14)
         categoryLabel.textColor = .black
         categoryLabel.textAlignment = .center
         categoryLabel.numberOfLines = 1

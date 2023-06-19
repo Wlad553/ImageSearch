@@ -11,4 +11,6 @@ protocol ResultViewViewModelType: AnyObject {
     func numberOfImageResultItems() -> Int
     func numberOfRelatedCategoryItems() -> Int
     func categoryCellViewModel(at indexPath: IndexPath) -> CategoryCellViewModelType
+    func imageResultsCellViewModel(at indexPath: IndexPath) -> ImageResultsCellViewModelType
+    func imageResultsHeaderViewViewModel() -> ImageResultsHeaderViewViewModelType
 }

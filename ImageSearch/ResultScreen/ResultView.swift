@@ -69,7 +69,7 @@ final class ResultView: UIView {
     private func setUpLogoLabel() {
         logoLabel.text = "P"
         logoLabel.textAlignment = .center
-        logoLabel.font = UIFont(name: "Pattaya-Regular", size: 36)
+        logoLabel.font = UIFont(name: Fonts.Pattaya.Regular.rawValue, size: 36)
         logoLabel.textColor = .white
         logoLabel.layer.backgroundColor = UIColor.searchButtonBackground.cgColor
         logoLabel.layer.cornerRadius = 5
@@ -98,7 +98,7 @@ final class ResultView: UIView {
         imageResultsCollectionView.setCollectionViewLayout(imageResultsCollectionViewLayout(), animated: false)
         imageResultsCollectionView.backgroundColor = .searchTextFieldBackground
         imageResultsCollectionView.showsVerticalScrollIndicator = false
-        imageResultsCollectionView.register(ImageResultCell.self, forCellWithReuseIdentifier: ImageResultCell.reuseIdentifier)
+        imageResultsCollectionView.register(ImageResultsCell.self, forCellWithReuseIdentifier: ImageResultsCell.reuseIdentifier)
         imageResultsCollectionView.register(ImageResultsHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ImageResultsHeaderView.reuseIdentifier)
         addSubview(imageResultsCollectionView)
     }

@@ -1,5 +1,5 @@
 //
-//  ImageResultCell.swift
+//  ImageResultsCell.swift
 //  ImageSearch
 //
 //  Created by Vladyslav Petrenko on 18/06/2023.
@@ -7,9 +7,16 @@
 
 import UIKit
 
-final class ImageResultCell: UICollectionViewCell {
+final class ImageResultsCell: UICollectionViewCell {
     static let reuseIdentifier = "ImageResultCell"
-    let imageView = UIImageView(image: UIImage(named: "ImagePlaceholder"))
+    
+    let imageView = UIImageView()
+    var viewModel: ImageResultsCellViewModelType? {
+        willSet(viewModel) {
+            guard let viewModel = viewModel else { return }
+            imageView.image = viewModel.cellImage
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

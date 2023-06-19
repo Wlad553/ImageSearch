@@ -47,7 +47,7 @@ final class SearchView: UIView {
         let attributedText = NSMutableAttributedString(string: "Zabierz swoich odbiorców na wizualną przygodę")
         attributedText.addAttribute(.baselineOffset, value: 8, range: NSRange(location: 0, length: attributedText.string.count))
         welcomeLabel.numberOfLines = 0
-        welcomeLabel.font = UIFont(name: "OpenSans-ExtraBold", size: 26)
+        welcomeLabel.font = UIFont(name: Fonts.OpenSans.ExtraBold.rawValue, size: 26)
         welcomeLabel.textColor = .welcomeLabel
         welcomeLabel.textAlignment = .center
         welcomeLabel.attributedText = attributedText
