@@ -1,26 +1,49 @@
 PODS:
   - Alamofire (5.7.1)
+  - CocoaLumberjack (3.8.0):
+    - CocoaLumberjack/Core (= 3.8.0)
+  - CocoaLumberjack/Core (3.8.0)
+  - Kingfisher (7.7.0)
   - SnapKit (5.6.0)
+  - SVGKit (3.1.0):
+    - CocoaLumberjack (~> 3.0)
   - XCoordinator (2.2.1):
     - XCoordinator/Core (= 2.2.1)
   - XCoordinator/Core (2.2.1)
 
 DEPENDENCIES:
   - Alamofire
+  - Kingfisher (~> 7.0)
   - SnapKit (~> 5.6.0)
+  - SVGKit (from `https://github.com/SVGKit/SVGKit.git`, branch `3.x`)
   - XCoordinator (~> 2.0)
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - CocoaLumberjack
+    - Kingfisher
     - SnapKit
     - XCoordinator
 
+EXTERNAL SOURCES:
+  SVGKit:
+    :branch: 3.x
+    :git: https://github.com/SVGKit/SVGKit.git
+
+CHECKOUT OPTIONS:
+  SVGKit:
+    :commit: 87fcc6384bee87a7eba12eb367abcad315433478
+    :git: https://github.com/SVGKit/SVGKit.git
+
 SPEC CHECKSUMS:
   Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
+  CocoaLumberjack: 78abfb691154e2a9df8ded4350d504ee19d90732
+  Kingfisher: f043ac666dfc96c1f37604f93effb45a7ee3a3e1
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SVGKit: 3c8468aab0026048532a3b27a0c81cdd939f0649
   XCoordinator: 2cf9f72e10998b7a4a4bbeac3d07e071ea82fca3
 
-PODFILE CHECKSUM: b30a918ee7794957fd31f13386856e10675d2e38
+PODFILE CHECKSUM: 42271358d36722e030b1d3cf88d5b7c59c94ff0b
 
 COCOAPODS: 1.12.1

@@ -41,8 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1FF92F18B6FA549A226FBFB3 /* Pods-ImageSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageSearch.release.xcconfig"; path = "Target Support Files/Pods-ImageSearch/Pods-ImageSearch.release.xcconfig"; sourceTree = "<group>"; };
-		A95FE058F15E29662379F5FE /* Pods-ImageSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageSearch.debug.xcconfig"; path = "Target Support Files/Pods-ImageSearch/Pods-ImageSearch.debug.xcconfig"; sourceTree = "<group>"; };
+		CA02B8CA745F22434F06DA98 /* Pods-ImageSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageSearch.release.xcconfig"; path = "Target Support Files/Pods-ImageSearch/Pods-ImageSearch.release.xcconfig"; sourceTree = "<group>"; };
 		F54147352A40798F00BCDAD5 /* ImageResultsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResultsCellViewModel.swift; sourceTree = "<group>"; };
 		F54147372A4079B400BCDAD5 /* ImageResultsCellViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResultsCellViewModelType.swift; sourceTree = "<group>"; };
 		F54147392A407DCE00BCDAD5 /* ImageResultsHeaderViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResultsHeaderViewViewModel.swift; sourceTree = "<group>"; };
@@ -76,6 +75,7 @@
 		F5D4EDC22A38E33F00B4C5C0 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		F5D4EDC32A38E33F00B4C5C0 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		F5D4EDC42A38E33F00B4C5C0 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		F6A3BBE1E14B934E4E5C3633 /* Pods-ImageSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageSearch.debug.xcconfig"; path = "Target Support Files/Pods-ImageSearch/Pods-ImageSearch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,8 +92,8 @@
 		2F271A294DDDD0B9825A2502 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A95FE058F15E29662379F5FE /* Pods-ImageSearch.debug.xcconfig */,
-				1FF92F18B6FA549A226FBFB3 /* Pods-ImageSearch.release.xcconfig */,
+				F6A3BBE1E14B934E4E5C3633 /* Pods-ImageSearch.debug.xcconfig */,
+				CA02B8CA745F22434F06DA98 /* Pods-ImageSearch.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -160,32 +160,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		F543ADEC2A364B8700C9CC60 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				F543ADED2A364C4900C9CC60 /* SearchViewViewModel.swift */,
-				F543ADEF2A364D2500C9CC60 /* Protocols */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		F543ADEF2A364D2500C9CC60 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				F54D34182A3F99620087ADDE /* SearchViewViewModelType.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		F543ADF02A3658A700C9CC60 /* SearchView */ = {
-			isa = PBXGroup;
-			children = (
-				F543ADD32A361DCA00C9CC60 /* SearchViewController.swift */,
-				F543ADEA2A364B7700C9CC60 /* SearchView.swift */,
-			);
-			path = SearchView;
-			sourceTree = "<group>";
-		};
 		F543ADF12A365CE200C9CC60 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,8 +190,10 @@
 		F5D2EB602A3CC6AD00489918 /* SearchScreen */ = {
 			isa = PBXGroup;
 			children = (
-				F543ADF02A3658A700C9CC60 /* SearchView */,
-				F543ADEC2A364B8700C9CC60 /* ViewModels */,
+				F543ADD32A361DCA00C9CC60 /* SearchViewController.swift */,
+				F543ADEA2A364B7700C9CC60 /* SearchView.swift */,
+				F543ADED2A364C4900C9CC60 /* SearchViewViewModel.swift */,
+				F54D34182A3F99620087ADDE /* SearchViewViewModelType.swift */,
 			);
 			path = SearchScreen;
 			sourceTree = "<group>";
@@ -273,11 +249,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F543ADE02A361DCB00C9CC60 /* Build configuration list for PBXNativeTarget "ImageSearch" */;
 			buildPhases = (
-				9957D015CDAF95F208EA20DC /* [CP] Check Pods Manifest.lock */,
+				356181925D6C91CDE627B402 /* [CP] Check Pods Manifest.lock */,
 				F543ADC82A361DCA00C9CC60 /* Sources */,
 				F543ADC92A361DCA00C9CC60 /* Frameworks */,
 				F543ADCA2A361DCA00C9CC60 /* Resources */,
-				74FA41A5EC8AFC8F896FD5E6 /* [CP] Embed Pods Frameworks */,
+				D6700738D3991B6D8EA8FC87 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -339,24 +315,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		74FA41A5EC8AFC8F896FD5E6 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ImageSearch/Pods-ImageSearch-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ImageSearch/Pods-ImageSearch-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ImageSearch/Pods-ImageSearch-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9957D015CDAF95F208EA20DC /* [CP] Check Pods Manifest.lock */ = {
+		356181925D6C91CDE627B402 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -376,6 +335,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6700738D3991B6D8EA8FC87 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ImageSearch/Pods-ImageSearch-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ImageSearch/Pods-ImageSearch-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ImageSearch/Pods-ImageSearch-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -542,7 +518,7 @@
 		};
 		F543ADE12A361DCB00C9CC60 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A95FE058F15E29662379F5FE /* Pods-ImageSearch.debug.xcconfig */;
+			baseConfigurationReference = F6A3BBE1E14B934E4E5C3633 /* Pods-ImageSearch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -576,7 +552,7 @@
 		};
 		F543ADE22A361DCB00C9CC60 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1FF92F18B6FA549A226FBFB3 /* Pods-ImageSearch.release.xcconfig */;
+			baseConfigurationReference = CA02B8CA745F22434F06DA98 /* Pods-ImageSearch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
