@@ -13,16 +13,13 @@ final class SearchView: UIView {
     let welcomeLabel = UILabel()
     let searchTextField = SearchTextField()
     let searchButton = BlueButton(title: "Search", image: UIImage(systemName: "magnifyingglass")!)
-    let searchStackView = UIStackView()
+    private let searchStackView = UIStackView()
     
     override init(frame: CGRect) {
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
-            super.init(frame: .zero)
-            return
-        }
-        super.init(frame: windowScene.screen.bounds)
+        super.init(frame: frame)
         setUpImageView()
-        setUpTopLabel()
+        setUpWelcomeLabel()
+        setUpSearchButton()
         setUpSearchStackView()
         addConstraints()
     }
@@ -42,7 +39,7 @@ final class SearchView: UIView {
         addSubview(imageView)
     }
     
-    private func setUpTopLabel() {
+    private func setUpWelcomeLabel() {
         addSubview(welcomeLabel)
         let attributedText = NSMutableAttributedString(string: "Zabierz swoich odbiorców na wizualną przygodę")
         attributedText.addAttribute(.baselineOffset, value: 8, range: NSRange(location: 0, length: attributedText.string.count))
@@ -73,6 +70,12 @@ final class SearchView: UIView {
         searchTextField.autocorrectionType = .no
         searchTextField.autocapitalizationType = .none
         searchTextField.clearButtonMode = .whileEditing
+    }
+    
+    private func setUpSearchButton() {
+        searchButton.isUserInteractionEnabled = false
+        searchButton.titleLabel?.alpha = 0.6
+        searchButton.imageView?.alpha = 0.6
     }
     
     private func setUpSearchStackView() {
@@ -108,6 +111,47 @@ final class SearchView: UIView {
             make.leading.equalToSuperview().offset(24)
             make.trailing.equalToSuperview().offset(-24)
             make.bottom.equalTo(searchStackView.snp_topMargin).offset(-48)
+        }
+    }
+}
+
+// MARK: Animations
+extension SearchView {
+    // MARK: SearchButton
+    func disableSearchButton() {
+        searchButton.isUserInteractionEnabled = false
+        UIView.animate(withDuration: 0.3) {
+            self.searchButton.titleLabel?.alpha = 0.6
+            self.searchButton.imageView?.alpha = 0.6
+        }
+    }
+    
+    func enableSearchButton() {
+        searchButton.isUserInteractionEnabled = true
+        UIView.animate(withDuration: 0.3) {
+            self.searchButton.titleLabel?.alpha = 1
+            self.searchButton.imageView?.alpha = 1
+        }
+    }
+    
+    // MARK: View
+    func moveViewUp(keyboardFrame: CGRect) {
+        UIView.animate(withDuration: 0.2) {
+            self.welcomeLabel.alpha = 0
+            self.searchStackView.snp.updateConstraints { make in
+                make.centerY.equalToSuperview().offset((self.searchStackView.spacing + self.searchTextField.frame.height) / 2 - (keyboardFrame.height / 2.5))
+            }
+            self.layoutIfNeeded()
+        }
+    }
+    
+    func moveViewToOriginalPosition() {
+        UIView.animate(withDuration: 0.2) {
+            self.welcomeLabel.alpha = 1
+            self.searchStackView.snp.updateConstraints { make in
+                make.centerY.equalToSuperview().offset((self.searchStackView.spacing + self.searchTextField.frame.height) / 2)
+            }
+            self.layoutIfNeeded()
         }
     }
 }

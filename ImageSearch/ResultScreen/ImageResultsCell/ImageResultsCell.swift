@@ -14,7 +14,7 @@ final class ImageResultsCell: UICollectionViewCell {
     var viewModel: ImageResultsCellViewModelType? {
         willSet(viewModel) {
             guard let viewModel = viewModel else { return }
-            imageView.image = viewModel.cellImage
+            viewModel.imageDownloadManager.downloadImage(withUrl: viewModel.cellImageURL, forImageView: imageView)
         }
     }
     
@@ -27,11 +27,13 @@ final class ImageResultsCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setUpCell() {
-        imageView.contentMode = .scaleAspectFit
+    private func setUpCell() {
         layer.backgroundColor = UIColor.imagePlaceholderBackground.cgColor
         layer.cornerRadius = 5
         addSubview(imageView)
         imageView.activateEqualToSuperviewConstraints()
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 5
     }
 }

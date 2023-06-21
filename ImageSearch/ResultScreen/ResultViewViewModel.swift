@@ -6,31 +6,57 @@
 //
 
 import UIKit
+import XCoordinator
 
 final class ResultViewViewModel: ResultViewViewModelType {
-    var categoriesArray = ["Forest Background", "Tree", "Nature", "World"]
-    var imagesArray = [UIImage(named: "ImagePlaceholder"), UIImage(named: "ImagePlaceholder"), UIImage(named: "ImagePlaceholder")]
-    var resultsNumber = 345456
+    let networkManager: NetworkManagerProtocol
+    let router: UnownedRouter<AppRoute>
+    var searchResultData: ImageSearchResultData
+    
+    init(searchResultData: ImageSearchResultData, networkManager: NetworkManagerProtocol, router: UnownedRouter<AppRoute>) {
+        self.searchResultData = searchResultData
+        self.networkManager = networkManager
+        self.router = router
+    }
+    
+    func searchResultCategories() -> [String] {
+        var searchResultCategories: [String] = []
+        for hit in searchResultData.hits {
+            let hitCategories = hit.tags.components(separatedBy: ", ")
+            
+            for category in hitCategories {
+                let words = category.components(separatedBy: " ")
+                let capitalizedCategory = words.map { word in
+                    let firstCharacter = word.prefix(1).uppercased()
+                    let remainingCharacters = word.dropFirst()
+                    return firstCharacter + remainingCharacters
+                }.joined(separator: " ")
+                guard !searchResultCategories.contains(capitalizedCategory) else { continue }
+                searchResultCategories.append(capitalizedCategory)
+            }
+        }
+        return searchResultCategories
+    }
     
     // MARK: UICollectionViewDataSource data
     func numberOfImageResultItems() -> Int {
-        imagesArray.count
+        return searchResultData.hits.count
     }
     
     func numberOfRelatedCategoryItems() -> Int {
-        categoriesArray.count
+        return searchResultCategories().count
     }
     
     // MARK: ViewModels
     func categoryCellViewModel(at indexPath: IndexPath) -> CategoryCellViewModelType {
-        return CategoryCellViewModel(categoryLabelText: categoriesArray[indexPath.row])
+        return CategoryCellViewModel(categoryLabelText: searchResultCategories()[indexPath.row])
     }
     
     func imageResultsCellViewModel(at indexPath: IndexPath) -> ImageResultsCellViewModelType {
-        return ImageResultsCellViewModel(image: imagesArray[indexPath.row]!)
+        return ImageResultsCellViewModel(cellImageURL: searchResultData.hits[indexPath.row].webformatURL, imageDownloadManager: ImageDownloadManager())
     }
     
     func imageResultsHeaderViewViewModel() -> ImageResultsHeaderViewViewModelType {
-        return ImageResultsHeaderViewViewModel(resultsNumber: resultsNumber)
+        return ImageResultsHeaderViewViewModel(resultsNumber: searchResultData.total)
     }
 }

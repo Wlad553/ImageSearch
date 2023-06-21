@@ -8,6 +8,8 @@
 import Foundation
 
 protocol ResultViewViewModelType: AnyObject {
+    var searchResultData: ImageSearchResultData { get }
+    var networkManager: NetworkManagerProtocol { get }
     func numberOfImageResultItems() -> Int
     func numberOfRelatedCategoryItems() -> Int
     func categoryCellViewModel(at indexPath: IndexPath) -> CategoryCellViewModelType

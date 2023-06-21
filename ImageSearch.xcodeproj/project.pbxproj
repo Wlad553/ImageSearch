@@ -12,6 +12,9 @@
 		F541473A2A407DCE00BCDAD5 /* ImageResultsHeaderViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54147392A407DCE00BCDAD5 /* ImageResultsHeaderViewViewModel.swift */; };
 		F541473C2A407DE400BCDAD5 /* ImageResultsHeaderViewViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F541473B2A407DE400BCDAD5 /* ImageResultsHeaderViewViewModelType.swift */; };
 		F541473E2A4081C200BCDAD5 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F541473D2A4081C200BCDAD5 /* Fonts.swift */; };
+		F54147422A40B34300BCDAD5 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54147412A40B34300BCDAD5 /* NetworkManager.swift */; };
+		F54147442A40B38300BCDAD5 /* NetworkManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54147432A40B38300BCDAD5 /* NetworkManagerProtocol.swift */; };
+		F54147472A40B87300BCDAD5 /* ImageSearchResultData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54147462A40B87300BCDAD5 /* ImageSearchResultData.swift */; };
 		F541DEC12A3B5F2B00D4626E /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F541DEC02A3B5F2B00D4626E /* SearchTextField.swift */; };
 		F541DEC32A3B62C900D4626E /* BlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F541DEC22A3B62C900D4626E /* BlueButton.swift */; };
 		F543ADD02A361DCA00C9CC60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F543ADCF2A361DCA00C9CC60 /* AppDelegate.swift */; };
@@ -30,6 +33,8 @@
 		F54D34152A3F820B0087ADDE /* CategoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D34142A3F820B0087ADDE /* CategoryCellViewModel.swift */; };
 		F54D34172A3F83E90087ADDE /* CategoryCellViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D34162A3F83E90087ADDE /* CategoryCellViewModelType.swift */; };
 		F54D34192A3F99620087ADDE /* SearchViewViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D34182A3F99620087ADDE /* SearchViewViewModelType.swift */; };
+		F58D96062A41762200111756 /* UIViewController+presentOKAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58D96052A41762200111756 /* UIViewController+presentOKAlertController.swift */; };
+		F58D96092A41C21C00111756 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58D96082A41C21C00111756 /* AppCoordinator.swift */; };
 		F59A42422A39EA2300E2433E /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59A42412A39EA2300E2433E /* ResultView.swift */; };
 		F59A42442A39EA2F00E2433E /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59A42432A39EA2F00E2433E /* ResultViewController.swift */; };
 		F59A42482A3A375700E2433E /* Pattaya-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F59A42472A3A375700E2433E /* Pattaya-Regular.ttf */; };
@@ -38,15 +43,21 @@
 		F5D4EDC52A38E33F00B4C5C0 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5D4EDC22A38E33F00B4C5C0 /* OpenSans-Regular.ttf */; };
 		F5D4EDC62A38E33F00B4C5C0 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5D4EDC32A38E33F00B4C5C0 /* OpenSans-SemiBold.ttf */; };
 		F5D4EDC72A38E33F00B4C5C0 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5D4EDC42A38E33F00B4C5C0 /* OpenSans-ExtraBold.ttf */; };
+		F5F50A702A4336FF0054D02E /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F50A6F2A4336FF0054D02E /* ImageDownloadManager.swift */; };
+		F5F50A722A43401C0054D02E /* ImageDownloadManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F50A712A43401C0054D02E /* ImageDownloadManagerProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CA02B8CA745F22434F06DA98 /* Pods-ImageSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageSearch.release.xcconfig"; path = "Target Support Files/Pods-ImageSearch/Pods-ImageSearch.release.xcconfig"; sourceTree = "<group>"; };
+		83DBF586BB14CF6659084D1A /* Pods-ImageSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageSearch.release.xcconfig"; path = "Target Support Files/Pods-ImageSearch/Pods-ImageSearch.release.xcconfig"; sourceTree = "<group>"; };
+		90CCF90D802FD6643D1A274E /* Pods-ImageSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageSearch.debug.xcconfig"; path = "Target Support Files/Pods-ImageSearch/Pods-ImageSearch.debug.xcconfig"; sourceTree = "<group>"; };
 		F54147352A40798F00BCDAD5 /* ImageResultsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResultsCellViewModel.swift; sourceTree = "<group>"; };
 		F54147372A4079B400BCDAD5 /* ImageResultsCellViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResultsCellViewModelType.swift; sourceTree = "<group>"; };
 		F54147392A407DCE00BCDAD5 /* ImageResultsHeaderViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResultsHeaderViewViewModel.swift; sourceTree = "<group>"; };
 		F541473B2A407DE400BCDAD5 /* ImageResultsHeaderViewViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResultsHeaderViewViewModelType.swift; sourceTree = "<group>"; };
 		F541473D2A4081C200BCDAD5 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		F54147412A40B34300BCDAD5 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		F54147432A40B38300BCDAD5 /* NetworkManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerProtocol.swift; sourceTree = "<group>"; };
+		F54147462A40B87300BCDAD5 /* ImageSearchResultData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchResultData.swift; sourceTree = "<group>"; };
 		F541DEC02A3B5F2B00D4626E /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		F541DEC22A3B62C900D4626E /* BlueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueButton.swift; sourceTree = "<group>"; };
 		F543ADCF2A361DCA00C9CC60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +77,8 @@
 		F54D34142A3F820B0087ADDE /* CategoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCellViewModel.swift; sourceTree = "<group>"; };
 		F54D34162A3F83E90087ADDE /* CategoryCellViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCellViewModelType.swift; sourceTree = "<group>"; };
 		F54D34182A3F99620087ADDE /* SearchViewViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewViewModelType.swift; sourceTree = "<group>"; };
+		F58D96052A41762200111756 /* UIViewController+presentOKAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+presentOKAlertController.swift"; sourceTree = "<group>"; };
+		F58D96082A41C21C00111756 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		F59A42412A39EA2300E2433E /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		F59A42432A39EA2F00E2433E /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		F59A42472A3A375700E2433E /* Pattaya-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pattaya-Regular.ttf"; sourceTree = "<group>"; };
@@ -75,7 +88,8 @@
 		F5D4EDC22A38E33F00B4C5C0 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		F5D4EDC32A38E33F00B4C5C0 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		F5D4EDC42A38E33F00B4C5C0 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
-		F6A3BBE1E14B934E4E5C3633 /* Pods-ImageSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageSearch.debug.xcconfig"; path = "Target Support Files/Pods-ImageSearch/Pods-ImageSearch.debug.xcconfig"; sourceTree = "<group>"; };
+		F5F50A6F2A4336FF0054D02E /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
+		F5F50A712A43401C0054D02E /* ImageDownloadManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManagerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,8 +106,8 @@
 		2F271A294DDDD0B9825A2502 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F6A3BBE1E14B934E4E5C3633 /* Pods-ImageSearch.debug.xcconfig */,
-				CA02B8CA745F22434F06DA98 /* Pods-ImageSearch.release.xcconfig */,
+				90CCF90D802FD6643D1A274E /* Pods-ImageSearch.debug.xcconfig */,
+				83DBF586BB14CF6659084D1A /* Pods-ImageSearch.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -106,6 +120,24 @@
 				F541473B2A407DE400BCDAD5 /* ImageResultsHeaderViewViewModelType.swift */,
 			);
 			path = ImageResultsHeaderView;
+			sourceTree = "<group>";
+		};
+		F54147402A40B32D00BCDAD5 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				F54147412A40B34300BCDAD5 /* NetworkManager.swift */,
+				F5F50A6F2A4336FF0054D02E /* ImageDownloadManager.swift */,
+				F5F50A732A4340400054D02E /* Protocols */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		F54147452A40B83E00BCDAD5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F54147462A40B87300BCDAD5 /* ImageSearchResultData.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		F541DEBF2A3B5F0B00D4626E /* UIElements */ = {
@@ -132,8 +164,11 @@
 			children = (
 				F543ADCF2A361DCA00C9CC60 /* AppDelegate.swift */,
 				F543ADE72A36245F00C9CC60 /* SceneDelegate.swift */,
+				F54147402A40B32D00BCDAD5 /* Managers */,
+				F54147452A40B83E00BCDAD5 /* Models */,
 				F5D2EB602A3CC6AD00489918 /* SearchScreen */,
 				F5D2EB612A3CC6B800489918 /* ResultScreen */,
+				F58D96072A41C1E400111756 /* Coordinator */,
 				F541DEBF2A3B5F0B00D4626E /* UIElements */,
 				F543ADF12A365CE200C9CC60 /* Extensions */,
 				F543ADE52A361ED600C9CC60 /* Supporting Files */,
@@ -165,8 +200,17 @@
 			children = (
 				F543ADF22A365D1100C9CC60 /* UIColor+colors.swift */,
 				F5D2EB5E2A3CC31100489918 /* UIView+activateEqualToSuperviewConstraints.swift */,
+				F58D96052A41762200111756 /* UIViewController+presentOKAlertController.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F58D96072A41C1E400111756 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				F58D96082A41C21C00111756 /* AppCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		F59A42402A39E9E800E2433E /* ImageResultsCell */ = {
@@ -190,8 +234,8 @@
 		F5D2EB602A3CC6AD00489918 /* SearchScreen */ = {
 			isa = PBXGroup;
 			children = (
-				F543ADD32A361DCA00C9CC60 /* SearchViewController.swift */,
 				F543ADEA2A364B7700C9CC60 /* SearchView.swift */,
+				F543ADD32A361DCA00C9CC60 /* SearchViewController.swift */,
 				F543ADED2A364C4900C9CC60 /* SearchViewViewModel.swift */,
 				F54D34182A3F99620087ADDE /* SearchViewViewModelType.swift */,
 			);
@@ -201,13 +245,13 @@
 		F5D2EB612A3CC6B800489918 /* ResultScreen */ = {
 			isa = PBXGroup;
 			children = (
-				F541473F2A409A1500BCDAD5 /* ImageResultsHeaderView */,
-				F5D2EB622A3CC88200489918 /* CategoryCell */,
-				F59A42402A39E9E800E2433E /* ImageResultsCell */,
 				F59A42412A39EA2300E2433E /* ResultView.swift */,
 				F59A42432A39EA2F00E2433E /* ResultViewController.swift */,
 				F5D2EB632A3CC9BF00489918 /* ResultViewViewModel.swift */,
 				F54D340C2A3F44A20087ADDE /* ResultViewViewModelType.swift */,
+				F541473F2A409A1500BCDAD5 /* ImageResultsHeaderView */,
+				F5D2EB622A3CC88200489918 /* CategoryCell */,
+				F59A42402A39E9E800E2433E /* ImageResultsCell */,
 			);
 			path = ResultScreen;
 			sourceTree = "<group>";
@@ -242,6 +286,15 @@
 			path = OpenSans;
 			sourceTree = "<group>";
 		};
+		F5F50A732A4340400054D02E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F54147432A40B38300BCDAD5 /* NetworkManagerProtocol.swift */,
+				F5F50A712A43401C0054D02E /* ImageDownloadManagerProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -249,11 +302,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F543ADE02A361DCB00C9CC60 /* Build configuration list for PBXNativeTarget "ImageSearch" */;
 			buildPhases = (
-				356181925D6C91CDE627B402 /* [CP] Check Pods Manifest.lock */,
+				03647499A38D84B16CAF7894 /* [CP] Check Pods Manifest.lock */,
 				F543ADC82A361DCA00C9CC60 /* Sources */,
 				F543ADC92A361DCA00C9CC60 /* Frameworks */,
 				F543ADCA2A361DCA00C9CC60 /* Resources */,
-				D6700738D3991B6D8EA8FC87 /* [CP] Embed Pods Frameworks */,
+				7F4861ED0BA5D56AC21F0BB7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -315,7 +368,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		356181925D6C91CDE627B402 /* [CP] Check Pods Manifest.lock */ = {
+		03647499A38D84B16CAF7894 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -337,7 +390,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D6700738D3991B6D8EA8FC87 /* [CP] Embed Pods Frameworks */ = {
+		7F4861ED0BA5D56AC21F0BB7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -361,14 +414,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F54147422A40B34300BCDAD5 /* NetworkManager.swift in Sources */,
 				F54D34152A3F820B0087ADDE /* CategoryCellViewModel.swift in Sources */,
 				F54D340D2A3F44A20087ADDE /* ResultViewViewModelType.swift in Sources */,
+				F5F50A702A4336FF0054D02E /* ImageDownloadManager.swift in Sources */,
 				F543ADEB2A364B7700C9CC60 /* SearchView.swift in Sources */,
 				F54147362A40798F00BCDAD5 /* ImageResultsCellViewModel.swift in Sources */,
+				F58D96092A41C21C00111756 /* AppCoordinator.swift in Sources */,
 				F541DEC32A3B62C900D4626E /* BlueButton.swift in Sources */,
+				F5F50A722A43401C0054D02E /* ImageDownloadManagerProtocol.swift in Sources */,
 				F5D2EB5F2A3CC31100489918 /* UIView+activateEqualToSuperviewConstraints.swift in Sources */,
 				F543ADF32A365D1100C9CC60 /* UIColor+colors.swift in Sources */,
 				F541473C2A407DE400BCDAD5 /* ImageResultsHeaderViewViewModelType.swift in Sources */,
+				F58D96062A41762200111756 /* UIViewController+presentOKAlertController.swift in Sources */,
 				F541473A2A407DCE00BCDAD5 /* ImageResultsHeaderViewViewModel.swift in Sources */,
 				F543ADEE2A364C4900C9CC60 /* SearchViewViewModel.swift in Sources */,
 				F59A42442A39EA2F00E2433E /* ResultViewController.swift in Sources */,
@@ -384,6 +442,8 @@
 				F54D340F2A3F563F0087ADDE /* ImageResultsHeaderView.swift in Sources */,
 				F543ADE82A36246000C9CC60 /* SceneDelegate.swift in Sources */,
 				F54D34172A3F83E90087ADDE /* CategoryCellViewModelType.swift in Sources */,
+				F54147472A40B87300BCDAD5 /* ImageSearchResultData.swift in Sources */,
+				F54147442A40B38300BCDAD5 /* NetworkManagerProtocol.swift in Sources */,
 				F541DEC12A3B5F2B00D4626E /* SearchTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,7 +578,7 @@
 		};
 		F543ADE12A361DCB00C9CC60 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6A3BBE1E14B934E4E5C3633 /* Pods-ImageSearch.debug.xcconfig */;
+			baseConfigurationReference = 90CCF90D802FD6643D1A274E /* Pods-ImageSearch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -552,7 +612,7 @@
 		};
 		F543ADE22A361DCB00C9CC60 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA02B8CA745F22434F06DA98 /* Pods-ImageSearch.release.xcconfig */;
+			baseConfigurationReference = 83DBF586BB14CF6659084D1A /* Pods-ImageSearch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -18,5 +18,4 @@ extension UIColor {
     static let optionsButtonHighlited = UIColor(red: 180/255, green: 180/255, blue: 180/255, alpha: 1)
     static let border = UIColor(red: 226/255, green: 226/255, blue: 226/255, alpha: 1)
     static let imagePlaceholderBackground = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
-
 }

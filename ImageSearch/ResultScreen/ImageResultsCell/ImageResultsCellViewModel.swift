@@ -8,9 +8,11 @@
 import UIKit
 
 final class ImageResultsCellViewModel: ImageResultsCellViewModelType {
-    var cellImage: UIImage
+    var cellImageURL: String
+    let imageDownloadManager: ImageDownloadManagerProtocol
     
-    init(image: UIImage) {
-        self.cellImage = image
+    init(cellImageURL: String, imageDownloadManager: ImageDownloadManagerProtocol) {
+        self.cellImageURL = cellImageURL
+        self.imageDownloadManager = imageDownloadManager
     }
 }

@@ -16,6 +16,7 @@ final class ResultView: UIView {
     let searchTextField = SearchTextField()
     let optionsButton = UIButton()
     let imageResultsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+    let activityIndicator = UIActivityIndicatorView(style: .large)
     var imageResultsHeaderView: ImageResultsHeaderView?
     
     override init(frame: CGRect) {
@@ -30,6 +31,7 @@ final class ResultView: UIView {
         setUpSearchTextField()
         setUpOptionsButton()
         setUpImageResultsCollectionView()
+        setUpActivityIndicator()
         addConstraints()
     }
     
@@ -103,6 +105,11 @@ final class ResultView: UIView {
         addSubview(imageResultsCollectionView)
     }
     
+    private func setUpActivityIndicator() {
+        imageResultsCollectionView.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+    }
+    
     // MARK: Constraints
     private func addConstraints() {
         topView.snp.makeConstraints { make in
@@ -135,6 +142,10 @@ final class ResultView: UIView {
             make.top.equalTo(topView.snp_bottomMargin).offset(9)
             make.leading.trailing.bottom.equalToSuperview()
         }
+        
+        activityIndicator.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+        }
     }
 }
 
@@ -143,7 +154,7 @@ extension ResultView {
     private func imageResultsCollectionViewLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: frame.width - 32, height: 250)
+        layout.itemSize = CGSize(width: frame.width - 32, height: 220)
         layout.minimumLineSpacing = 16
         layout.headerReferenceSize = CGSize(width: frame.size.width, height: 88)
         return layout

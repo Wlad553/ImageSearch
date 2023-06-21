@@ -17,6 +17,11 @@ final class SearchTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func clearButtonRect(forBounds bounds: CGRect) -> CGRect {
+        super.clearButtonRect(forBounds: bounds)
+        return CGRect(x: frame.width - 34, y: frame.height / 2 - 12, width: 24, height: 24)
+    }
+    
     private func setUp() {
         textColor = UIColor.black
         backgroundColor = UIColor.searchTextFieldBackground
@@ -37,5 +42,8 @@ final class SearchTextField: UITextField {
         autocorrectionType = .no
         autocapitalizationType = .none
         clearButtonMode = .whileEditing
+        
+        returnKeyType = .search
+        enablesReturnKeyAutomatically = true
     }
 }
