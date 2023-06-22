@@ -5,9 +5,8 @@
 //  Created by Vladyslav Petrenko on 19/06/2023.
 //
 
-import Foundation
-import Alamofire
+import Combine
 
 protocol NetworkManagerProtocol {
-    func requestData(withSearchQuery searchQuery: String, completionHandler: @escaping (Result<ImageSearchResultData, AFError>) -> Void)
+    func fetchData(withSearchQuery searchQuery: String) -> Future<ImageSearchResultData, Error>
 }

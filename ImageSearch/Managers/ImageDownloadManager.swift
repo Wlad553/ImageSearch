@@ -10,6 +10,7 @@ import Kingfisher
 class ImageDownloadManager: ImageDownloadManagerProtocol {
     func downloadImage(withUrl url: String, forImageView imageView: UIImageView) {
         guard let url = URL(string: url) else { return }
-        imageView.kf.setImage(with: url, placeholder: UIImage(named: "ImagePlaceholder"))
+        imageView.kf.indicatorType = .activity
+        imageView.kf.setImage(with: url)
     }
 }

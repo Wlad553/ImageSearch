@@ -10,6 +10,5 @@ import XCoordinator
 
 protocol SearchViewViewModelType: AnyObject {
     var networkManager: NetworkManagerProtocol { get }
-    var router: UnownedRouter<AppRoute> { get }
     func didPressSearchButton(searchText: String)
 }

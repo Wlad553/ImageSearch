@@ -6,13 +6,15 @@
 //
 
 import Foundation
+import Combine
 
 protocol ResultViewViewModelType: AnyObject {
-    var searchResultData: ImageSearchResultData { get }
+    var searchResultData: ImageSearchResultData? { get }
     var networkManager: NetworkManagerProtocol { get }
+    func fetchData(withSearchQuery searchQuery: String) -> Future<Void, Error>
     func numberOfImageResultItems() -> Int
     func numberOfRelatedCategoryItems() -> Int
     func categoryCellViewModel(at indexPath: IndexPath) -> CategoryCellViewModelType
-    func imageResultsCellViewModel(at indexPath: IndexPath) -> ImageResultsCellViewModelType
-    func imageResultsHeaderViewViewModel() -> ImageResultsHeaderViewViewModelType
+    func imageResultsCellViewModel(at indexPath: IndexPath) -> ImageResultsCellViewModelType?
+    func imageResultsHeaderViewViewModel() -> ImageResultsHeaderViewViewModelType?
 }

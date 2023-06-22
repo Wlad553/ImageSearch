@@ -9,7 +9,7 @@ import XCoordinator
 
 enum AppRoute: Route {
     case search
-    case results(data: ImageSearchResultData)
+    case results(searchText: String)
 }
 
 class AppCoordinator: NavigationCoordinator<AppRoute> {
@@ -24,11 +24,11 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
                                                 router: unownedRouter)
             let viewController = SearchViewController(viewModel: viewModel)
             return .push(viewController)
-        case .results(let data):
-            let viewModel = ResultViewViewModel(searchResultData: data,
-                                                networkManager: NetworkManager(),
+        case .results(let searchText):
+            let viewModel = ResultViewViewModel(networkManager: NetworkManager(),
                                                 router: unownedRouter)
             let viewController = ResultViewController(viewModel: viewModel)
+            viewController.resultView.searchTextField.text = searchText
             return .push(viewController)
         }
     }

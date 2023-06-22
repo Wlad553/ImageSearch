@@ -8,10 +8,14 @@
 import UIKit
 
 extension UIViewController {
-    func presentOKAlertController(withTitle title: String?, message: String?) {
+    func presentOKAlertController(withTitle title: String?,
+                                  message: String?,
+                                  completionHandler: @escaping () -> Void = {}) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default)
         alertController.addAction(okAction)
-        present(alertController, animated: true)
+        present(alertController, animated: true) {
+            completionHandler()
+        }
     }
 }

@@ -7,6 +7,8 @@
 
 import Foundation
 import Alamofire
+import Combine
+import NaturalLanguage
 
 enum ImageSearchAPI: String {
     case apiKey = "37206235-417ae468352b299c4b0eb5862"
@@ -21,15 +23,31 @@ enum ImageSearchAPI: String {
 }
 
 class NetworkManager: NetworkManagerProtocol {
-    func requestData(withSearchQuery searchQuery: String, completionHandler: @escaping (Result<ImageSearchResultData, AFError>) -> Void) {
-        let urlString = "https://pixabay.com/api/?key=\(ImageSearchAPI.apiKey.rawValue)&q=\(searchQuery)"
-        guard let url = URL(string: urlString) else { return }
+    enum NMError: Error {
+        case invalidURL
+    }
+    
+    func fetchData(withSearchQuery searchQuery: String) -> Future<ImageSearchResultData, Error> {
+        let whitespaceFreeSearchQuery = searchQuery.components(separatedBy: CharacterSet.symbols)
+            .joined(separator: "+")
+        let languageRecognizer = NLLanguageRecognizer()
+        languageRecognizer.processString(whitespaceFreeSearchQuery)
+        let dominantLanguage = languageRecognizer.dominantLanguage?.rawValue ?? "en"
+        let encodedText = whitespaceFreeSearchQuery.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        let urlString = "https://pixabay.com/api/?key=\(ImageSearchAPI.apiKey.rawValue)&q=\(encodedText!)&lang=\(dominantLanguage)"
+        guard let url = URL(string: urlString) else {
+            return Future { promise in
+                promise(.failure(NMError.invalidURL))
+            }
+        }
         
-        AF.request(url).responseDecodable(of: ImageSearchResultData.self) { dataResponse in
-            if case let .success(data) = dataResponse.result {
-                completionHandler(.success(data))
-            } else if case let .failure(error) = dataResponse.result {
-                completionHandler(.failure(error))
+        return Future { promise in
+            AF.request(url).responseDecodable(of: ImageSearchResultData.self) { dataResponse in
+                if case let .success(data) = dataResponse.result {
+                    promise(.success(data))
+                } else if case let .failure(error) = dataResponse.result {
+                    promise(.failure(error))
+                }
             }
         }
     }

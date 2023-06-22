@@ -19,19 +19,6 @@ final class SearchViewViewModel: SearchViewViewModelType {
     }
     
     func didPressSearchButton(searchText: String) {
-        networkManager.requestData(withSearchQuery: searchText) { result in
-            if case let .success(data) = result {
-                self.router.trigger(.results(data: data))
-            } else if case let .failure(error) = result {
-                let message: String
-                if (error as NSError).code == 13 {
-                    message = "The Internet connection appears to be offline"
-                } else {
-                    message = "Please try again later"
-                }
-                self.router.viewController.presentOKAlertController(withTitle: "Search error",
-                                                                    message: message)
-            }
-        }
+        router.trigger(.results(searchText: searchText))
     }
 }

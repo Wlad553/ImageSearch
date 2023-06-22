@@ -7,21 +7,40 @@
 
 import UIKit
 import XCoordinator
+import Combine
 
-final class ResultViewViewModel: ResultViewViewModelType {
+final class ResultViewViewModel: ResultViewViewModelType {    
     let networkManager: NetworkManagerProtocol
     let router: UnownedRouter<AppRoute>
-    var searchResultData: ImageSearchResultData
+    var searchResultData: ImageSearchResultData?
+    private var subscriber: AnyCancellable?
     
-    init(searchResultData: ImageSearchResultData, networkManager: NetworkManagerProtocol, router: UnownedRouter<AppRoute>) {
-        self.searchResultData = searchResultData
+    init(networkManager: NetworkManagerProtocol, router: UnownedRouter<AppRoute>) {
         self.networkManager = networkManager
         self.router = router
     }
     
+    func fetchData(withSearchQuery searchQuery: String) -> Future<Void, Error> {
+        return Future { promise in
+            self.subscriber = self.networkManager.fetchData(withSearchQuery: searchQuery)
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        promise(.success(Void()))
+                    case .failure(let error):
+                        promise(.failure(error))
+                    }
+                }, receiveValue: { [weak self] searchResultData in
+                    self?.searchResultData = searchResultData
+                })
+        }
+    }
+    
     func searchResultCategories() -> [String] {
         var searchResultCategories: [String] = []
-        for hit in searchResultData.hits {
+        guard let searchResultDataSafe = searchResultData else { return searchResultCategories }
+        
+        for hit in searchResultDataSafe.hits {
             let hitCategories = hit.tags.components(separatedBy: ", ")
             
             for category in hitCategories {
@@ -40,7 +59,8 @@ final class ResultViewViewModel: ResultViewViewModelType {
     
     // MARK: UICollectionViewDataSource data
     func numberOfImageResultItems() -> Int {
-        return searchResultData.hits.count
+        guard let searchResultDataSafe = searchResultData else { return 0 }
+        return searchResultDataSafe.hits.count
     }
     
     func numberOfRelatedCategoryItems() -> Int {
@@ -52,11 +72,13 @@ final class ResultViewViewModel: ResultViewViewModelType {
         return CategoryCellViewModel(categoryLabelText: searchResultCategories()[indexPath.row])
     }
     
-    func imageResultsCellViewModel(at indexPath: IndexPath) -> ImageResultsCellViewModelType {
-        return ImageResultsCellViewModel(cellImageURL: searchResultData.hits[indexPath.row].webformatURL, imageDownloadManager: ImageDownloadManager())
+    func imageResultsCellViewModel(at indexPath: IndexPath) -> ImageResultsCellViewModelType? {
+        guard let searchResultDataSafe = searchResultData else { return nil }
+        return ImageResultsCellViewModel(cellImageURL: searchResultDataSafe.hits[indexPath.row].webformatURL, imageDownloadManager: ImageDownloadManager())
     }
     
-    func imageResultsHeaderViewViewModel() -> ImageResultsHeaderViewViewModelType {
-        return ImageResultsHeaderViewViewModel(resultsNumber: searchResultData.total)
+    func imageResultsHeaderViewViewModel() -> ImageResultsHeaderViewViewModelType? {
+        guard let searchResultDataSafe = searchResultData else { return nil }
+        return ImageResultsHeaderViewViewModel(resultsNumber: searchResultDataSafe.total)
     }
 }

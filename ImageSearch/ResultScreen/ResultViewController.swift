@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import Combine
+import Alamofire
 
 final class ResultViewController: UIViewController {
     let viewModel: ResultViewViewModelType
     let resultView = ResultView()
+    private var subscribers: [AnyCancellable] = []
     
     init(viewModel: ResultViewViewModelType) {
         self.viewModel = viewModel
@@ -29,6 +32,28 @@ final class ResultViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         resultView.assignCollectionViewsDelegates(to: self)
+        performSearch()
+    }
+    
+    func performSearch() {
+        let searchTextSafe = resultView.searchTextField.text ?? ""
+        viewModel.fetchData(withSearchQuery: searchTextSafe)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] completion in
+                switch completion {
+                case .finished:
+                    self?.resultView.activityIndicator.stopAnimating()
+                    self?.resultView.imageResultsCollectionView.reloadData()
+                    self?.resultView.imageResultsHeaderView?.relatedCategoriesCollectionView.reloadData()
+                case .failure(let error):
+                    let message = (error as NSError).code == 13 ? "The Internet connection appears to be offline" : "Please try again later"
+                    self?.presentOKAlertController(withTitle: "Search error",
+                                                   message: message) {
+                        self?.resultView.activityIndicator.stopAnimating()
+                    }
+                }
+            } receiveValue: {}
+            .store(in: &subscribers)
     }
 }
 
