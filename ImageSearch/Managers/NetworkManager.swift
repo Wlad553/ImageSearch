@@ -27,14 +27,12 @@ class NetworkManager: NetworkManagerProtocol {
         case invalidURL
     }
     
-    func fetchData(withSearchQuery searchQuery: String) -> Future<ImageSearchResultData, Error> {
-        let whitespaceFreeSearchQuery = searchQuery.components(separatedBy: CharacterSet.symbols)
-            .joined(separator: "+")
+    func fetchData(withSearchQuery searchQuery: String, maxResultNumber: Int) -> Future<ImageSearchResultData, Error> {
         let languageRecognizer = NLLanguageRecognizer()
-        languageRecognizer.processString(whitespaceFreeSearchQuery)
+        languageRecognizer.processString(searchQuery)
         let dominantLanguage = languageRecognizer.dominantLanguage?.rawValue ?? "en"
-        let encodedText = whitespaceFreeSearchQuery.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-        let urlString = "https://pixabay.com/api/?key=\(ImageSearchAPI.apiKey.rawValue)&q=\(encodedText!)&lang=\(dominantLanguage)"
+        let encodedText = searchQuery.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
+        let urlString = "https://pixabay.com/api/?key=\(ImageSearchAPI.apiKey.rawValue)&q=\(encodedText)&lang=\(dominantLanguage)&per_page=\(maxResultNumber)"
         guard let url = URL(string: urlString) else {
             return Future { promise in
                 promise(.failure(NMError.invalidURL))

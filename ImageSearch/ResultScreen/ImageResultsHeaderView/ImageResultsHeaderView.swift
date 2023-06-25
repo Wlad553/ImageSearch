@@ -73,7 +73,7 @@ final class ImageResultsHeaderView: UICollectionReusableView {
     // MARK: RelatedCategoriesCollectionView
     private func setUpRelatedCategoriesCollectionView() {
         relatedCategoriesCollectionView.setCollectionViewLayout(relatedCategoriesCollectionViewLayout(), animated: false)
-        relatedCategoriesCollectionView.backgroundColor = .searchTextFieldBackground
+        relatedCategoriesCollectionView.backgroundColor = .resultViewBackground
         relatedCategoriesCollectionView.showsHorizontalScrollIndicator = false
         relatedCategoriesCollectionView.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.reuseIdentifier)
         relatedCategoriesCollectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ImageResultsHeaderView.categoriesHeaderReuseIdentifier)

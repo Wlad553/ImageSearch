@@ -13,16 +13,19 @@ final class ResultViewViewModel: ResultViewViewModelType {
     let networkManager: NetworkManagerProtocol
     let router: UnownedRouter<AppRoute>
     var searchResultData: ImageSearchResultData?
+    var currentSearchText: String
     private var subscriber: AnyCancellable?
     
     init(networkManager: NetworkManagerProtocol, router: UnownedRouter<AppRoute>) {
         self.networkManager = networkManager
         self.router = router
+        currentSearchText = ""
     }
     
-    func fetchData(withSearchQuery searchQuery: String) -> Future<Void, Error> {
-        return Future { promise in
-            self.subscriber = self.networkManager.fetchData(withSearchQuery: searchQuery)
+    func fetchData() -> Future<Void, Error> {
+        return Future { [weak self] promise in
+            guard let self = self else { return }
+            subscriber = networkManager.fetchData(withSearchQuery: currentSearchText, maxResultNumber: numberOfImageResultItems() + 5)
                 .sink(receiveCompletion: { completion in
                     switch completion {
                     case .finished:
@@ -55,6 +58,10 @@ final class ResultViewViewModel: ResultViewViewModelType {
             }
         }
         return searchResultCategories
+    }
+    
+    func cleanSearchResultData() {
+        searchResultData = nil
     }
     
     // MARK: UICollectionViewDataSource data

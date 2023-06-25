@@ -8,5 +8,5 @@
 import Combine
 
 protocol NetworkManagerProtocol {
-    func fetchData(withSearchQuery searchQuery: String) -> Future<ImageSearchResultData, Error>
+    func fetchData(withSearchQuery searchQuery: String, maxResultNumber: Int) -> Future<ImageSearchResultData, Error>
 }

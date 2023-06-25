@@ -31,29 +31,68 @@ final class ResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
-        resultView.assignCollectionViewsDelegates(to: self)
-        performSearch()
+        resultView.assignDelegates(to: self)
+        resultView.searchTextField.text = viewModel.currentSearchText
+        prepareForImageSearch()
     }
     
-    func performSearch() {
-        let searchTextSafe = resultView.searchTextField.text ?? ""
-        viewModel.fetchData(withSearchQuery: searchTextSafe)
+    func performSearch(onSuccess: @escaping () -> Void) {
+        viewModel.fetchData()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
+                guard let self = self else { return }
                 switch completion {
                 case .finished:
-                    self?.resultView.activityIndicator.stopAnimating()
-                    self?.resultView.imageResultsCollectionView.reloadData()
-                    self?.resultView.imageResultsHeaderView?.relatedCategoriesCollectionView.reloadData()
+                    onSuccess()
                 case .failure(let error):
                     let message = (error as NSError).code == 13 ? "The Internet connection appears to be offline" : "Please try again later"
-                    self?.presentOKAlertController(withTitle: "Search error",
-                                                   message: message) {
-                        self?.resultView.activityIndicator.stopAnimating()
+                    presentOKAlertController(withTitle: "Search error",
+                                             message: message) {
+                        self.resultView.activityIndicator.stopAnimating()
                     }
                 }
             } receiveValue: {}
             .store(in: &subscribers)
+    }
+    
+    func prepareForImageSearch() {
+        viewModel.cleanSearchResultData()
+        var activityIndicatorShouldStartAnimating = true
+        UIView.animate(withDuration: 0.2) {
+            self.resultView.imageResultsCollectionView.alpha = 0
+        } completion: { _ in
+            self.resultView.imageResultsCollectionView.setContentOffset(.zero, animated: false)
+            self.resultView.imageResultsHeaderView?.relatedCategoriesCollectionView.setContentOffset(.zero, animated: false)
+            if activityIndicatorShouldStartAnimating {
+                self.resultView.noSearchResultsStackView.isHidden = true
+                self.resultView.activityIndicator.startAnimating()
+            }
+        }
+        
+        self.performSearch(onSuccess: {
+            self.resultView.imageResultsCollectionView.reloadData()
+            self.resultView.imageResultsHeaderView?.relatedCategoriesCollectionView.reloadData()
+            activityIndicatorShouldStartAnimating = false
+            self.resultView.activityIndicator.stopAnimating()
+            if self.resultView.imageResultsCollectionView.alpha == 0 {
+                UIView.animate(withDuration: 0.3) {
+                    self.resultView.imageResultsCollectionView.alpha = 1
+                }
+            }
+            self.resultView.noSearchResultsStackView.isHidden = self.viewModel.searchResultData?.hits.count != 0
+        })
+    }
+    
+    private func insertNewItems() {
+        let oldResultsNumber = resultView.imageResultsCollectionView.numberOfItems(inSection: 0)
+        let numberOfNewResults = viewModel.numberOfImageResultItems()
+        let indexPathsToInsert = Array(oldResultsNumber..<numberOfNewResults).map { item in
+            IndexPath(item: item, section: 0)
+        }
+        if oldResultsNumber != numberOfNewResults {
+            resultView.imageResultsCollectionView.insertItems(at: indexPathsToInsert)
+            resultView.imageResultsCollectionView.reloadItems(at: indexPathsToInsert)
+        }
     }
 }
 
@@ -113,6 +152,29 @@ extension ResultViewController: UICollectionViewDataSource {
 
 // MARK: UICollectionViewDelegate
 extension ResultViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == resultView.imageResultsCollectionView {
+        } else if resultView.imageResultsHeaderView?.relatedCategoriesCollectionView == collectionView {
+            guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCell,
+                  cell.categoryLabel.text != resultView.searchTextField.text
+            else { return }
+            let searchText = cell.categoryLabel.text ?? ""
+            resultView.searchTextField.text = searchText
+            viewModel.currentSearchText = searchText
+            prepareForImageSearch()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row == viewModel.numberOfImageResultItems() - 2 {
+            guard let hitsCount = viewModel.searchResultData?.hits.count,
+                  hitsCount <= 195
+            else { return }
+            performSearch(onSuccess: {
+                self.insertNewItems()
+            })
+        }
+    }
 }
 
 // MARK: UIScrollViewDelegate
@@ -121,5 +183,16 @@ extension ResultViewController {
         if resultView.imageResultsCollectionView.isTracking && resultView.searchTextField.isFirstResponder {
             resultView.searchTextField.resignFirstResponder()
         }
+    }
+}
+
+// MARK: UITextFieldDelegate
+extension ResultViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let textFieldText = textField.text ?? ""
+        viewModel.currentSearchText = textFieldText
+        prepareForImageSearch()
+        textField.resignFirstResponder()
+        return true
     }
 }

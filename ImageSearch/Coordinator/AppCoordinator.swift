@@ -27,8 +27,8 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
         case .results(let searchText):
             let viewModel = ResultViewViewModel(networkManager: NetworkManager(),
                                                 router: unownedRouter)
+            viewModel.currentSearchText = searchText
             let viewController = ResultViewController(viewModel: viewModel)
-            viewController.resultView.searchTextField.text = searchText
             return .push(viewController)
         }
     }

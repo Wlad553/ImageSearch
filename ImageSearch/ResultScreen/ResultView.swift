@@ -11,6 +11,8 @@ import SnapKit
 final class ResultView: UIView {
     private let topView = UIView()
     private let topStackView = UIStackView()
+    private let contentView = UIView()
+    let noSearchResultsStackView = UIStackView()
     
     let logoLabel = UILabel()
     let searchTextField = SearchTextField()
@@ -32,6 +34,7 @@ final class ResultView: UIView {
         setUpOptionsButton()
         setUpImageResultsCollectionView()
         setUpActivityIndicator()
+        setUpNoSearchResultsStackView()
         addConstraints()
     }
     
@@ -39,9 +42,10 @@ final class ResultView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func assignCollectionViewsDelegates<T>(to delegate: T) where T: UICollectionViewDataSource & UICollectionViewDelegate {
+    func assignDelegates<T>(to delegate: T) where T: UICollectionViewDataSource & UICollectionViewDelegate & UITextFieldDelegate {
         imageResultsCollectionView.dataSource = delegate
         imageResultsCollectionView.delegate = delegate
+        searchTextField.delegate = delegate
     }
     
     // MARK: TopView
@@ -97,16 +101,53 @@ final class ResultView: UIView {
     
     // MARK: ResultsCollectionView
     private func setUpImageResultsCollectionView() {
+        addSubview(contentView)
+        contentView.backgroundColor = .resultViewBackground
+        
+        contentView.addSubview(imageResultsCollectionView)
         imageResultsCollectionView.setCollectionViewLayout(imageResultsCollectionViewLayout(), animated: false)
-        imageResultsCollectionView.backgroundColor = .searchTextFieldBackground
+        imageResultsCollectionView.backgroundColor = contentView.backgroundColor
         imageResultsCollectionView.showsVerticalScrollIndicator = false
         imageResultsCollectionView.register(ImageResultsCell.self, forCellWithReuseIdentifier: ImageResultsCell.reuseIdentifier)
         imageResultsCollectionView.register(ImageResultsHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ImageResultsHeaderView.reuseIdentifier)
-        addSubview(imageResultsCollectionView)
+        imageResultsCollectionView.alpha = 0
+    }
+    
+    private func setUpNoSearchResultsStackView() {
+        let noSearchResultsLabel = UILabel()
+        let sublabel = UILabel()
+        let imageView = UIImageView(image: UIImage(systemName: "magnifyingglass"))
+                
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .systemGray
+        imageView.snp.makeConstraints { make in
+            make.width.height.equalTo(50)
+        }
+        
+        noSearchResultsLabel.font = UIFont(name: Fonts.OpenSans.ExtraBold.rawValue, size: 21)
+        noSearchResultsLabel.numberOfLines = 0
+        noSearchResultsLabel.textAlignment = .center
+        noSearchResultsLabel.text = "No results for search query"
+        
+        sublabel.font = UIFont(name: Fonts.OpenSans.Regular.rawValue, size: 17)
+        sublabel.textColor = imageView.tintColor
+        sublabel.text = "Check the spelling or try a new search"
+        
+        [imageView, noSearchResultsLabel, sublabel].forEach { view in
+            noSearchResultsStackView.addArrangedSubview(view)
+        }
+        
+        noSearchResultsStackView.axis = .vertical
+        noSearchResultsStackView.spacing = 8
+        noSearchResultsStackView.distribution = .equalSpacing
+        noSearchResultsStackView.alignment = .center
+        noSearchResultsStackView.isHidden = true
+        
+        addSubview(noSearchResultsStackView)
     }
     
     private func setUpActivityIndicator() {
-        imageResultsCollectionView.addSubview(activityIndicator)
+        contentView.addSubview(activityIndicator)
         activityIndicator.startAnimating()
     }
     
@@ -138,9 +179,15 @@ final class ResultView: UIView {
             make.height.width.equalTo(52)
         }
         
-        imageResultsCollectionView.snp.makeConstraints { make in
+        contentView.snp.makeConstraints { make in
             make.top.equalTo(topView.snp_bottomMargin).offset(9)
             make.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        imageResultsCollectionView.activateEqualToSuperviewConstraints()
+        
+        noSearchResultsStackView.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
         }
         
         activityIndicator.snp.makeConstraints { make in

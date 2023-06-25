@@ -28,8 +28,12 @@ final class ImageResultsCell: UICollectionViewCell {
     }
     
     private func setUpCell() {
-        layer.backgroundColor = UIColor.imagePlaceholderBackground.cgColor
+        layer.backgroundColor = UIColor.searchTextFieldBackground.cgColor
         layer.cornerRadius = 5
+        layer.shadowOpacity = 0.5
+        layer.shadowRadius = 5
+        layer.shadowPath = CGPath(rect: CGRect(x: 2, y: 8, width: frame.width - 4, height: frame.height - 12), transform: nil)
+        
         addSubview(imageView)
         imageView.activateEqualToSuperviewConstraints()
         imageView.clipsToBounds = true
