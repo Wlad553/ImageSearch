@@ -8,7 +8,7 @@
 import Foundation
 
 final class ImageResultsHeaderViewViewModel: ImageResultsHeaderViewViewModelType {
-    var resultsNumber: Int
+    let resultsNumber: Int
     
     init(resultsNumber: Int) {
         self.resultsNumber = resultsNumber

@@ -13,8 +13,14 @@ struct ImageSearchResultData: Decodable {
     
     struct Hit: Decodable {
         let tags: String
-        let webformatURL: String // 640x400
+        let webFormatURL: String // 640x400
         let largeImageURL: String // starting from fullhd
+        
+        enum CodingKeys: String, CodingKey {
+            case tags
+            case webFormatURL = "webformatURL"
+            case largeImageURL
+        }
     }
 }
 

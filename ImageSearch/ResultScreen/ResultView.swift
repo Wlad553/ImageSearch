@@ -91,12 +91,12 @@ final class ResultView: UIView {
         optionsButton.layer.borderWidth = 1
         optionsButton.layer.cornerRadius = 5
         optionsButton.setImage(UIImage(systemName: "slider.horizontal.3"), for: .normal)
+        optionsButton.tintColor = .optionsButton
+        optionsButton.showsMenuAsPrimaryAction = true
         
         optionsButton.imageView?.snp.makeConstraints { make in
             make.height.width.equalTo(32)
         }
-        
-        optionsButton.tintColor = .optionsButton
     }
     
     // MARK: ResultsCollectionView
@@ -108,6 +108,7 @@ final class ResultView: UIView {
         imageResultsCollectionView.setCollectionViewLayout(imageResultsCollectionViewLayout(), animated: false)
         imageResultsCollectionView.backgroundColor = contentView.backgroundColor
         imageResultsCollectionView.showsVerticalScrollIndicator = false
+        imageResultsCollectionView.delaysContentTouches = false
         imageResultsCollectionView.register(ImageResultsCell.self, forCellWithReuseIdentifier: ImageResultsCell.reuseIdentifier)
         imageResultsCollectionView.register(ImageResultsHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ImageResultsHeaderView.reuseIdentifier)
         imageResultsCollectionView.alpha = 0
@@ -201,9 +202,31 @@ extension ResultView {
     private func imageResultsCollectionViewLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: frame.width - 32, height: 220)
+        layout.itemSize = CGSize(width: frame.width - 32, height: 270)
         layout.minimumLineSpacing = 16
         layout.headerReferenceSize = CGSize(width: frame.size.width, height: 88)
         return layout
+    }
+}
+
+// MARK: Animations
+extension ResultView {
+    // MARK: View
+    func moveNoSearchResultsStackViewUp(keyboardFrame: CGRect) {
+        UIView.animate(withDuration: 0.2) {
+            self.noSearchResultsStackView.snp.updateConstraints { make in
+                make.centerY.equalToSuperview().offset(self.noSearchResultsStackView.frame.height / 2 - (keyboardFrame.height / 2.5))
+            }
+            self.layoutIfNeeded()
+        }
+    }
+    
+    func moveNoSearchResultsStackViewDown() {
+        UIView.animate(withDuration: 0.2) {
+            self.noSearchResultsStackView.snp.updateConstraints { make in
+                make.centerY.equalToSuperview().offset(self.noSearchResultsStackView.frame.height / 2)
+            }
+            self.layoutIfNeeded()
+        }
     }
 }

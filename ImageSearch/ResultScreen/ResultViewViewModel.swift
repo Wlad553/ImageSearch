@@ -14,6 +14,8 @@ final class ResultViewViewModel: ResultViewViewModelType {
     let router: UnownedRouter<AppRoute>
     var searchResultData: ImageSearchResultData?
     var currentSearchText: String
+    var selectedFilter: ImageSearchAPI.QueryParameters.Order = .popular
+    
     private var subscriber: AnyCancellable?
     
     init(networkManager: NetworkManagerProtocol, router: UnownedRouter<AppRoute>) {
@@ -25,7 +27,7 @@ final class ResultViewViewModel: ResultViewViewModelType {
     func fetchData() -> Future<Void, Error> {
         return Future { [weak self] promise in
             guard let self = self else { return }
-            subscriber = networkManager.fetchData(withSearchQuery: currentSearchText, maxResultNumber: numberOfImageResultItems() + 5)
+            subscriber = networkManager.fetchData(withSearchQuery: currentSearchText, resultOrder: selectedFilter)
                 .sink(receiveCompletion: { completion in
                     switch completion {
                     case .finished:
@@ -60,10 +62,6 @@ final class ResultViewViewModel: ResultViewViewModelType {
         return searchResultCategories
     }
     
-    func cleanSearchResultData() {
-        searchResultData = nil
-    }
-    
     // MARK: UICollectionViewDataSource data
     func numberOfImageResultItems() -> Int {
         guard let searchResultDataSafe = searchResultData else { return 0 }
@@ -81,7 +79,7 @@ final class ResultViewViewModel: ResultViewViewModelType {
     
     func imageResultsCellViewModel(at indexPath: IndexPath) -> ImageResultsCellViewModelType? {
         guard let searchResultDataSafe = searchResultData else { return nil }
-        return ImageResultsCellViewModel(cellImageURL: searchResultDataSafe.hits[indexPath.row].webformatURL, imageDownloadManager: ImageDownloadManager())
+        return ImageResultsCellViewModel(cellImageURL: searchResultDataSafe.hits[indexPath.row].webFormatURL, fullImageURL: searchResultDataSafe.hits[indexPath.row].largeImageURL, imageDownloadManager: ImageDownloadManager())
     }
     
     func imageResultsHeaderViewViewModel() -> ImageResultsHeaderViewViewModelType? {

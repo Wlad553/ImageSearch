@@ -9,5 +9,6 @@ import UIKit
 
 protocol ImageResultsCellViewModelType: AnyObject {
     var cellImageURL: String { get }
+    var largeImageURL: String { get }
     var imageDownloadManager: ImageDownloadManagerProtocol { get }
 }

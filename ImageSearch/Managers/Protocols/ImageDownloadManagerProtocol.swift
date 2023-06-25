@@ -6,7 +6,8 @@
 //
 
 import UIKit
+import Combine
 
 protocol ImageDownloadManagerProtocol {
-    func downloadImage(withUrl url: String, forImageView imageView: UIImageView)
+    func downloadImage(withUrl url: String, forImageView imageView: UIImageView) -> Future<Void, Error>
 }

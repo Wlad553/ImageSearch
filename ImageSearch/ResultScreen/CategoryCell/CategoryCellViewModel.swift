@@ -8,7 +8,7 @@
 import Foundation
 
 final class CategoryCellViewModel: CategoryCellViewModelType {
-    var categoryTitle: String
+    let categoryTitle: String
     
     init(categoryLabelText: String) {
         self.categoryTitle = categoryLabelText

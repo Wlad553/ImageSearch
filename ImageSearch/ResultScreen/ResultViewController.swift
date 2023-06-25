@@ -12,6 +12,7 @@ import Alamofire
 final class ResultViewController: UIViewController {
     let viewModel: ResultViewViewModelType
     let resultView = ResultView()
+    private let tapGestureRecognizer = UITapGestureRecognizer()
     private var subscribers: [AnyCancellable] = []
     
     init(viewModel: ResultViewViewModelType) {
@@ -34,16 +35,32 @@ final class ResultViewController: UIViewController {
         resultView.assignDelegates(to: self)
         resultView.searchTextField.text = viewModel.currentSearchText
         prepareForImageSearch()
+        setUpTapGestureRecognizer()
+        addNotificationCenterObservers()
+        setUpOptionsButtonContextMenu()
     }
     
-    func performSearch(onSuccess: @escaping () -> Void) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+            resultView.searchTextField.resignFirstResponder()
+    }
+    
+    func performSearch() {
         viewModel.fetchData()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 guard let self = self else { return }
                 switch completion {
                 case .finished:
-                    onSuccess()
+                    resultView.imageResultsCollectionView.reloadData()
+                    resultView.imageResultsHeaderView?.relatedCategoriesCollectionView.reloadData()
+                    resultView.activityIndicator.stopAnimating()
+                    if resultView.imageResultsCollectionView.alpha == 0 {
+                        UIView.animate(withDuration: 0.3) {
+                            self.resultView.imageResultsCollectionView.alpha = 1
+                        }
+                    }
+                    resultView.noSearchResultsStackView.isHidden = self.viewModel.searchResultData?.hits.count != 0
                 case .failure(let error):
                     let message = (error as NSError).code == 13 ? "The Internet connection appears to be offline" : "Please try again later"
                     presentOKAlertController(withTitle: "Search error",
@@ -56,43 +73,65 @@ final class ResultViewController: UIViewController {
     }
     
     func prepareForImageSearch() {
-        viewModel.cleanSearchResultData()
-        var activityIndicatorShouldStartAnimating = true
-        UIView.animate(withDuration: 0.2) {
+        UIView.animate(withDuration: 0.1) {
             self.resultView.imageResultsCollectionView.alpha = 0
         } completion: { _ in
             self.resultView.imageResultsCollectionView.setContentOffset(.zero, animated: false)
             self.resultView.imageResultsHeaderView?.relatedCategoriesCollectionView.setContentOffset(.zero, animated: false)
-            if activityIndicatorShouldStartAnimating {
-                self.resultView.noSearchResultsStackView.isHidden = true
-                self.resultView.activityIndicator.startAnimating()
+        }
+        self.resultView.noSearchResultsStackView.isHidden = true
+        self.resultView.activityIndicator.startAnimating()
+        self.performSearch()
+    }
+    
+    // MARK: ImageShare
+    @objc func didTapShareButton(sender: UIButton) {
+        guard let senderSuperview = sender.superview as? ImageResultsCell,
+              let largeImageURLString = senderSuperview.viewModel?.largeImageURL,
+              let largeImageURL = URL(string: largeImageURLString)
+        else { return }
+        
+        
+        let activityViewController = UIActivityViewController(activityItems: [largeImageURL], applicationActivities: nil)
+        present(activityViewController, animated: true)
+    }
+    
+    // MARK: TapGestureRecognizer
+    private func setUpTapGestureRecognizer() {
+        tapGestureRecognizer.addTarget(self, action: #selector(didRecognizeTap))
+        tapGestureRecognizer.cancelsTouchesInView = false
+        resultView.imageResultsCollectionView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc private func didRecognizeTap() {
+        resultView.searchTextField.resignFirstResponder()
+    }
+    
+    // MARK: ContextMenu
+    private func createContextMenu() -> UIMenu {
+        let popularFilter = UIAction(title: "Popular",
+                                     state: viewModel.selectedFilter == .popular ? .on : .off) { action in
+            self.viewModel.selectedFilter = .popular
+            self.setUpOptionsButtonContextMenu()
+            if action.state == .off {
+                self.prepareForImageSearch()
             }
         }
         
-        self.performSearch(onSuccess: {
-            self.resultView.imageResultsCollectionView.reloadData()
-            self.resultView.imageResultsHeaderView?.relatedCategoriesCollectionView.reloadData()
-            activityIndicatorShouldStartAnimating = false
-            self.resultView.activityIndicator.stopAnimating()
-            if self.resultView.imageResultsCollectionView.alpha == 0 {
-                UIView.animate(withDuration: 0.3) {
-                    self.resultView.imageResultsCollectionView.alpha = 1
-                }
+        let latestFilter = UIAction(title: "Latest",
+                                    state: viewModel.selectedFilter == .latest ? .on : .off) { action in
+            self.viewModel.selectedFilter = .latest
+            self.setUpOptionsButtonContextMenu()
+            if action.state == .off {
+                self.prepareForImageSearch()
             }
-            self.resultView.noSearchResultsStackView.isHidden = self.viewModel.searchResultData?.hits.count != 0
-        })
+        }
+                
+        return UIMenu(children: [popularFilter, latestFilter])
     }
     
-    private func insertNewItems() {
-        let oldResultsNumber = resultView.imageResultsCollectionView.numberOfItems(inSection: 0)
-        let numberOfNewResults = viewModel.numberOfImageResultItems()
-        let indexPathsToInsert = Array(oldResultsNumber..<numberOfNewResults).map { item in
-            IndexPath(item: item, section: 0)
-        }
-        if oldResultsNumber != numberOfNewResults {
-            resultView.imageResultsCollectionView.insertItems(at: indexPathsToInsert)
-            resultView.imageResultsCollectionView.reloadItems(at: indexPathsToInsert)
-        }
+    func setUpOptionsButtonContextMenu() {
+        resultView.optionsButton.menu = createContextMenu()
     }
 }
 
@@ -139,6 +178,7 @@ extension ResultViewController: UICollectionViewDataSource {
         if collectionView == resultView.imageResultsCollectionView {
             guard let imageResultsCell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageResultsCell.reuseIdentifier, for: indexPath) as? ImageResultsCell else { return cell }
             imageResultsCell.viewModel = viewModel.imageResultsCellViewModel(at: indexPath)
+            imageResultsCell.shareButton.addTarget(self, action: #selector(didTapShareButton(sender:)), for: .touchUpInside)
             cell = imageResultsCell
         } else if resultView.imageResultsHeaderView?.relatedCategoriesCollectionView == collectionView {
             guard let categoryCell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.reuseIdentifier, for: indexPath) as? CategoryCell else { return cell }
@@ -164,17 +204,6 @@ extension ResultViewController: UICollectionViewDelegate {
             prepareForImageSearch()
         }
     }
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row == viewModel.numberOfImageResultItems() - 2 {
-            guard let hitsCount = viewModel.searchResultData?.hits.count,
-                  hitsCount <= 195
-            else { return }
-            performSearch(onSuccess: {
-                self.insertNewItems()
-            })
-        }
-    }
 }
 
 // MARK: UIScrollViewDelegate
@@ -194,5 +223,32 @@ extension ResultViewController: UITextFieldDelegate {
         prepareForImageSearch()
         textField.resignFirstResponder()
         return true
+    }
+}
+
+// MARK: NotificationCenter
+extension ResultViewController {
+    private func addNotificationCenterObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardNotificationTriggered(notification:)),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardNotificationTriggered(notification:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+    }
+    
+    @objc private func keyboardNotificationTriggered(notification: Notification) {
+        guard let userInfo = notification.userInfo as? [String: Any],
+              let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+              resultView.searchTextField.isFirstResponder
+        else { return }
+        if notification.name == UIResponder.keyboardWillShowNotification {
+            resultView.moveNoSearchResultsStackViewUp(keyboardFrame: keyboardFrame)
+        } else if notification.name == UIResponder.keyboardWillHideNotification {
+            resultView.moveNoSearchResultsStackViewDown()
+        }
     }
 }

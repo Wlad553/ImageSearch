@@ -14,28 +14,27 @@ enum ImageSearchAPI: String {
     case apiKey = "37206235-417ae468352b299c4b0eb5862"
 
     enum QueryParameters {
-        enum ImageType: String {
-            case all = "&image_type=all"
-            case photo = "&image_type=photo"
-            case vector = "&image_type=vector"
+        enum Order: String {
+            case popular
+            case latest
         }
     }
 }
 
+enum NetworkError: Error {
+    case invalidURL
+}
+
 class NetworkManager: NetworkManagerProtocol {
-    enum NMError: Error {
-        case invalidURL
-    }
-    
-    func fetchData(withSearchQuery searchQuery: String, maxResultNumber: Int) -> Future<ImageSearchResultData, Error> {
+    func fetchData(withSearchQuery searchQuery: String, resultOrder: ImageSearchAPI.QueryParameters.Order) -> Future<ImageSearchResultData, Error> {
         let languageRecognizer = NLLanguageRecognizer()
         languageRecognizer.processString(searchQuery)
         let dominantLanguage = languageRecognizer.dominantLanguage?.rawValue ?? "en"
         let encodedText = searchQuery.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-        let urlString = "https://pixabay.com/api/?key=\(ImageSearchAPI.apiKey.rawValue)&q=\(encodedText)&lang=\(dominantLanguage)&per_page=\(maxResultNumber)"
+        let urlString = "https://pixabay.com/api/?key=\(ImageSearchAPI.apiKey.rawValue)&q=\(encodedText)&lang=\(dominantLanguage)&order=\(resultOrder.rawValue)&per_page=200"
         guard let url = URL(string: urlString) else {
             return Future { promise in
-                promise(.failure(NMError.invalidURL))
+                promise(.failure(NetworkError.invalidURL))
             }
         }
         
