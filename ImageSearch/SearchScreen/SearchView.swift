@@ -9,11 +9,11 @@ import UIKit
 import SnapKit
 
 final class SearchView: UIView {
+    private let searchStackView = UIStackView()
     let imageView = UIImageView(image: UIImage(named: "Alberta"))
     let welcomeLabel = UILabel()
     let searchTextField = SearchTextField()
-    let searchButton = BlueButton(title: "Search", image: UIImage(systemName: "magnifyingglass")!)
-    private let searchStackView = UIStackView()
+    let searchButton = BlueButton(title: "Search", image: UIImage(systemName: "magnifyingglass"))
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,6 +33,7 @@ final class SearchView: UIView {
         endEditing(true)
     }
     
+    // MARK: Subviews setup
     private func setUpImageView() {
         imageView.layer.opacity = 0.6
         imageView.contentMode = .scaleAspectFill
@@ -88,6 +89,7 @@ final class SearchView: UIView {
         searchStackView.alignment = .fill
     }
     
+    // MARK: Subviews constraints
     private func addConstraints() {
         imageView.snp.makeConstraints { make in
             make.leading.trailing.top.bottom.equalToSuperview()
@@ -104,7 +106,7 @@ final class SearchView: UIView {
         searchStackView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
-            make.centerY.equalToSuperview().offset((searchStackView.spacing + searchTextField.frame.height) / 2)
+            make.centerY.equalToSuperview().offset(searchStackView.spacing)
         }
         
         welcomeLabel.snp.makeConstraints { make in
@@ -139,7 +141,7 @@ extension SearchView {
         UIView.animate(withDuration: 0.2) {
             self.welcomeLabel.alpha = 0
             self.searchStackView.snp.updateConstraints { make in
-                make.centerY.equalToSuperview().offset((self.searchStackView.spacing + self.searchTextField.frame.height) / 2 - (keyboardFrame.height / 2.5))
+                make.centerY.equalToSuperview().offset(self.searchStackView.spacing - keyboardFrame.height / 3)
             }
             self.layoutIfNeeded()
         }
@@ -149,7 +151,7 @@ extension SearchView {
         UIView.animate(withDuration: 0.2) {
             self.welcomeLabel.alpha = 1
             self.searchStackView.snp.updateConstraints { make in
-                make.centerY.equalToSuperview().offset((self.searchStackView.spacing + self.searchTextField.frame.height) / 2)
+                make.centerY.equalToSuperview().offset(self.searchStackView.spacing)
             }
             self.layoutIfNeeded()
         }

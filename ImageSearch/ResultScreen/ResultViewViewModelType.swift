@@ -7,12 +7,14 @@
 
 import Foundation
 import Combine
+import XCoordinator
 
 protocol ResultViewViewModelType: AnyObject {
-    var searchResultData: ImageSearchResultData? { get }
     var networkManager: NetworkManagerProtocol { get }
+    var searchResultData: ImageSearchResultData? { get }
     var currentSearchText: String { get set }
     var selectedFilter: ImageSearchAPI.QueryParameters.Order { get set }
+    
     func fetchData() -> Future<Void, Error>
     func numberOfImageResultItems() -> Int
     func numberOfRelatedCategoryItems() -> Int

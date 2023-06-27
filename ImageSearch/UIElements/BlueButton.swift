@@ -18,7 +18,7 @@ final class BlueButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(title: String, image: UIImage) {
+    convenience init(title: String, image: UIImage?) {
         self.init(type: .system)
         setUp(title: title, image: image)
     }

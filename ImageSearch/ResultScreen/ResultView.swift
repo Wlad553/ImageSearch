@@ -9,14 +9,7 @@ import UIKit
 import SnapKit
 
 final class ResultView: UIView {
-    private let topView = UIView()
-    private let topStackView = UIStackView()
-    private let contentView = UIView()
     let noSearchResultsStackView = UIStackView()
-    
-    let logoLabel = UILabel()
-    let searchTextField = SearchTextField()
-    let optionsButton = UIButton()
     let imageResultsCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     let activityIndicator = UIActivityIndicatorView(style: .large)
     var imageResultsHeaderView: ImageResultsHeaderView?
@@ -27,11 +20,7 @@ final class ResultView: UIView {
             return
         }
         super.init(frame: windowScene.screen.bounds)
-        backgroundColor = .white
-        setUpTopView()
-        setUpLogoLabel()
-        setUpSearchTextField()
-        setUpOptionsButton()
+        backgroundColor = .resultViewBackground
         setUpImageResultsCollectionView()
         setUpActivityIndicator()
         setUpNoSearchResultsStackView()
@@ -42,71 +31,16 @@ final class ResultView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func assignDelegates<T>(to delegate: T) where T: UICollectionViewDataSource & UICollectionViewDelegate & UITextFieldDelegate {
+    func assignImageResultsCollectionViewDelegates<T>(to delegate: T) where T: UICollectionViewDataSource & UICollectionViewDelegate & UITextFieldDelegate {
         imageResultsCollectionView.dataSource = delegate
         imageResultsCollectionView.delegate = delegate
-        searchTextField.delegate = delegate
     }
     
-    // MARK: TopView
-    private func setUpTopView() {
-        let innerStackView = UIStackView(arrangedSubviews: [searchTextField, optionsButton])
-        innerStackView.axis = .horizontal
-        innerStackView.spacing = 8
-        innerStackView.alignment = .fill
-        innerStackView.distribution = .equalSpacing
-        
-        addSubview(topView)
-        topView.addSubview(topStackView)
-        topStackView.addArrangedSubview(logoLabel)
-        topStackView.addArrangedSubview(innerStackView)
-        topStackView.axis = .horizontal
-        topStackView.spacing = 16
-        topStackView.alignment = .center
-        topStackView.distribution = .equalCentering
-
-        let bottomLine = CALayer()
-        bottomLine.backgroundColor = UIColor.border.cgColor
-        bottomLine.frame = CGRect(x: 0, y: 64,
-                                  width: frame.width, height: 1)
-        topView.layer.addSublayer(bottomLine)
-    }
-    
-    private func setUpLogoLabel() {
-        logoLabel.text = "P"
-        logoLabel.textAlignment = .center
-        logoLabel.font = UIFont(name: Fonts.Pattaya.Regular.rawValue, size: 36)
-        logoLabel.textColor = .white
-        logoLabel.layer.backgroundColor = UIColor.searchButtonBackground.cgColor
-        logoLabel.layer.cornerRadius = 5
-    }
-    
-    private func setUpSearchTextField() {
-        searchTextField.layer.borderWidth = 1
-        searchTextField.layer.borderColor = UIColor.border.cgColor
-    }
-    
-    private func setUpOptionsButton() {
-        optionsButton.layer.borderColor = UIColor.border.cgColor
-        optionsButton.layer.borderWidth = 1
-        optionsButton.layer.cornerRadius = 5
-        optionsButton.setImage(UIImage(systemName: "slider.horizontal.3"), for: .normal)
-        optionsButton.tintColor = .optionsButton
-        optionsButton.showsMenuAsPrimaryAction = true
-        
-        optionsButton.imageView?.snp.makeConstraints { make in
-            make.height.width.equalTo(32)
-        }
-    }
-    
-    // MARK: ResultsCollectionView
+    // MARK: Subviews setup
     private func setUpImageResultsCollectionView() {
-        addSubview(contentView)
-        contentView.backgroundColor = .resultViewBackground
-        
-        contentView.addSubview(imageResultsCollectionView)
+        addSubview(imageResultsCollectionView)
         imageResultsCollectionView.setCollectionViewLayout(imageResultsCollectionViewLayout(), animated: false)
-        imageResultsCollectionView.backgroundColor = contentView.backgroundColor
+        imageResultsCollectionView.backgroundColor = backgroundColor
         imageResultsCollectionView.showsVerticalScrollIndicator = false
         imageResultsCollectionView.delaysContentTouches = false
         imageResultsCollectionView.register(ImageResultsCell.self, forCellWithReuseIdentifier: ImageResultsCell.reuseIdentifier)
@@ -148,44 +82,15 @@ final class ResultView: UIView {
     }
     
     private func setUpActivityIndicator() {
-        contentView.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
+        addSubview(activityIndicator)
     }
     
-    // MARK: Constraints
+    // MARK: Subviews constraints
     private func addConstraints() {
-        topView.snp.makeConstraints { make in
-            make.height.equalTo(64)
-            make.leading.trailing.equalToSuperview()
-            make.top.equalToSuperview { constraintView in
-                constraintView.safeAreaLayoutGuide
-            }
-        }
-        
-        topStackView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview().offset(12)
-            make.trailing.bottom.equalToSuperview().offset(-12)
-        }
-        
-        logoLabel.snp.makeConstraints { make in
-            make.height.width.equalTo(52)
-        }
-        
-        searchTextField.snp.makeConstraints { make in
-            make.height.equalTo(52)
-        }
-        
-        optionsButton.snp.makeConstraints { make in
-            make.height.width.equalTo(52)
-        }
-        
-        contentView.snp.makeConstraints { make in
-            make.top.equalTo(topView.snp_bottomMargin).offset(9)
+        imageResultsCollectionView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(12)
             make.leading.trailing.bottom.equalToSuperview()
         }
-        
-        imageResultsCollectionView.activateEqualToSuperviewConstraints()
         
         noSearchResultsStackView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
@@ -202,7 +107,7 @@ extension ResultView {
     private func imageResultsCollectionViewLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: frame.width - 32, height: 270)
+        layout.itemSize = CGSize(width: frame.width - 32, height: (frame.width - 32) / 1.77)
         layout.minimumLineSpacing = 16
         layout.headerReferenceSize = CGSize(width: frame.size.width, height: 88)
         return layout
@@ -215,7 +120,7 @@ extension ResultView {
     func moveNoSearchResultsStackViewUp(keyboardFrame: CGRect) {
         UIView.animate(withDuration: 0.2) {
             self.noSearchResultsStackView.snp.updateConstraints { make in
-                make.centerY.equalToSuperview().offset(self.noSearchResultsStackView.frame.height / 2 - (keyboardFrame.height / 2.5))
+                make.centerY.equalToSuperview().offset(-keyboardFrame.height / 2.5)
             }
             self.layoutIfNeeded()
         }
@@ -224,7 +129,7 @@ extension ResultView {
     func moveNoSearchResultsStackViewDown() {
         UIView.animate(withDuration: 0.2) {
             self.noSearchResultsStackView.snp.updateConstraints { make in
-                make.centerY.equalToSuperview().offset(self.noSearchResultsStackView.frame.height / 2)
+                make.centerY.equalToSuperview()
             }
             self.layoutIfNeeded()
         }

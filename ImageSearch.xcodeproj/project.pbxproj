@@ -38,11 +38,16 @@
 		F59A42422A39EA2300E2433E /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59A42412A39EA2300E2433E /* ResultView.swift */; };
 		F59A42442A39EA2F00E2433E /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59A42432A39EA2F00E2433E /* ResultViewController.swift */; };
 		F59A42482A3A375700E2433E /* Pattaya-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F59A42472A3A375700E2433E /* Pattaya-Regular.ttf */; };
-		F5D2EB5F2A3CC31100489918 /* UIView+activateEqualToSuperviewConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D2EB5E2A3CC31100489918 /* UIView+activateEqualToSuperviewConstraints.swift */; };
 		F5D2EB642A3CC9BF00489918 /* ResultViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D2EB632A3CC9BF00489918 /* ResultViewViewModel.swift */; };
 		F5D4EDC52A38E33F00B4C5C0 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5D4EDC22A38E33F00B4C5C0 /* OpenSans-Regular.ttf */; };
 		F5D4EDC62A38E33F00B4C5C0 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5D4EDC32A38E33F00B4C5C0 /* OpenSans-SemiBold.ttf */; };
 		F5D4EDC72A38E33F00B4C5C0 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5D4EDC42A38E33F00B4C5C0 /* OpenSans-ExtraBold.ttf */; };
+		F5F2DBD82A49CCC00068DAC1 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F2DBD72A49CCC00068DAC1 /* DetailViewController.swift */; };
+		F5F2DBDA2A49CCE50068DAC1 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F2DBD92A49CCE50068DAC1 /* DetailView.swift */; };
+		F5F2DBDC2A49D80A0068DAC1 /* DetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F2DBDB2A49D80A0068DAC1 /* DetailViewViewModel.swift */; };
+		F5F2DBDE2A49D8140068DAC1 /* DetailViewViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F2DBDD2A49D8140068DAC1 /* DetailViewViewModelType.swift */; };
+		F5F2DBE02A49E2A20068DAC1 /* RectangleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F2DBDF2A49E2A20068DAC1 /* RectangleButton.swift */; };
+		F5F2DBE22A49FC580068DAC1 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F2DBE12A49FC580068DAC1 /* SearchBarView.swift */; };
 		F5F50A702A4336FF0054D02E /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F50A6F2A4336FF0054D02E /* ImageDownloadManager.swift */; };
 		F5F50A722A43401C0054D02E /* ImageDownloadManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F50A712A43401C0054D02E /* ImageDownloadManagerProtocol.swift */; };
 /* End PBXBuildFile section */
@@ -83,11 +88,16 @@
 		F59A42432A39EA2F00E2433E /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		F59A42472A3A375700E2433E /* Pattaya-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pattaya-Regular.ttf"; sourceTree = "<group>"; };
 		F5D2EB592A3C575C00489918 /* ImageSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F5D2EB5E2A3CC31100489918 /* UIView+activateEqualToSuperviewConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+activateEqualToSuperviewConstraints.swift"; sourceTree = "<group>"; };
 		F5D2EB632A3CC9BF00489918 /* ResultViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewViewModel.swift; sourceTree = "<group>"; };
 		F5D4EDC22A38E33F00B4C5C0 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		F5D4EDC32A38E33F00B4C5C0 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		F5D4EDC42A38E33F00B4C5C0 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		F5F2DBD72A49CCC00068DAC1 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		F5F2DBD92A49CCE50068DAC1 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		F5F2DBDB2A49D80A0068DAC1 /* DetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewViewModel.swift; sourceTree = "<group>"; };
+		F5F2DBDD2A49D8140068DAC1 /* DetailViewViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewViewModelType.swift; sourceTree = "<group>"; };
+		F5F2DBDF2A49E2A20068DAC1 /* RectangleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleButton.swift; sourceTree = "<group>"; };
+		F5F2DBE12A49FC580068DAC1 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		F5F50A6F2A4336FF0054D02E /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
 		F5F50A712A43401C0054D02E /* ImageDownloadManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManagerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,8 +153,10 @@
 		F541DEBF2A3B5F0B00D4626E /* UIElements */ = {
 			isa = PBXGroup;
 			children = (
+				F5F2DBE12A49FC580068DAC1 /* SearchBarView.swift */,
 				F541DEC02A3B5F2B00D4626E /* SearchTextField.swift */,
 				F541DEC22A3B62C900D4626E /* BlueButton.swift */,
+				F5F2DBDF2A49E2A20068DAC1 /* RectangleButton.swift */,
 			);
 			path = UIElements;
 			sourceTree = "<group>";
@@ -168,6 +180,7 @@
 				F54147452A40B83E00BCDAD5 /* Models */,
 				F5D2EB602A3CC6AD00489918 /* SearchScreen */,
 				F5D2EB612A3CC6B800489918 /* ResultScreen */,
+				F5F2DBD62A49CC900068DAC1 /* DetailVIewScreen */,
 				F58D96072A41C1E400111756 /* Coordinator */,
 				F541DEBF2A3B5F0B00D4626E /* UIElements */,
 				F543ADF12A365CE200C9CC60 /* Extensions */,
@@ -199,7 +212,6 @@
 			isa = PBXGroup;
 			children = (
 				F543ADF22A365D1100C9CC60 /* UIColor+colors.swift */,
-				F5D2EB5E2A3CC31100489918 /* UIView+activateEqualToSuperviewConstraints.swift */,
 				F58D96052A41762200111756 /* UIViewController+presentOKAlertController.swift */,
 			);
 			path = Extensions;
@@ -284,6 +296,17 @@
 				F5D4EDC32A38E33F00B4C5C0 /* OpenSans-SemiBold.ttf */,
 			);
 			path = OpenSans;
+			sourceTree = "<group>";
+		};
+		F5F2DBD62A49CC900068DAC1 /* DetailVIewScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F5F2DBD92A49CCE50068DAC1 /* DetailView.swift */,
+				F5F2DBD72A49CCC00068DAC1 /* DetailViewController.swift */,
+				F5F2DBDB2A49D80A0068DAC1 /* DetailViewViewModel.swift */,
+				F5F2DBDD2A49D8140068DAC1 /* DetailViewViewModelType.swift */,
+			);
+			path = DetailVIewScreen;
 			sourceTree = "<group>";
 		};
 		F5F50A732A4340400054D02E /* Protocols */ = {
@@ -414,16 +437,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5F2DBD82A49CCC00068DAC1 /* DetailViewController.swift in Sources */,
 				F54147422A40B34300BCDAD5 /* NetworkManager.swift in Sources */,
 				F54D34152A3F820B0087ADDE /* CategoryCellViewModel.swift in Sources */,
 				F54D340D2A3F44A20087ADDE /* ResultViewViewModelType.swift in Sources */,
 				F5F50A702A4336FF0054D02E /* ImageDownloadManager.swift in Sources */,
 				F543ADEB2A364B7700C9CC60 /* SearchView.swift in Sources */,
 				F54147362A40798F00BCDAD5 /* ImageResultsCellViewModel.swift in Sources */,
+				F5F2DBE02A49E2A20068DAC1 /* RectangleButton.swift in Sources */,
 				F58D96092A41C21C00111756 /* AppCoordinator.swift in Sources */,
+				F5F2DBDE2A49D8140068DAC1 /* DetailViewViewModelType.swift in Sources */,
 				F541DEC32A3B62C900D4626E /* BlueButton.swift in Sources */,
 				F5F50A722A43401C0054D02E /* ImageDownloadManagerProtocol.swift in Sources */,
-				F5D2EB5F2A3CC31100489918 /* UIView+activateEqualToSuperviewConstraints.swift in Sources */,
 				F543ADF32A365D1100C9CC60 /* UIColor+colors.swift in Sources */,
 				F541473C2A407DE400BCDAD5 /* ImageResultsHeaderViewViewModelType.swift in Sources */,
 				F58D96062A41762200111756 /* UIViewController+presentOKAlertController.swift in Sources */,
@@ -432,15 +457,18 @@
 				F59A42442A39EA2F00E2433E /* ResultViewController.swift in Sources */,
 				F5D2EB642A3CC9BF00489918 /* ResultViewViewModel.swift in Sources */,
 				F54D34192A3F99620087ADDE /* SearchViewViewModelType.swift in Sources */,
+				F5F2DBDA2A49CCE50068DAC1 /* DetailView.swift in Sources */,
 				F543ADD42A361DCA00C9CC60 /* SearchViewController.swift in Sources */,
 				F543ADD02A361DCA00C9CC60 /* AppDelegate.swift in Sources */,
 				F54D34112A3F565D0087ADDE /* ImageResultsCell.swift in Sources */,
 				F541473E2A4081C200BCDAD5 /* Fonts.swift in Sources */,
 				F54D34132A3F7C920087ADDE /* CategoryCell.swift in Sources */,
+				F5F2DBDC2A49D80A0068DAC1 /* DetailViewViewModel.swift in Sources */,
 				F59A42422A39EA2300E2433E /* ResultView.swift in Sources */,
 				F54147382A4079B400BCDAD5 /* ImageResultsCellViewModelType.swift in Sources */,
 				F54D340F2A3F563F0087ADDE /* ImageResultsHeaderView.swift in Sources */,
 				F543ADE82A36246000C9CC60 /* SceneDelegate.swift in Sources */,
+				F5F2DBE22A49FC580068DAC1 /* SearchBarView.swift in Sources */,
 				F54D34172A3F83E90087ADDE /* CategoryCellViewModelType.swift in Sources */,
 				F54147472A40B87300BCDAD5 /* ImageSearchResultData.swift in Sources */,
 				F54147442A40B38300BCDAD5 /* NetworkManagerProtocol.swift in Sources */,

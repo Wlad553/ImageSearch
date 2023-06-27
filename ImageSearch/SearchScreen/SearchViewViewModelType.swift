@@ -6,9 +6,7 @@
 //
 
 import Foundation
-import XCoordinator
 
 protocol SearchViewViewModelType: AnyObject {
-    var networkManager: NetworkManagerProtocol { get }
     func didPressSearchButton(searchText: String)
 }

@@ -10,11 +10,9 @@ import XCoordinator
 import Combine
 
 final class SearchViewViewModel: SearchViewViewModelType {
-    let networkManager: NetworkManagerProtocol
     let router: UnownedRouter<AppRoute>
         
-    init(networkManager: NetworkManagerProtocol, router: UnownedRouter<AppRoute>) {
-        self.networkManager = networkManager
+    init(router: UnownedRouter<AppRoute>) {
         self.router = router
     }
     

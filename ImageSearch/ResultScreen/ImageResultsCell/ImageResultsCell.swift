@@ -14,7 +14,7 @@ final class ImageResultsCell: UICollectionViewCell {
     private var subscriber: AnyCancellable?
     
     let imageView = UIImageView()
-    let shareButton = UIButton(type: .system)
+    let shareButton = RectangleButton(image: UIImage(named: "shareImage"))
     var viewModel: ImageResultsCellViewModelType? {
         willSet(viewModel) {
             guard let viewModel = viewModel else { return }
@@ -31,6 +31,7 @@ final class ImageResultsCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpCell()
+        setUpImageView()
         setUpShareButton()
     }
     
@@ -44,28 +45,30 @@ final class ImageResultsCell: UICollectionViewCell {
         imageView.image = nil
     }
     
+    // MARK: cell setup
     private func setUpCell() {
         layer.backgroundColor = UIColor.searchTextFieldBackground.cgColor
         layer.cornerRadius = 5
         layer.shadowOpacity = 0.5
         layer.shadowRadius = 5
         layer.shadowPath = CGPath(rect: CGRect(x: 2, y: 8, width: frame.width - 4, height: frame.height - 12), transform: nil)
-        
-        addSubview(imageView)
-        imageView.activateEqualToSuperviewConstraints()
+    }
+    
+    // MARK: Subviews setup
+    private func setUpImageView() {
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 5
+        
+        addSubview(imageView)
+        imageView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     private func setUpShareButton() {
         shareButton.isHidden = true
         addSubview(shareButton)
-        shareButton.setImage(UIImage(named: "shareImage"), for: .normal)
-        shareButton.tintColor = .searchButtonBackground
-        
-        shareButton.layer.backgroundColor = UIColor.border.cgColor
-        shareButton.layer.cornerRadius = 5
         
         shareButton.imageView?.snp.makeConstraints { make in
             make.height.width.equalTo(20)

@@ -28,6 +28,7 @@ final class CategoryCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: cell setup
     private func setUpCell() {
         layer.borderWidth = 1
         layer.borderColor = UIColor.imagePlaceholderBackground.cgColor
@@ -35,6 +36,7 @@ final class CategoryCell: UICollectionViewCell {
         layer.backgroundColor = UIColor.border.cgColor
     }
     
+    // MARK: Subviews setup
     private func setUpCategoryLabel() {
         categoryLabel.textColor = .black
         categoryLabel.font = UIFont(name: Fonts.OpenSans.Regular.rawValue, size: 14)
@@ -42,6 +44,12 @@ final class CategoryCell: UICollectionViewCell {
         categoryLabel.textAlignment = .center
         categoryLabel.numberOfLines = 1
         addSubview(categoryLabel)
-        categoryLabel.activateEqualToSuperviewConstraints(topOffset: 4, bottomOffset: -4, leadingOffset: 12, trailingOffset: -12)
+        
+        categoryLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(4)
+            make.bottom.equalToSuperview().offset(-4)
+            make.leading.equalToSuperview().offset(12)
+            make.trailing.equalToSuperview().offset(-12)
+        }
     }
 }

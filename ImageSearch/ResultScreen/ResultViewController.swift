@@ -7,16 +7,18 @@
 
 import UIKit
 import Combine
-import Alamofire
 
 final class ResultViewController: UIViewController {
     let viewModel: ResultViewViewModelType
+    let searchBarView: SearchBarView
     let resultView = ResultView()
     private let tapGestureRecognizer = UITapGestureRecognizer()
     private var subscribers: [AnyCancellable] = []
     
-    init(viewModel: ResultViewViewModelType) {
+    
+    init(searchBarView: SearchBarView, viewModel: ResultViewViewModelType) {
         self.viewModel = viewModel
+        self.searchBarView = searchBarView
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -27,22 +29,25 @@ final class ResultViewController: UIViewController {
     override func loadView() {
         super.loadView()
         view = resultView
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isHidden = true
-        resultView.assignDelegates(to: self)
-        resultView.searchTextField.text = viewModel.currentSearchText
-        prepareForImageSearch()
+        navigationItem.hidesBackButton = true
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        resultView.assignImageResultsCollectionViewDelegates(to: self)
+        searchBarView.searchTextField.delegate = self
+        searchBarView.searchTextField.text = viewModel.currentSearchText
         setUpTapGestureRecognizer()
         addNotificationCenterObservers()
         setUpOptionsButtonContextMenu()
+        prepareForImageSearch()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-            resultView.searchTextField.resignFirstResponder()
+            searchBarView.searchTextField.resignFirstResponder()
     }
     
     func performSearch() {
@@ -85,7 +90,7 @@ final class ResultViewController: UIViewController {
     }
     
     // MARK: ImageShare
-    @objc func didTapShareButton(sender: UIButton) {
+    @objc private func didTapShareButton(sender: UIButton) {
         guard let senderSuperview = sender.superview as? ImageResultsCell,
               let largeImageURLString = senderSuperview.viewModel?.largeImageURL,
               let largeImageURL = URL(string: largeImageURLString)
@@ -104,7 +109,7 @@ final class ResultViewController: UIViewController {
     }
     
     @objc private func didRecognizeTap() {
-        resultView.searchTextField.resignFirstResponder()
+        searchBarView.searchTextField.resignFirstResponder()
     }
     
     // MARK: ContextMenu
@@ -130,8 +135,8 @@ final class ResultViewController: UIViewController {
         return UIMenu(children: [popularFilter, latestFilter])
     }
     
-    func setUpOptionsButtonContextMenu() {
-        resultView.optionsButton.menu = createContextMenu()
+    private func setUpOptionsButtonContextMenu() {
+        searchBarView.optionsButton.menu = createContextMenu()
     }
 }
 
@@ -196,10 +201,10 @@ extension ResultViewController: UICollectionViewDelegate {
         if collectionView == resultView.imageResultsCollectionView {
         } else if resultView.imageResultsHeaderView?.relatedCategoriesCollectionView == collectionView {
             guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCell,
-                  cell.categoryLabel.text != resultView.searchTextField.text
+                  cell.categoryLabel.text != searchBarView.searchTextField.text
             else { return }
             let searchText = cell.categoryLabel.text ?? ""
-            resultView.searchTextField.text = searchText
+            searchBarView.searchTextField.text = searchText
             viewModel.currentSearchText = searchText
             prepareForImageSearch()
         }
@@ -209,8 +214,8 @@ extension ResultViewController: UICollectionViewDelegate {
 // MARK: UIScrollViewDelegate
 extension ResultViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if resultView.imageResultsCollectionView.isTracking && resultView.searchTextField.isFirstResponder {
-            resultView.searchTextField.resignFirstResponder()
+        if resultView.imageResultsCollectionView.isTracking && searchBarView.searchTextField.isFirstResponder {
+            searchBarView.searchTextField.resignFirstResponder()
         }
     }
 }
@@ -243,7 +248,7 @@ extension ResultViewController {
     @objc private func keyboardNotificationTriggered(notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: Any],
               let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
-              resultView.searchTextField.isFirstResponder
+              searchBarView.searchTextField.isFirstResponder
         else { return }
         if notification.name == UIResponder.keyboardWillShowNotification {
             resultView.moveNoSearchResultsStackViewUp(keyboardFrame: keyboardFrame)

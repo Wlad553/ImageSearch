@@ -13,6 +13,7 @@ final class ImageResultsHeaderView: UICollectionReusableView {
     
     private let stackView = UIStackView()
     let resultsNumberLabel = UILabel()
+    let headerLabel = UILabel()
     let relatedCategoriesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
     
     var viewModel: ImageResultsHeaderViewViewModelType? {
@@ -41,16 +42,20 @@ final class ImageResultsHeaderView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Header for relatedCategoriesCollectionView setup
     func setUpHeaderViewForRelatedCategoriesCollectionView(superview: UIView) {
-        let label = UILabel()
-        label.textColor = .optionsButton
-        label.numberOfLines = 1
-        label.font = UIFont(name: Fonts.OpenSans.Regular.rawValue, size: 14)
-        label.text = "Related"
-        superview.addSubview(label)
-        label.activateEqualToSuperviewConstraints(leadingOffset: 16)
+        headerLabel.textColor = .optionsButton
+        headerLabel.numberOfLines = 1
+        headerLabel.font = UIFont(name: Fonts.OpenSans.Regular.rawValue, size: 14)
+        headerLabel.text = "Related"
+        superview.addSubview(headerLabel)
+        headerLabel.snp.makeConstraints { make in
+            make.top.trailing.bottom.equalToSuperview()
+            make.leading.equalToSuperview().offset(16)
+        }
     }
     
+    // MARK: Subviews setup
     private func setUpHeaderStackView() {
         stackView.axis = .vertical
         stackView.spacing = 8
@@ -70,7 +75,6 @@ final class ImageResultsHeaderView: UICollectionReusableView {
         resultsNumberLabel.layer.transform = CATransform3DMakeTranslation(16, 0, 0)
     }
     
-    // MARK: RelatedCategoriesCollectionView
     private func setUpRelatedCategoriesCollectionView() {
         relatedCategoriesCollectionView.setCollectionViewLayout(relatedCategoriesCollectionViewLayout(), animated: false)
         relatedCategoriesCollectionView.backgroundColor = .resultViewBackground
@@ -79,13 +83,18 @@ final class ImageResultsHeaderView: UICollectionReusableView {
         relatedCategoriesCollectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ImageResultsHeaderView.categoriesHeaderReuseIdentifier)
     }
     
-    // MARK: Constraints
+    // MARK: Subviews constraints
     private func addConstraints() {
         relatedCategoriesCollectionView.snp.makeConstraints { make in
             make.height.equalTo(32)
             make.width.equalTo(frame.width)
         }
-        stackView.activateEqualToSuperviewConstraints(topOffset: 8, bottomOffset: -16)
+        
+        stackView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalToSuperview().offset(8)
+            make.bottom.equalToSuperview().offset(-16)
+        }
     }
 }
 
