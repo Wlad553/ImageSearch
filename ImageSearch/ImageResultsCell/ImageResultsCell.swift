@@ -15,14 +15,16 @@ final class ImageResultsCell: UICollectionViewCell {
     
     let imageView = UIImageView()
     let shareButton = RectangleButton(image: UIImage(named: "shareImage"))
+    var hidesShareButton = false
     var viewModel: ImageResultsCellViewModelType? {
         willSet(viewModel) {
             guard let viewModel = viewModel else { return }
-            subscriber = viewModel.imageDownloadManager.downloadImage(withUrl: viewModel.cellImageURL, forImageView: imageView)
+            subscriber = viewModel.imageDownloadManager.downloadImage(withURL: viewModel.cellImageURL, forImageView: imageView)
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] completion in
+                    guard let self = self else { return }
                     if case .finished = completion {
-                        self?.shareButton.isHidden = false
+                        self.shareButton.isHidden = self.hidesShareButton
                     }
                 } receiveValue: {}
         }
@@ -49,7 +51,7 @@ final class ImageResultsCell: UICollectionViewCell {
     private func setUpCell() {
         layer.backgroundColor = UIColor.searchTextFieldBackground.cgColor
         layer.cornerRadius = 5
-        layer.shadowOpacity = 0.5
+        layer.shadowOpacity = 0.4
         layer.shadowRadius = 5
         layer.shadowPath = CGPath(rect: CGRect(x: 2, y: 8, width: frame.width - 4, height: frame.height - 12), transform: nil)
     }

@@ -39,7 +39,7 @@ final class CategoryCell: UICollectionViewCell {
     // MARK: Subviews setup
     private func setUpCategoryLabel() {
         categoryLabel.textColor = .black
-        categoryLabel.font = UIFont(name: Fonts.OpenSans.Regular.rawValue, size: 14)
+        categoryLabel.font = UIFont(name: Fonts.OpenSans.regular.rawValue, size: 14)
         categoryLabel.textColor = .black
         categoryLabel.textAlignment = .center
         categoryLabel.numberOfLines = 1

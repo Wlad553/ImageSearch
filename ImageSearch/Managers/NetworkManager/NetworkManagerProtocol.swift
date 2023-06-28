@@ -6,7 +6,9 @@
 //
 
 import Combine
+import UIKit
 
-protocol NetworkManagerProtocol {
+protocol NetworkManagerProtocol: AnyObject {
     func fetchData(withSearchQuery searchQuery: String, resultOrder: ImageSearchAPI.QueryParameters.Order) -> Future<ImageSearchResultData, Error>
+    func downloadImage(withURL url: String) -> Future<UIImage, Error>
 }

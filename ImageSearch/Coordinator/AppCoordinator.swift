@@ -10,11 +10,12 @@ import XCoordinator
 enum AppRoute: Route {
     case search
     case results(searchText: String)
-    case detail
+    case detail(chosenImageData: ImageSearchResultData.Hit)
+    case photo(imageURLString: String)
 }
 
 class AppCoordinator: NavigationCoordinator<AppRoute> {
-    private let searchBarView = SearchBarView()
+    private let searchBarView = SearchBarView(viewModel: SearchBarViewViewModel())
     private let navigationController: UINavigationController = {
         let navigationController = UINavigationController()
         
@@ -48,13 +49,26 @@ class AppCoordinator: NavigationCoordinator<AppRoute> {
             let viewModel = ResultViewViewModel(networkManager: NetworkManager(),
                                                 router: unownedRouter)
             viewModel.currentSearchText = searchText
-            let viewController = ResultViewController(searchBarView: searchBarView, viewModel: viewModel)
+            let viewController = ResultViewController(searchBarView: searchBarView,
+                                                      viewModel: viewModel)
             return .push(viewController)
             
-        case .detail:
-            let viewModel = DetailViewViewModel()
-            let viewController = DetailViewController(viewModel: viewModel)
+        case .detail(let chosenImageData):
+            let viewModel = DetailViewViewModel(router: unownedRouter,
+                                                networkManager: NetworkManager(),
+                                                imageDownloadManager: ImageDownloadManager(),
+                                                imageSaveManager: ImageSaveManager(),
+                                                chosenHit: chosenImageData)
+            let viewController = DetailViewController(searchBarView: searchBarView,
+                                                      viewModel: viewModel)
             return .push(viewController)
+        case .photo(imageURLString: let urlString):
+            let viewModel = ImageViewViewModel(imageDonwloadManager: ImageDownloadManager(),
+                                               imageURL: urlString)
+            let viewController = ImageViewController(viewModel: viewModel)
+            viewController.modalTransitionStyle = .coverVertical
+            viewController.modalPresentationStyle = .fullScreen
+            return .present(viewController)
         }
     }
 }

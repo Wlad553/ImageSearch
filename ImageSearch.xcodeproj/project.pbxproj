@@ -33,11 +33,18 @@
 		F54D34152A3F820B0087ADDE /* CategoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D34142A3F820B0087ADDE /* CategoryCellViewModel.swift */; };
 		F54D34172A3F83E90087ADDE /* CategoryCellViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D34162A3F83E90087ADDE /* CategoryCellViewModelType.swift */; };
 		F54D34192A3F99620087ADDE /* SearchViewViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D34182A3F99620087ADDE /* SearchViewViewModelType.swift */; };
+		F551D14A2A4B669000F01449 /* SearchBarViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F551D1492A4B669000F01449 /* SearchBarViewViewModel.swift */; };
+		F551D14C2A4B67A900F01449 /* SearchBarViewViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F551D14B2A4B67A900F01449 /* SearchBarViewViewModelType.swift */; };
 		F58D96062A41762200111756 /* UIViewController+presentOKAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58D96052A41762200111756 /* UIViewController+presentOKAlertController.swift */; };
 		F58D96092A41C21C00111756 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58D96082A41C21C00111756 /* AppCoordinator.swift */; };
 		F59A42422A39EA2300E2433E /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59A42412A39EA2300E2433E /* ResultView.swift */; };
 		F59A42442A39EA2F00E2433E /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59A42432A39EA2F00E2433E /* ResultViewController.swift */; };
 		F59A42482A3A375700E2433E /* Pattaya-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F59A42472A3A375700E2433E /* Pattaya-Regular.ttf */; };
+		F59EBA142A4CAFFB00F147E6 /* ImageSaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59EBA132A4CAFFB00F147E6 /* ImageSaveManager.swift */; };
+		F59EBA162A4CC5AA00F147E6 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59EBA152A4CC5AA00F147E6 /* ImageViewController.swift */; };
+		F59EBA182A4CC87000F147E6 /* ImageViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59EBA172A4CC87000F147E6 /* ImageViewViewModel.swift */; };
+		F59EBA1A2A4CDEE600F147E6 /* ImageViewViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59EBA192A4CDEE600F147E6 /* ImageViewViewModelType.swift */; };
+		F59EBA202A4CEB4200F147E6 /* ImageSaveManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59EBA1F2A4CEB4200F147E6 /* ImageSaveManagerProtocol.swift */; };
 		F5D2EB642A3CC9BF00489918 /* ResultViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D2EB632A3CC9BF00489918 /* ResultViewViewModel.swift */; };
 		F5D4EDC52A38E33F00B4C5C0 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5D4EDC22A38E33F00B4C5C0 /* OpenSans-Regular.ttf */; };
 		F5D4EDC62A38E33F00B4C5C0 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5D4EDC32A38E33F00B4C5C0 /* OpenSans-SemiBold.ttf */; };
@@ -82,11 +89,18 @@
 		F54D34142A3F820B0087ADDE /* CategoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCellViewModel.swift; sourceTree = "<group>"; };
 		F54D34162A3F83E90087ADDE /* CategoryCellViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCellViewModelType.swift; sourceTree = "<group>"; };
 		F54D34182A3F99620087ADDE /* SearchViewViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewViewModelType.swift; sourceTree = "<group>"; };
+		F551D1492A4B669000F01449 /* SearchBarViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarViewViewModel.swift; sourceTree = "<group>"; };
+		F551D14B2A4B67A900F01449 /* SearchBarViewViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarViewViewModelType.swift; sourceTree = "<group>"; };
 		F58D96052A41762200111756 /* UIViewController+presentOKAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+presentOKAlertController.swift"; sourceTree = "<group>"; };
 		F58D96082A41C21C00111756 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		F59A42412A39EA2300E2433E /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		F59A42432A39EA2F00E2433E /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		F59A42472A3A375700E2433E /* Pattaya-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pattaya-Regular.ttf"; sourceTree = "<group>"; };
+		F59EBA132A4CAFFB00F147E6 /* ImageSaveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaveManager.swift; sourceTree = "<group>"; };
+		F59EBA152A4CC5AA00F147E6 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		F59EBA172A4CC87000F147E6 /* ImageViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewViewModel.swift; sourceTree = "<group>"; };
+		F59EBA192A4CDEE600F147E6 /* ImageViewViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewViewModelType.swift; sourceTree = "<group>"; };
+		F59EBA1F2A4CEB4200F147E6 /* ImageSaveManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaveManagerProtocol.swift; sourceTree = "<group>"; };
 		F5D2EB592A3C575C00489918 /* ImageSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5D2EB632A3CC9BF00489918 /* ResultViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewViewModel.swift; sourceTree = "<group>"; };
 		F5D4EDC22A38E33F00B4C5C0 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
@@ -135,25 +149,24 @@
 		F54147402A40B32D00BCDAD5 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				F54147412A40B34300BCDAD5 /* NetworkManager.swift */,
-				F5F50A6F2A4336FF0054D02E /* ImageDownloadManager.swift */,
-				F5F50A732A4340400054D02E /* Protocols */,
+				F59EBA1C2A4CEAEB00F147E6 /* NetworkManager */,
+				F59EBA1D2A4CEB0900F147E6 /* ImageDownloadManager */,
+				F59EBA1E2A4CEB3900F147E6 /* ImageSaveManager */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		F54147452A40B83E00BCDAD5 /* Models */ = {
+		F54147452A40B83E00BCDAD5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				F54147462A40B87300BCDAD5 /* ImageSearchResultData.swift */,
 			);
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		F541DEBF2A3B5F0B00D4626E /* UIElements */ = {
 			isa = PBXGroup;
 			children = (
-				F5F2DBE12A49FC580068DAC1 /* SearchBarView.swift */,
 				F541DEC02A3B5F2B00D4626E /* SearchTextField.swift */,
 				F541DEC22A3B62C900D4626E /* BlueButton.swift */,
 				F5F2DBDF2A49E2A20068DAC1 /* RectangleButton.swift */,
@@ -177,10 +190,12 @@
 				F543ADCF2A361DCA00C9CC60 /* AppDelegate.swift */,
 				F543ADE72A36245F00C9CC60 /* SceneDelegate.swift */,
 				F54147402A40B32D00BCDAD5 /* Managers */,
-				F54147452A40B83E00BCDAD5 /* Models */,
+				F54147452A40B83E00BCDAD5 /* Model */,
+				F551D1482A4B666C00F01449 /* SearchBar */,
 				F5D2EB602A3CC6AD00489918 /* SearchScreen */,
 				F5D2EB612A3CC6B800489918 /* ResultScreen */,
-				F5F2DBD62A49CC900068DAC1 /* DetailVIewScreen */,
+				F5F2DBD62A49CC900068DAC1 /* DetailViewScreen */,
+				F59A42402A39E9E800E2433E /* ImageResultsCell */,
 				F58D96072A41C1E400111756 /* Coordinator */,
 				F541DEBF2A3B5F0B00D4626E /* UIElements */,
 				F543ADF12A365CE200C9CC60 /* Extensions */,
@@ -217,6 +232,16 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		F551D1482A4B666C00F01449 /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				F5F2DBE12A49FC580068DAC1 /* SearchBarView.swift */,
+				F551D1492A4B669000F01449 /* SearchBarViewViewModel.swift */,
+				F551D14B2A4B67A900F01449 /* SearchBarViewViewModelType.swift */,
+			);
+			path = SearchBar;
+			sourceTree = "<group>";
+		};
 		F58D96072A41C1E400111756 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +268,43 @@
 			path = Pattaya;
 			sourceTree = "<group>";
 		};
+		F59EBA1B2A4CDF1C00F147E6 /* ImageView */ = {
+			isa = PBXGroup;
+			children = (
+				F59EBA152A4CC5AA00F147E6 /* ImageViewController.swift */,
+				F59EBA172A4CC87000F147E6 /* ImageViewViewModel.swift */,
+				F59EBA192A4CDEE600F147E6 /* ImageViewViewModelType.swift */,
+			);
+			path = ImageView;
+			sourceTree = "<group>";
+		};
+		F59EBA1C2A4CEAEB00F147E6 /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				F54147412A40B34300BCDAD5 /* NetworkManager.swift */,
+				F54147432A40B38300BCDAD5 /* NetworkManagerProtocol.swift */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		F59EBA1D2A4CEB0900F147E6 /* ImageDownloadManager */ = {
+			isa = PBXGroup;
+			children = (
+				F5F50A6F2A4336FF0054D02E /* ImageDownloadManager.swift */,
+				F5F50A712A43401C0054D02E /* ImageDownloadManagerProtocol.swift */,
+			);
+			path = ImageDownloadManager;
+			sourceTree = "<group>";
+		};
+		F59EBA1E2A4CEB3900F147E6 /* ImageSaveManager */ = {
+			isa = PBXGroup;
+			children = (
+				F59EBA132A4CAFFB00F147E6 /* ImageSaveManager.swift */,
+				F59EBA1F2A4CEB4200F147E6 /* ImageSaveManagerProtocol.swift */,
+			);
+			path = ImageSaveManager;
+			sourceTree = "<group>";
+		};
 		F5D2EB602A3CC6AD00489918 /* SearchScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,7 +325,6 @@
 				F54D340C2A3F44A20087ADDE /* ResultViewViewModelType.swift */,
 				F541473F2A409A1500BCDAD5 /* ImageResultsHeaderView */,
 				F5D2EB622A3CC88200489918 /* CategoryCell */,
-				F59A42402A39E9E800E2433E /* ImageResultsCell */,
 			);
 			path = ResultScreen;
 			sourceTree = "<group>";
@@ -298,24 +359,16 @@
 			path = OpenSans;
 			sourceTree = "<group>";
 		};
-		F5F2DBD62A49CC900068DAC1 /* DetailVIewScreen */ = {
+		F5F2DBD62A49CC900068DAC1 /* DetailViewScreen */ = {
 			isa = PBXGroup;
 			children = (
 				F5F2DBD92A49CCE50068DAC1 /* DetailView.swift */,
 				F5F2DBD72A49CCC00068DAC1 /* DetailViewController.swift */,
 				F5F2DBDB2A49D80A0068DAC1 /* DetailViewViewModel.swift */,
 				F5F2DBDD2A49D8140068DAC1 /* DetailViewViewModelType.swift */,
+				F59EBA1B2A4CDF1C00F147E6 /* ImageView */,
 			);
-			path = DetailVIewScreen;
-			sourceTree = "<group>";
-		};
-		F5F50A732A4340400054D02E /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				F54147432A40B38300BCDAD5 /* NetworkManagerProtocol.swift */,
-				F5F50A712A43401C0054D02E /* ImageDownloadManagerProtocol.swift */,
-			);
-			path = Protocols;
+			path = DetailViewScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -437,9 +490,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F551D14A2A4B669000F01449 /* SearchBarViewViewModel.swift in Sources */,
 				F5F2DBD82A49CCC00068DAC1 /* DetailViewController.swift in Sources */,
 				F54147422A40B34300BCDAD5 /* NetworkManager.swift in Sources */,
 				F54D34152A3F820B0087ADDE /* CategoryCellViewModel.swift in Sources */,
+				F551D14C2A4B67A900F01449 /* SearchBarViewViewModelType.swift in Sources */,
 				F54D340D2A3F44A20087ADDE /* ResultViewViewModelType.swift in Sources */,
 				F5F50A702A4336FF0054D02E /* ImageDownloadManager.swift in Sources */,
 				F543ADEB2A364B7700C9CC60 /* SearchView.swift in Sources */,
@@ -462,17 +517,22 @@
 				F543ADD02A361DCA00C9CC60 /* AppDelegate.swift in Sources */,
 				F54D34112A3F565D0087ADDE /* ImageResultsCell.swift in Sources */,
 				F541473E2A4081C200BCDAD5 /* Fonts.swift in Sources */,
+				F59EBA1A2A4CDEE600F147E6 /* ImageViewViewModelType.swift in Sources */,
 				F54D34132A3F7C920087ADDE /* CategoryCell.swift in Sources */,
 				F5F2DBDC2A49D80A0068DAC1 /* DetailViewViewModel.swift in Sources */,
+				F59EBA162A4CC5AA00F147E6 /* ImageViewController.swift in Sources */,
 				F59A42422A39EA2300E2433E /* ResultView.swift in Sources */,
+				F59EBA182A4CC87000F147E6 /* ImageViewViewModel.swift in Sources */,
 				F54147382A4079B400BCDAD5 /* ImageResultsCellViewModelType.swift in Sources */,
 				F54D340F2A3F563F0087ADDE /* ImageResultsHeaderView.swift in Sources */,
 				F543ADE82A36246000C9CC60 /* SceneDelegate.swift in Sources */,
+				F59EBA142A4CAFFB00F147E6 /* ImageSaveManager.swift in Sources */,
 				F5F2DBE22A49FC580068DAC1 /* SearchBarView.swift in Sources */,
 				F54D34172A3F83E90087ADDE /* CategoryCellViewModelType.swift in Sources */,
 				F54147472A40B87300BCDAD5 /* ImageSearchResultData.swift in Sources */,
 				F54147442A40B38300BCDAD5 /* NetworkManagerProtocol.swift in Sources */,
 				F541DEC12A3B5F2B00D4626E /* SearchTextField.swift in Sources */,
+				F59EBA202A4CEB4200F147E6 /* ImageSaveManagerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,6 +681,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -655,6 +716,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

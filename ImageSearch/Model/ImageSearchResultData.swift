@@ -8,18 +8,24 @@
 import Foundation
 
 struct ImageSearchResultData: Decodable {
+    enum Separator: String {
+        case tagsSeparator = ", "
+    }
+    
     let total: Int
-    let hits: [Hit]
+    var hits: [Hit]
     
     struct Hit: Decodable {
+        let id: Int
         let tags: String
-        let webFormatURL: String // 640x400
-        let largeImageURL: String // starting from fullhd
+        let views: Int
+        let likes: Int
+        let webFormatURL: String
+        let largeImageURL: String
         
         enum CodingKeys: String, CodingKey {
-            case tags
+            case id, tags, largeImageURL, views, likes
             case webFormatURL = "webformatURL"
-            case largeImageURL
         }
     }
 }

@@ -9,35 +9,35 @@ import UIKit
 import XCoordinator
 import Combine
 
-final class ResultViewViewModel: ResultViewViewModelType {    
+final class ResultViewViewModel: ResultViewViewModelType {
+    private let router: UnownedRouter<AppRoute>
     let networkManager: NetworkManagerProtocol
-    let router: UnownedRouter<AppRoute>
     var searchResultData: ImageSearchResultData?
     var currentSearchText: String
-    var selectedFilter: ImageSearchAPI.QueryParameters.Order = .popular
+    var selectedFilterForRecentSearchQuery: ImageSearchAPI.QueryParameters.Order = .popular
     
     private var subscriber: AnyCancellable?
     
     init(networkManager: NetworkManagerProtocol, router: UnownedRouter<AppRoute>) {
         self.networkManager = networkManager
         self.router = router
-        currentSearchText = ""
+        currentSearchText = String()
     }
     
     func fetchData() -> Future<Void, Error> {
         return Future { [weak self] promise in
             guard let self = self else { return }
-            subscriber = networkManager.fetchData(withSearchQuery: currentSearchText, resultOrder: selectedFilter)
-                .sink(receiveCompletion: { completion in
+            subscriber = networkManager.fetchData(withSearchQuery: currentSearchText, resultOrder: selectedFilterForRecentSearchQuery)
+                .sink { completion in
                     switch completion {
                     case .finished:
                         promise(.success(Void()))
                     case .failure(let error):
                         promise(.failure(error))
                     }
-                }, receiveValue: { [weak self] searchResultData in
+                } receiveValue: { [weak self] searchResultData in
                     self?.searchResultData = searchResultData
-                })
+                }
         }
     }
     
@@ -46,10 +46,10 @@ final class ResultViewViewModel: ResultViewViewModelType {
         guard let searchResultDataSafe = searchResultData else { return searchResultCategories }
         
         for hit in searchResultDataSafe.hits {
-            let hitCategories = hit.tags.components(separatedBy: ", ")
+            let hitCategories = hit.tags.components(separatedBy: ImageSearchResultData.Separator.tagsSeparator.rawValue)
             
             for category in hitCategories {
-                let words = category.components(separatedBy: " ")
+                let words = category.components(separatedBy: CharacterSet.whitespaces)
                 let capitalizedCategory = words.map { word in
                     let firstCharacter = word.prefix(1).uppercased()
                     let remainingCharacters = word.dropFirst()
@@ -60,6 +60,11 @@ final class ResultViewViewModel: ResultViewViewModelType {
             }
         }
         return searchResultCategories
+    }
+    
+    func didTapImageResultCell(atIndexPath indexPath: IndexPath) {
+        guard let searchResultDataSafe = searchResultData else { return }
+        router.trigger(.detail(chosenImageData: searchResultDataSafe.hits[indexPath.row]))
     }
     
     // MARK: UICollectionViewDataSource data
@@ -79,7 +84,9 @@ final class ResultViewViewModel: ResultViewViewModelType {
     
     func imageResultsCellViewModel(at indexPath: IndexPath) -> ImageResultsCellViewModelType? {
         guard let searchResultDataSafe = searchResultData else { return nil }
-        return ImageResultsCellViewModel(cellImageURL: searchResultDataSafe.hits[indexPath.row].webFormatURL, fullImageURL: searchResultDataSafe.hits[indexPath.row].largeImageURL, imageDownloadManager: ImageDownloadManager())
+        return ImageResultsCellViewModel(cellImageURL: searchResultDataSafe.hits[indexPath.row].webFormatURL,
+                                         fullImageURL: searchResultDataSafe.hits[indexPath.row].largeImageURL,
+                                         imageDownloadManager: ImageDownloadManager())
     }
     
     func imageResultsHeaderViewViewModel() -> ImageResultsHeaderViewViewModelType? {

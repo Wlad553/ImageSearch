@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol ImageResultsHeaderViewViewModelType {
+protocol ImageResultsHeaderViewViewModelType: AnyObject {
     var resultsNumber: Int { get }
 }

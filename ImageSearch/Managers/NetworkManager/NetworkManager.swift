@@ -21,8 +21,9 @@ enum ImageSearchAPI: String {
     }
 }
 
-enum NetworkError: Error {
+enum NMError: Error {
     case invalidURL
+    case imageDataDecoding
 }
 
 class NetworkManager: NetworkManagerProtocol {
@@ -34,17 +35,42 @@ class NetworkManager: NetworkManagerProtocol {
         let urlString = "https://pixabay.com/api/?key=\(ImageSearchAPI.apiKey.rawValue)&q=\(encodedText)&lang=\(dominantLanguage)&order=\(resultOrder.rawValue)&per_page=200"
         guard let url = URL(string: urlString) else {
             return Future { promise in
-                promise(.failure(NetworkError.invalidURL))
+                promise(.failure(NMError.invalidURL))
             }
         }
         
         return Future { promise in
             AF.request(url).responseDecodable(of: ImageSearchResultData.self) { dataResponse in
-                if case let .success(data) = dataResponse.result {
+                switch dataResponse.result {
+                case .success(let data):
                     promise(.success(data))
-                } else if case let .failure(error) = dataResponse.result {
+                case .failure(let error):
                     promise(.failure(error))
                 }
+            }
+        }
+    }
+    
+    func downloadImage(withURL url: String) -> Future<UIImage, Error> {
+        guard let url = URL(string: url) else {
+            return Future { promise in
+                promise(.failure(NMError.invalidURL))
+            }
+        }
+        
+        return Future { promise in
+            AF.request(url).responseData { responseData in
+                if let error = responseData.error {
+                    promise(.failure(error))
+                }
+                
+                guard let data = responseData.data,
+                      let image = UIImage(data: data)
+                else {
+                    promise(.failure(NMError.imageDataDecoding))
+                    return
+                }
+                promise(.success(image))
             }
         }
     }

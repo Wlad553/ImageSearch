@@ -14,6 +14,8 @@ final class ResultView: UIView {
     let activityIndicator = UIActivityIndicatorView(style: .large)
     var imageResultsHeaderView: ImageResultsHeaderView?
     
+    let tapGestureRecognizer = UITapGestureRecognizer()
+    
     override init(frame: CGRect) {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
             super.init(frame: .zero)
@@ -24,6 +26,7 @@ final class ResultView: UIView {
         setUpImageResultsCollectionView()
         setUpActivityIndicator()
         setUpNoSearchResultsStackView()
+        setUpTapGestureRecognizer()
         addConstraints()
     }
     
@@ -31,7 +34,7 @@ final class ResultView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func assignImageResultsCollectionViewDelegates<T>(to delegate: T) where T: UICollectionViewDataSource & UICollectionViewDelegate & UITextFieldDelegate {
+    func assignImageResultsCollectionViewDelegates<T>(to delegate: T) where T: UICollectionViewDataSource & UICollectionViewDelegate {
         imageResultsCollectionView.dataSource = delegate
         imageResultsCollectionView.delegate = delegate
     }
@@ -59,12 +62,12 @@ final class ResultView: UIView {
             make.width.height.equalTo(50)
         }
         
-        noSearchResultsLabel.font = UIFont(name: Fonts.OpenSans.ExtraBold.rawValue, size: 21)
+        noSearchResultsLabel.font = UIFont(name: Fonts.OpenSans.extraBold.rawValue, size: 21)
         noSearchResultsLabel.numberOfLines = 0
         noSearchResultsLabel.textAlignment = .center
         noSearchResultsLabel.text = "No results for search query"
         
-        sublabel.font = UIFont(name: Fonts.OpenSans.Regular.rawValue, size: 17)
+        sublabel.font = UIFont(name: Fonts.OpenSans.regular.rawValue, size: 17)
         sublabel.textColor = imageView.tintColor
         sublabel.text = "Check the spelling or try a new search"
         
@@ -83,6 +86,11 @@ final class ResultView: UIView {
     
     private func setUpActivityIndicator() {
         addSubview(activityIndicator)
+    }
+    
+    private func setUpTapGestureRecognizer() {
+        tapGestureRecognizer.cancelsTouchesInView = false
+        imageResultsCollectionView.addGestureRecognizer(tapGestureRecognizer)
     }
     
     // MARK: Subviews constraints
@@ -107,7 +115,7 @@ extension ResultView {
     private func imageResultsCollectionViewLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: frame.width - 32, height: (frame.width - 32) / 1.77)
+        layout.itemSize = CGSize(width: frame.width - 32, height: (frame.width - 32) / (16/9))
         layout.minimumLineSpacing = 16
         layout.headerReferenceSize = CGSize(width: frame.size.width, height: 88)
         return layout

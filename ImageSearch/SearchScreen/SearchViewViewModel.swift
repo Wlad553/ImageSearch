@@ -7,10 +7,9 @@
 
 import Foundation
 import XCoordinator
-import Combine
 
 final class SearchViewViewModel: SearchViewViewModelType {
-    let router: UnownedRouter<AppRoute>
+    private let router: UnownedRouter<AppRoute>
         
     init(router: UnownedRouter<AppRoute>) {
         self.router = router

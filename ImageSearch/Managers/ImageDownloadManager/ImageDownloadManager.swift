@@ -8,11 +8,16 @@
 import Kingfisher
 import Combine
 
+enum KingfisherError: Error {
+    case imageToDataEncoding
+}
+
 class ImageDownloadManager: ImageDownloadManagerProtocol {
-    func downloadImage(withUrl url: String, forImageView imageView: UIImageView) -> Future<Void, Error> {
+    @discardableResult
+    func downloadImage(withURL url: String, forImageView imageView: UIImageView) -> Future<Void, Error> {
         guard let url = URL(string: url) else {
             return Future { promise in
-                promise(.failure(NetworkError.invalidURL))
+                promise(.failure(NMError.invalidURL))
             }
         }
         

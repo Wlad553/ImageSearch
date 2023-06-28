@@ -12,9 +12,8 @@ final class ResultViewController: UIViewController {
     let viewModel: ResultViewViewModelType
     let searchBarView: SearchBarView
     let resultView = ResultView()
-    private let tapGestureRecognizer = UITapGestureRecognizer()
-    private var subscribers: [AnyCancellable] = []
     
+    private var subscribers: Set<AnyCancellable> = []
     
     init(searchBarView: SearchBarView, viewModel: ResultViewViewModelType) {
         self.viewModel = viewModel
@@ -36,20 +35,29 @@ final class ResultViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
         navigationController?.setNavigationBarHidden(false, animated: true)
+        resultView.tapGestureRecognizer.addTarget(self, action: #selector(didRecognizeTap))
         resultView.assignImageResultsCollectionViewDelegates(to: self)
         searchBarView.searchTextField.delegate = self
         searchBarView.searchTextField.text = viewModel.currentSearchText
-        setUpTapGestureRecognizer()
         addNotificationCenterObservers()
-        setUpOptionsButtonContextMenu()
-        prepareForImageSearch()
+        subscribeToSearchBarSelectedFilterUpdate()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-            searchBarView.searchTextField.resignFirstResponder()
+        searchBarView.searchTextField.resignFirstResponder()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        if viewModel.selectedFilterForRecentSearchQuery != searchBarView.viewModel.selectedFilter {
+            viewModel.selectedFilterForRecentSearchQuery = searchBarView.viewModel.selectedFilter
+            prepareForImageSearch()
+        }
+    }
+    
+    // MARK: Subscribtions
     func performSearch() {
         viewModel.fetchData()
             .receive(on: DispatchQueue.main)
@@ -68,8 +76,7 @@ final class ResultViewController: UIViewController {
                     resultView.noSearchResultsStackView.isHidden = self.viewModel.searchResultData?.hits.count != 0
                 case .failure(let error):
                     let message = (error as NSError).code == 13 ? "The Internet connection appears to be offline" : "Please try again later"
-                    presentOKAlertController(withTitle: "Search error",
-                                             message: message) {
+                    presentOKAlertController(withTitle: "Search error", message: message) {
                         self.resultView.activityIndicator.stopAnimating()
                     }
                 }
@@ -89,6 +96,17 @@ final class ResultViewController: UIViewController {
         self.performSearch()
     }
     
+    func subscribeToSearchBarSelectedFilterUpdate() {
+        searchBarView.viewModel.selectedFilterPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] filter in
+                guard self?.navigationController?.topViewController == self else { return }
+                self?.viewModel.selectedFilterForRecentSearchQuery = filter
+                self?.prepareForImageSearch()
+            }
+            .store(in: &subscribers)
+    }
+    
     // MARK: ImageShare
     @objc private func didTapShareButton(sender: UIButton) {
         guard let senderSuperview = sender.superview as? ImageResultsCell,
@@ -96,47 +114,13 @@ final class ResultViewController: UIViewController {
               let largeImageURL = URL(string: largeImageURLString)
         else { return }
         
-        
         let activityViewController = UIActivityViewController(activityItems: [largeImageURL], applicationActivities: nil)
         present(activityViewController, animated: true)
     }
     
     // MARK: TapGestureRecognizer
-    private func setUpTapGestureRecognizer() {
-        tapGestureRecognizer.addTarget(self, action: #selector(didRecognizeTap))
-        tapGestureRecognizer.cancelsTouchesInView = false
-        resultView.imageResultsCollectionView.addGestureRecognizer(tapGestureRecognizer)
-    }
-    
     @objc private func didRecognizeTap() {
         searchBarView.searchTextField.resignFirstResponder()
-    }
-    
-    // MARK: ContextMenu
-    private func createContextMenu() -> UIMenu {
-        let popularFilter = UIAction(title: "Popular",
-                                     state: viewModel.selectedFilter == .popular ? .on : .off) { action in
-            self.viewModel.selectedFilter = .popular
-            self.setUpOptionsButtonContextMenu()
-            if action.state == .off {
-                self.prepareForImageSearch()
-            }
-        }
-        
-        let latestFilter = UIAction(title: "Latest",
-                                    state: viewModel.selectedFilter == .latest ? .on : .off) { action in
-            self.viewModel.selectedFilter = .latest
-            self.setUpOptionsButtonContextMenu()
-            if action.state == .off {
-                self.prepareForImageSearch()
-            }
-        }
-                
-        return UIMenu(children: [popularFilter, latestFilter])
-    }
-    
-    private func setUpOptionsButtonContextMenu() {
-        searchBarView.optionsButton.menu = createContextMenu()
     }
 }
 
@@ -199,6 +183,8 @@ extension ResultViewController: UICollectionViewDataSource {
 extension ResultViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == resultView.imageResultsCollectionView {
+            viewModel.didTapImageResultCell(atIndexPath: indexPath)
+            
         } else if resultView.imageResultsHeaderView?.relatedCategoriesCollectionView == collectionView {
             guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCell,
                   cell.categoryLabel.text != searchBarView.searchTextField.text
@@ -223,6 +209,15 @@ extension ResultViewController {
 // MARK: UITextFieldDelegate
 extension ResultViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if navigationController?.topViewController != self {
+            UIView.animate(withDuration: 0.1) {
+                self.navigationController?.topViewController?.view.subviews.forEach({ view in
+                    view.alpha = 0
+                })
+            } completion: { _ in
+                self.navigationController?.popToViewController(self, animated: false)
+            }
+        }
         let textFieldText = textField.text ?? ""
         viewModel.currentSearchText = textFieldText
         prepareForImageSearch()

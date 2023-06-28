@@ -45,7 +45,7 @@ final class SearchView: UIView {
         let attributedText = NSMutableAttributedString(string: "Zabierz swoich odbiorców na wizualną przygodę")
         attributedText.addAttribute(.baselineOffset, value: 8, range: NSRange(location: 0, length: attributedText.string.count))
         welcomeLabel.numberOfLines = 0
-        welcomeLabel.font = UIFont(name: Fonts.OpenSans.ExtraBold.rawValue, size: 26)
+        welcomeLabel.font = UIFont(name: Fonts.OpenSans.extraBold.rawValue, size: 26)
         welcomeLabel.textColor = .welcomeLabel
         welcomeLabel.textAlignment = .center
         welcomeLabel.attributedText = attributedText
@@ -77,6 +77,8 @@ final class SearchView: UIView {
         searchButton.isUserInteractionEnabled = false
         searchButton.titleLabel?.alpha = 0.6
         searchButton.imageView?.alpha = 0.6
+        searchButton.imageView?.layer.transform = CATransform3DConcat(CATransform3DMakeScale(0.7, 0.7, 0.7),
+                                                         CATransform3DMakeTranslation(-5, 0, 0))
     }
     
     private func setUpSearchStackView() {

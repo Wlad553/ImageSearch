@@ -24,7 +24,7 @@ final class BlueButton: UIButton {
     }
     
     private func setUp(title: String?, image: UIImage?) {
-        titleLabel?.font = UIFont(name: Fonts.OpenSans.SemiBold.rawValue, size: 18)
+        titleLabel?.font = UIFont(name: Fonts.OpenSans.semiBold.rawValue, size: 18)
         setTitle(title, for: .normal)
         setTitleColor(.white, for: .normal)
         
@@ -35,9 +35,6 @@ final class BlueButton: UIButton {
         titleLabel?.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
         }
-        
-        imageView?.layer.transform = CATransform3DConcat(CATransform3DMakeScale(0.7, 0.7, 0.7),
-                                                         CATransform3DMakeTranslation(-5, 0, 0))
 
         backgroundColor = .searchButtonBackground
         layer.cornerRadius = 5

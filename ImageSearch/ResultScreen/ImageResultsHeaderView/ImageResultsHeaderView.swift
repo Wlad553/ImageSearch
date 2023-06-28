@@ -46,7 +46,7 @@ final class ImageResultsHeaderView: UICollectionReusableView {
     func setUpHeaderViewForRelatedCategoriesCollectionView(superview: UIView) {
         headerLabel.textColor = .optionsButton
         headerLabel.numberOfLines = 1
-        headerLabel.font = UIFont(name: Fonts.OpenSans.Regular.rawValue, size: 14)
+        headerLabel.font = UIFont(name: Fonts.OpenSans.regular.rawValue, size: 14)
         headerLabel.text = "Related"
         superview.addSubview(headerLabel)
         headerLabel.snp.makeConstraints { make in
@@ -68,7 +68,7 @@ final class ImageResultsHeaderView: UICollectionReusableView {
     }
     
     private func setUpResultNumberLabel() {
-        resultsNumberLabel.font = UIFont(name: Fonts.OpenSans.SemiBold.rawValue, size: 18)
+        resultsNumberLabel.font = UIFont(name: Fonts.OpenSans.semiBold.rawValue, size: 18)
         resultsNumberLabel.textColor = .black
         resultsNumberLabel.textAlignment = .left
         resultsNumberLabel.numberOfLines = 1

@@ -8,19 +8,22 @@
 import UIKit
 import SnapKit
 
-class SearchBarView: UIView {
+final class SearchBarView: UIView {
     private let stackView = UIStackView()
     let logoLabel = UILabel()
     let searchTextField = SearchTextField()
     let optionsButton = UIButton()
+    let viewModel: SearchBarViewViewModelType
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(viewModel: SearchBarViewViewModelType) {
+        self.viewModel = viewModel
+        super.init(frame: .zero)
         setUpStackView()
         setUpLogoLabel()
         setUpSearchTextField()
         setUpOptionsButton()
         addConstraints()
+        createContextMenu()
         backgroundColor = .white
     }
     
@@ -58,7 +61,7 @@ class SearchBarView: UIView {
     private func setUpLogoLabel() {
         logoLabel.text = "P"
         logoLabel.textAlignment = .center
-        logoLabel.font = UIFont(name: Fonts.Pattaya.Regular.rawValue, size: 32)
+        logoLabel.font = UIFont(name: Fonts.Pattaya.regular.rawValue, size: 32)
         logoLabel.textColor = .white
         logoLabel.layer.backgroundColor = UIColor.searchButtonBackground.cgColor
         logoLabel.layer.cornerRadius = 5
@@ -80,6 +83,26 @@ class SearchBarView: UIView {
         optionsButton.imageView?.snp.makeConstraints { make in
             make.height.width.equalTo(32)
         }
+    }
+    
+    private func createContextMenu() {
+        let popularFilter = UIAction(title: "Popular",
+                                     state: viewModel.selectedFilter == .popular ? .on : .off) { action in
+            if self.viewModel.selectedFilter == .latest {
+                self.viewModel.selectedFilter = .popular
+            }
+            self.createContextMenu()
+        }
+        
+        let latestFilter = UIAction(title: "Latest",
+                                    state: viewModel.selectedFilter == .latest ? .on : .off) { action in
+            if self.viewModel.selectedFilter == .popular {
+                self.viewModel.selectedFilter = .latest
+            }
+            self.createContextMenu()
+        }
+        
+        optionsButton.menu = UIMenu(children: [popularFilter, latestFilter])
     }
     
     // MARK: Subviews constraints

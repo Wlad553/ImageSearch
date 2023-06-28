@@ -9,12 +9,12 @@ import Foundation
 
 enum Fonts {
     enum OpenSans: String {
-        case ExtraBold = "OpenSans-ExtraBold"
-        case Regular = "OpenSans-Regular"
-        case SemiBold = "OpenSans-SemiBold"
+        case extraBold = "OpenSans-ExtraBold"
+        case regular = "OpenSans-Regular"
+        case semiBold = "OpenSans-SemiBold"
     }
     
     enum Pattaya: String {
-        case Regular = "Pattaya-Regular"
+        case regular = "Pattaya-Regular"
     }
 }
