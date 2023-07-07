@@ -100,6 +100,7 @@ final class DetailViewController: UIViewController {
                 if error.code == 13 {
                     self?.presentOKAlertController(withTitle: "Unable to download image", message: "Internet connection appears to be offline")
                 }
+                self?.detailView.downloadActivityIndicator.stopAnimating()
             } receiveValue: { [weak self] image in
                 
                 self?.viewModel.imageSaveManager.onSaveCompletion = { [weak self] error in

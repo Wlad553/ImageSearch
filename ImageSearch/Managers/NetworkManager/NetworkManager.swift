@@ -26,7 +26,7 @@ enum NMError: Error {
     case imageDataDecoding
 }
 
-class NetworkManager: NetworkManagerProtocol {
+final class NetworkManager: NetworkManagerProtocol {
     func fetchData(withSearchQuery searchQuery: String, resultOrder: ImageSearchAPI.QueryParameters.Order) -> Future<ImageSearchResultData, Error> {
         let languageRecognizer = NLLanguageRecognizer()
         languageRecognizer.processString(searchQuery)

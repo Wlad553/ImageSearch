@@ -14,7 +14,7 @@ enum AppRoute: Route {
     case photo(imageURLString: String)
 }
 
-class AppCoordinator: NavigationCoordinator<AppRoute> {
+final class AppCoordinator: NavigationCoordinator<AppRoute> {
     private let searchBarView = SearchBarView(viewModel: SearchBarViewViewModel())
     private let navigationController: UINavigationController = {
         let navigationController = UINavigationController()

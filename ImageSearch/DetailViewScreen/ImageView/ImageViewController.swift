@@ -65,10 +65,8 @@ final class ImageViewController: UIViewController {
         presentedImageView.contentMode = .scaleAspectFit
         presentedImageView.frame.size = scrollView.contentSize
         presentedImageView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(-32)
-            make.width.equalToSuperview()
-            make.height.equalToSuperview().offset(-32)
+            make.centerX.width.equalToSuperview()
+            make.centerY.height.equalToSuperview().offset(-32)
         }
     }
 }
