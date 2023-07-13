@@ -12,6 +12,7 @@ enum AppRoute: Route {
     case results(searchText: String)
     case detail(chosenImageData: ImageSearchResultData.Hit)
     case photo(imageURLString: String)
+    case crop(image: UIImage)
 }
 
 final class AppCoordinator: NavigationCoordinator<AppRoute> {
@@ -63,11 +64,18 @@ final class AppCoordinator: NavigationCoordinator<AppRoute> {
                                                       viewModel: viewModel)
             return .push(viewController)
         case .photo(imageURLString: let urlString):
-            let viewModel = ImageViewViewModel(imageDonwloadManager: ImageDownloadManager(),
+            let viewModel = ImageViewViewModel(router: unownedRouter,
+                                               imageDonwloadManager: ImageDownloadManager(),
                                                imageURL: urlString)
             let viewController = ImageViewController(viewModel: viewModel)
+            let navigationController = ImageViewNavigationController(rootViewController: viewController)
+            navigationController.setNavigationBarHidden(true, animated: false)
+            
+            return .present(navigationController)
+            
+        case .crop(image: let image):
+            let viewController = CropImageViewController(image: image)
             viewController.modalTransitionStyle = .coverVertical
-            viewController.modalPresentationStyle = .fullScreen
             return .present(viewController)
         }
     }

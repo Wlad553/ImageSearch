@@ -6,13 +6,20 @@
 //
 
 import Foundation
+import XCoordinator
 
 final class ImageViewViewModel: ImageViewViewModelType {
+    private let router: UnownedRouter<AppRoute>
     let imageDonwloadManager: ImageDownloadManager
     let imageURL: String
     
-    init(imageDonwloadManager: ImageDownloadManager, imageURL: String) {
+    init(router: UnownedRouter<AppRoute>, imageDonwloadManager: ImageDownloadManager, imageURL: String) {
+        self.router = router
         self.imageDonwloadManager = imageDonwloadManager
         self.imageURL = imageURL
+    }
+    
+    func showCropViewController(withImage image: UIImage) {
+        router.trigger(.crop(image: image))
     }
 }

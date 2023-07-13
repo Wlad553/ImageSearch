@@ -35,6 +35,9 @@
 		F54D34192A3F99620087ADDE /* SearchViewViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D34182A3F99620087ADDE /* SearchViewViewModelType.swift */; };
 		F551D14A2A4B669000F01449 /* SearchBarViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F551D1492A4B669000F01449 /* SearchBarViewViewModel.swift */; };
 		F551D14C2A4B67A900F01449 /* SearchBarViewViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F551D14B2A4B67A900F01449 /* SearchBarViewViewModelType.swift */; };
+		F5817C082A60262B00AE1CE9 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5817C072A60262B00AE1CE9 /* ImageView.swift */; };
+		F5817C0A2A6031B700AE1CE9 /* ImageViewNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5817C092A6031B700AE1CE9 /* ImageViewNavigationController.swift */; };
+		F5817C0D2A60583D00AE1CE9 /* CropImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5817C0C2A60583D00AE1CE9 /* CropImageViewController.swift */; };
 		F58D96062A41762200111756 /* UIViewController+presentOKAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58D96052A41762200111756 /* UIViewController+presentOKAlertController.swift */; };
 		F58D96092A41C21C00111756 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58D96082A41C21C00111756 /* AppCoordinator.swift */; };
 		F59A42422A39EA2300E2433E /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59A42412A39EA2300E2433E /* ResultView.swift */; };
@@ -60,8 +63,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		83DBF586BB14CF6659084D1A /* Pods-ImageSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageSearch.release.xcconfig"; path = "Target Support Files/Pods-ImageSearch/Pods-ImageSearch.release.xcconfig"; sourceTree = "<group>"; };
-		90CCF90D802FD6643D1A274E /* Pods-ImageSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageSearch.debug.xcconfig"; path = "Target Support Files/Pods-ImageSearch/Pods-ImageSearch.debug.xcconfig"; sourceTree = "<group>"; };
+		76370CF6D0A6CEB3DE25E539 /* Pods-ImageSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageSearch.debug.xcconfig"; path = "Target Support Files/Pods-ImageSearch/Pods-ImageSearch.debug.xcconfig"; sourceTree = "<group>"; };
+		BB377A8E9FB4F058906EE607 /* Pods-ImageSearch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageSearch.release.xcconfig"; path = "Target Support Files/Pods-ImageSearch/Pods-ImageSearch.release.xcconfig"; sourceTree = "<group>"; };
 		F54147352A40798F00BCDAD5 /* ImageResultsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResultsCellViewModel.swift; sourceTree = "<group>"; };
 		F54147372A4079B400BCDAD5 /* ImageResultsCellViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResultsCellViewModelType.swift; sourceTree = "<group>"; };
 		F54147392A407DCE00BCDAD5 /* ImageResultsHeaderViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResultsHeaderViewViewModel.swift; sourceTree = "<group>"; };
@@ -91,6 +94,10 @@
 		F54D34182A3F99620087ADDE /* SearchViewViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewViewModelType.swift; sourceTree = "<group>"; };
 		F551D1492A4B669000F01449 /* SearchBarViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarViewViewModel.swift; sourceTree = "<group>"; };
 		F551D14B2A4B67A900F01449 /* SearchBarViewViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarViewViewModelType.swift; sourceTree = "<group>"; };
+		F5817C062A6019CC00AE1CE9 /* ImageSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = ImageSearch.app; path = "/Users/vlad/Desktop/ImageSearch/build/Debug-iphoneos/ImageSearch.app"; sourceTree = "<absolute>"; };
+		F5817C072A60262B00AE1CE9 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		F5817C092A6031B700AE1CE9 /* ImageViewNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewNavigationController.swift; sourceTree = "<group>"; };
+		F5817C0C2A60583D00AE1CE9 /* CropImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropImageViewController.swift; sourceTree = "<group>"; };
 		F58D96052A41762200111756 /* UIViewController+presentOKAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+presentOKAlertController.swift"; sourceTree = "<group>"; };
 		F58D96082A41C21C00111756 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		F59A42412A39EA2300E2433E /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
@@ -101,7 +108,6 @@
 		F59EBA172A4CC87000F147E6 /* ImageViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewViewModel.swift; sourceTree = "<group>"; };
 		F59EBA192A4CDEE600F147E6 /* ImageViewViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewViewModelType.swift; sourceTree = "<group>"; };
 		F59EBA1F2A4CEB4200F147E6 /* ImageSaveManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaveManagerProtocol.swift; sourceTree = "<group>"; };
-		F5D2EB592A3C575C00489918 /* ImageSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5D2EB632A3CC9BF00489918 /* ResultViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewViewModel.swift; sourceTree = "<group>"; };
 		F5D4EDC22A38E33F00B4C5C0 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		F5D4EDC32A38E33F00B4C5C0 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -130,8 +136,8 @@
 		2F271A294DDDD0B9825A2502 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				90CCF90D802FD6643D1A274E /* Pods-ImageSearch.debug.xcconfig */,
-				83DBF586BB14CF6659084D1A /* Pods-ImageSearch.release.xcconfig */,
+				76370CF6D0A6CEB3DE25E539 /* Pods-ImageSearch.debug.xcconfig */,
+				BB377A8E9FB4F058906EE607 /* Pods-ImageSearch.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -180,7 +186,6 @@
 				F543ADE32A361DDB00C9CC60 /* .gitignore */,
 				F543ADCE2A361DCA00C9CC60 /* ImageSearch */,
 				2F271A294DDDD0B9825A2502 /* Pods */,
-				F5D2EB592A3C575C00489918 /* ImageSearch.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -271,9 +276,12 @@
 		F59EBA1B2A4CDF1C00F147E6 /* ImageView */ = {
 			isa = PBXGroup;
 			children = (
+				F5817C092A6031B700AE1CE9 /* ImageViewNavigationController.swift */,
+				F5817C072A60262B00AE1CE9 /* ImageView.swift */,
 				F59EBA152A4CC5AA00F147E6 /* ImageViewController.swift */,
 				F59EBA172A4CC87000F147E6 /* ImageViewViewModel.swift */,
 				F59EBA192A4CDEE600F147E6 /* ImageViewViewModelType.swift */,
+				F5817C0C2A60583D00AE1CE9 /* CropImageViewController.swift */,
 			);
 			path = ImageView;
 			sourceTree = "<group>";
@@ -378,11 +386,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F543ADE02A361DCB00C9CC60 /* Build configuration list for PBXNativeTarget "ImageSearch" */;
 			buildPhases = (
-				03647499A38D84B16CAF7894 /* [CP] Check Pods Manifest.lock */,
+				F95227C4085E681A9C8389A2 /* [CP] Check Pods Manifest.lock */,
 				F543ADC82A361DCA00C9CC60 /* Sources */,
 				F543ADC92A361DCA00C9CC60 /* Frameworks */,
 				F543ADCA2A361DCA00C9CC60 /* Resources */,
-				7F4861ED0BA5D56AC21F0BB7 /* [CP] Embed Pods Frameworks */,
+				3C630ADF1F6B486E6234C8B1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -390,7 +398,7 @@
 			);
 			name = ImageSearch;
 			productName = ImageSearch;
-			productReference = F5D2EB592A3C575C00489918 /* ImageSearch.app */;
+			productReference = F5817C062A6019CC00AE1CE9 /* ImageSearch.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -444,7 +452,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		03647499A38D84B16CAF7894 /* [CP] Check Pods Manifest.lock */ = {
+		3C630ADF1F6B486E6234C8B1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ImageSearch/Pods-ImageSearch-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ImageSearch/Pods-ImageSearch-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ImageSearch/Pods-ImageSearch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F95227C4085E681A9C8389A2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -466,23 +491,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7F4861ED0BA5D56AC21F0BB7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ImageSearch/Pods-ImageSearch-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ImageSearch/Pods-ImageSearch-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ImageSearch/Pods-ImageSearch-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -494,11 +502,13 @@
 				F5F2DBD82A49CCC00068DAC1 /* DetailViewController.swift in Sources */,
 				F54147422A40B34300BCDAD5 /* NetworkManager.swift in Sources */,
 				F54D34152A3F820B0087ADDE /* CategoryCellViewModel.swift in Sources */,
+				F5817C082A60262B00AE1CE9 /* ImageView.swift in Sources */,
 				F551D14C2A4B67A900F01449 /* SearchBarViewViewModelType.swift in Sources */,
 				F54D340D2A3F44A20087ADDE /* ResultViewViewModelType.swift in Sources */,
 				F5F50A702A4336FF0054D02E /* ImageDownloadManager.swift in Sources */,
 				F543ADEB2A364B7700C9CC60 /* SearchView.swift in Sources */,
 				F54147362A40798F00BCDAD5 /* ImageResultsCellViewModel.swift in Sources */,
+				F5817C0D2A60583D00AE1CE9 /* CropImageViewController.swift in Sources */,
 				F5F2DBE02A49E2A20068DAC1 /* RectangleButton.swift in Sources */,
 				F58D96092A41C21C00111756 /* AppCoordinator.swift in Sources */,
 				F5F2DBDE2A49D8140068DAC1 /* DetailViewViewModelType.swift in Sources */,
@@ -509,6 +519,7 @@
 				F58D96062A41762200111756 /* UIViewController+presentOKAlertController.swift in Sources */,
 				F541473A2A407DCE00BCDAD5 /* ImageResultsHeaderViewViewModel.swift in Sources */,
 				F543ADEE2A364C4900C9CC60 /* SearchViewViewModel.swift in Sources */,
+				F5817C0A2A6031B700AE1CE9 /* ImageViewNavigationController.swift in Sources */,
 				F59A42442A39EA2F00E2433E /* ResultViewController.swift in Sources */,
 				F5D2EB642A3CC9BF00489918 /* ResultViewViewModel.swift in Sources */,
 				F54D34192A3F99620087ADDE /* SearchViewViewModelType.swift in Sources */,
@@ -666,7 +677,7 @@
 		};
 		F543ADE12A361DCB00C9CC60 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 90CCF90D802FD6643D1A274E /* Pods-ImageSearch.debug.xcconfig */;
+			baseConfigurationReference = 76370CF6D0A6CEB3DE25E539 /* Pods-ImageSearch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -701,7 +712,7 @@
 		};
 		F543ADE22A361DCB00C9CC60 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83DBF586BB14CF6659084D1A /* Pods-ImageSearch.release.xcconfig */;
+			baseConfigurationReference = BB377A8E9FB4F058906EE607 /* Pods-ImageSearch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
