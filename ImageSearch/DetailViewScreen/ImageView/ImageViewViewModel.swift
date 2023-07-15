@@ -9,11 +9,11 @@ import Foundation
 import XCoordinator
 
 final class ImageViewViewModel: ImageViewViewModelType {
-    private let router: UnownedRouter<AppRoute>
+    private let router: WeakRouter<AppRoute>
     let imageDonwloadManager: ImageDownloadManager
     let imageURL: String
     
-    init(router: UnownedRouter<AppRoute>, imageDonwloadManager: ImageDownloadManager, imageURL: String) {
+    init(router: WeakRouter<AppRoute>, imageDonwloadManager: ImageDownloadManager, imageURL: String) {
         self.router = router
         self.imageDonwloadManager = imageDonwloadManager
         self.imageURL = imageURL

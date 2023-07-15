@@ -42,20 +42,20 @@ final class AppCoordinator: NavigationCoordinator<AppRoute> {
     override func prepareTransition(for route: AppRoute) -> NavigationTransition {
         switch route {
         case .search:
-            let viewModel = SearchViewViewModel(router: unownedRouter)
+            let viewModel = SearchViewViewModel(router: weakRouter)
             let viewController = SearchViewController(viewModel: viewModel)
             return .push(viewController)
             
         case .results(let searchText):
             let viewModel = ResultViewViewModel(networkManager: NetworkManager(),
-                                                router: unownedRouter)
+                                                router: weakRouter)
             viewModel.currentSearchText = searchText
             let viewController = ResultViewController(searchBarView: searchBarView,
                                                       viewModel: viewModel)
             return .push(viewController)
             
         case .detail(let chosenImageData):
-            let viewModel = DetailViewViewModel(router: unownedRouter,
+            let viewModel = DetailViewViewModel(router: weakRouter,
                                                 networkManager: NetworkManager(),
                                                 imageDownloadManager: ImageDownloadManager(),
                                                 imageSaveManager: ImageSaveManager(),
@@ -64,7 +64,7 @@ final class AppCoordinator: NavigationCoordinator<AppRoute> {
                                                       viewModel: viewModel)
             return .push(viewController)
         case .photo(imageURLString: let urlString):
-            let viewModel = ImageViewViewModel(router: unownedRouter,
+            let viewModel = ImageViewViewModel(router: weakRouter,
                                                imageDonwloadManager: ImageDownloadManager(),
                                                imageURL: urlString)
             let viewController = ImageViewController(viewModel: viewModel)

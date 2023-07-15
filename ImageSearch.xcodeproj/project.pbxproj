@@ -92,9 +92,9 @@
 		F54D34142A3F820B0087ADDE /* CategoryCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCellViewModel.swift; sourceTree = "<group>"; };
 		F54D34162A3F83E90087ADDE /* CategoryCellViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCellViewModelType.swift; sourceTree = "<group>"; };
 		F54D34182A3F99620087ADDE /* SearchViewViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewViewModelType.swift; sourceTree = "<group>"; };
+		F54FA7C72A63076300AA368F /* ImageSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = ImageSearch.app; path = "/Users/vlad/Desktop/ImageSearch/build/Debug-iphoneos/ImageSearch.app"; sourceTree = "<absolute>"; };
 		F551D1492A4B669000F01449 /* SearchBarViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarViewViewModel.swift; sourceTree = "<group>"; };
 		F551D14B2A4B67A900F01449 /* SearchBarViewViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarViewViewModelType.swift; sourceTree = "<group>"; };
-		F5817C062A6019CC00AE1CE9 /* ImageSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = ImageSearch.app; path = "/Users/vlad/Desktop/ImageSearch/build/Debug-iphoneos/ImageSearch.app"; sourceTree = "<absolute>"; };
 		F5817C072A60262B00AE1CE9 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		F5817C092A6031B700AE1CE9 /* ImageViewNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewNavigationController.swift; sourceTree = "<group>"; };
 		F5817C0C2A60583D00AE1CE9 /* CropImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropImageViewController.swift; sourceTree = "<group>"; };
@@ -398,7 +398,7 @@
 			);
 			name = ImageSearch;
 			productName = ImageSearch;
-			productReference = F5817C062A6019CC00AE1CE9 /* ImageSearch.app */;
+			productReference = F54FA7C72A63076300AA368F /* ImageSearch.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

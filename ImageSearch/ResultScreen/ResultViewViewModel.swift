@@ -10,7 +10,7 @@ import XCoordinator
 import Combine
 
 final class ResultViewViewModel: ResultViewViewModelType {
-    private let router: UnownedRouter<AppRoute>
+    private let router: WeakRouter<AppRoute>
     let networkManager: NetworkManagerProtocol
     var searchResultData: ImageSearchResultData?
     var currentSearchText: String
@@ -18,7 +18,7 @@ final class ResultViewViewModel: ResultViewViewModelType {
     
     private var subscriber: AnyCancellable?
     
-    init(networkManager: NetworkManagerProtocol, router: UnownedRouter<AppRoute>) {
+    init(networkManager: NetworkManagerProtocol, router: WeakRouter<AppRoute>) {
         self.networkManager = networkManager
         self.router = router
         currentSearchText = String()

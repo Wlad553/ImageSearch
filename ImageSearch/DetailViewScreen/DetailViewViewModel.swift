@@ -10,7 +10,7 @@ import XCoordinator
 import Combine
 
 final class DetailViewViewModel: DetailViewViewModelType {
-    private let router: UnownedRouter<AppRoute>
+    private let router: WeakRouter<AppRoute>
     let networkManager: NetworkManagerProtocol
     let imageDownloadManager: ImageDownloadManagerProtocol
     let imageSaveManager: ImageSaveManagerProtocol
@@ -20,7 +20,7 @@ final class DetailViewViewModel: DetailViewViewModelType {
     
     private var subscribers: Set<AnyCancellable> = []
     
-    init(router: UnownedRouter<AppRoute>, networkManager: NetworkManagerProtocol, imageDownloadManager: ImageDownloadManagerProtocol, imageSaveManager: ImageSaveManagerProtocol, chosenHit: ImageSearchResultData.Hit) {
+    init(router: WeakRouter<AppRoute>, networkManager: NetworkManagerProtocol, imageDownloadManager: ImageDownloadManagerProtocol, imageSaveManager: ImageSaveManagerProtocol, chosenHit: ImageSearchResultData.Hit) {
         self.router = router
         self.networkManager = networkManager
         self.imageDownloadManager = imageDownloadManager
