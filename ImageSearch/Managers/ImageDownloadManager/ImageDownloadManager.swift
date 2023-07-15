@@ -12,7 +12,7 @@ enum KingfisherError: Error {
     case imageToDataEncoding
 }
 
-class ImageDownloadManager: ImageDownloadManagerProtocol {
+final class ImageDownloadManager: ImageDownloadManagerProtocol {
     @discardableResult
     func downloadImage(withURL url: String, forImageView imageView: UIImageView) -> Future<Void, Error> {
         guard let url = URL(string: url) else {

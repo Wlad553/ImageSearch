@@ -11,6 +11,10 @@ final class SearchViewController: UIViewController {
     let viewModel: SearchViewViewModelType
     let searchView = SearchView()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     init(viewModel: SearchViewViewModelType) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)

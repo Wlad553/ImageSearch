@@ -12,6 +12,7 @@ enum AppRoute: Route {
     case results(searchText: String)
     case detail(chosenImageData: ImageSearchResultData.Hit)
     case photo(imageURLString: String)
+    case crop(image: UIImage)
 }
 
 final class AppCoordinator: NavigationCoordinator<AppRoute> {
@@ -41,20 +42,20 @@ final class AppCoordinator: NavigationCoordinator<AppRoute> {
     override func prepareTransition(for route: AppRoute) -> NavigationTransition {
         switch route {
         case .search:
-            let viewModel = SearchViewViewModel(router: unownedRouter)
+            let viewModel = SearchViewViewModel(router: weakRouter)
             let viewController = SearchViewController(viewModel: viewModel)
             return .push(viewController)
             
         case .results(let searchText):
             let viewModel = ResultViewViewModel(networkManager: NetworkManager(),
-                                                router: unownedRouter)
+                                                router: weakRouter)
             viewModel.currentSearchText = searchText
             let viewController = ResultViewController(searchBarView: searchBarView,
                                                       viewModel: viewModel)
             return .push(viewController)
             
         case .detail(let chosenImageData):
-            let viewModel = DetailViewViewModel(router: unownedRouter,
+            let viewModel = DetailViewViewModel(router: weakRouter,
                                                 networkManager: NetworkManager(),
                                                 imageDownloadManager: ImageDownloadManager(),
                                                 imageSaveManager: ImageSaveManager(),
@@ -63,11 +64,18 @@ final class AppCoordinator: NavigationCoordinator<AppRoute> {
                                                       viewModel: viewModel)
             return .push(viewController)
         case .photo(imageURLString: let urlString):
-            let viewModel = ImageViewViewModel(imageDonwloadManager: ImageDownloadManager(),
+            let viewModel = ImageViewViewModel(router: weakRouter,
+                                               imageDonwloadManager: ImageDownloadManager(),
                                                imageURL: urlString)
             let viewController = ImageViewController(viewModel: viewModel)
+            let navigationController = ImageViewNavigationController(rootViewController: viewController)
+            navigationController.setNavigationBarHidden(true, animated: false)
+            
+            return .present(navigationController)
+            
+        case .crop(image: let image):
+            let viewController = CropImageViewController(image: image)
             viewController.modalTransitionStyle = .coverVertical
-            viewController.modalPresentationStyle = .fullScreen
             return .present(viewController)
         }
     }

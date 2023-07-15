@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ImageSaveManager: NSObject, ImageSaveManagerProtocol {
+final class ImageSaveManager: NSObject, ImageSaveManagerProtocol {
     var onSaveCompletion: ((Error?) -> Void)?
     
     func writeToPhotoAlbum(image: UIImage) {

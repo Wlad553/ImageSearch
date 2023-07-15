@@ -9,9 +9,9 @@ import Foundation
 import XCoordinator
 
 final class SearchViewViewModel: SearchViewViewModelType {
-    private let router: UnownedRouter<AppRoute>
+    private let router: WeakRouter<AppRoute>
         
-    init(router: UnownedRouter<AppRoute>) {
+    init(router: WeakRouter<AppRoute>) {
         self.router = router
     }
     
