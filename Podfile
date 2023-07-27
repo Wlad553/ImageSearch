@@ -10,6 +10,6 @@ pod 'SnapKit', '~> 5.6.0'
 pod 'XCoordinator', '~> 2.0'
 pod 'Alamofire'
 pod 'Kingfisher', '~> 7.0'
-pod 'CropViewController'
 pod 'netfox'
+pod 'CropViewController', :git=>'https://git.foxminded.ua/foxstudent104506/cropviewcontroller'
 end

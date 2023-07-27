@@ -1,7 +1,7 @@
 PODS:
   - Alamofire (5.7.1)
-  - CropViewController (2.6.1)
-  - Kingfisher (7.7.0)
+  - CropViewController (0.0.1)
+  - Kingfisher (7.8.1)
   - netfox (1.21.0)
   - SnapKit (5.6.0)
   - XCoordinator (2.2.1):
@@ -10,7 +10,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
-  - CropViewController
+  - CropViewController (from `https://git.foxminded.ua/foxstudent104506/cropviewcontroller`)
   - Kingfisher (~> 7.0)
   - netfox
   - SnapKit (~> 5.6.0)
@@ -19,20 +19,28 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
-    - CropViewController
     - Kingfisher
     - netfox
     - SnapKit
     - XCoordinator
 
+EXTERNAL SOURCES:
+  CropViewController:
+    :git: https://git.foxminded.ua/foxstudent104506/cropviewcontroller
+
+CHECKOUT OPTIONS:
+  CropViewController:
+    :commit: d88870c52b1b15ed24ea69cb2ace8ac80f229494
+    :git: https://git.foxminded.ua/foxstudent104506/cropviewcontroller
+
 SPEC CHECKSUMS:
   Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
-  CropViewController: 58fb440f30dac788b129d2a1f24cffdcb102669c
-  Kingfisher: f043ac666dfc96c1f37604f93effb45a7ee3a3e1
+  CropViewController: 1c88db66a7786c32e632700d405fa3a5bfd430a5
+  Kingfisher: 63f677311d36a3473f6b978584f8a3845d023dc5
   netfox: 9d5cc727fe7576c4c7688a2504618a156b7d44b7
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   XCoordinator: 2cf9f72e10998b7a4a4bbeac3d07e071ea82fca3
 
-PODFILE CHECKSUM: 0aeac696e3e0e18456e1f2940baf599f8dda3043
+PODFILE CHECKSUM: 7b4e404b91acd1764c6542fc837b41bf427eabf5
 
 COCOAPODS: 1.12.1
