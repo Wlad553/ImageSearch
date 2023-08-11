@@ -29,10 +29,12 @@ Current branch - main
 * DI
 
 # Screenshots
-<img width="378" alt="image" src="https://github.com/Wlad553/ImageSearch/assets/127496072/c749cc16-85c3-4885-89d5-9b67f288fdf9">
-<img width="378" alt="image" src="https://github.com/Wlad553/ImageSearch/assets/127496072/8c9a2e3b-e505-4ea3-85f8-db24764dbaa8">
-<img width="378" alt="image" src="https://github.com/Wlad553/ImageSearch/assets/127496072/a7ce959c-f9e6-4ffd-9828-bdad450e2289">
-<img width="416" alt="image" src="https://github.com/Wlad553/ImageSearch/assets/127496072/ad927faa-da3b-490e-9c7c-a0746d4918a3">
+<img width="411" alt="image" src="https://github.com/Wlad553/ImageSearch/assets/142036699/6c906436-e3d4-4d5d-af0e-1ebdc7c17efe">
+<img width="411" alt="image" src="https://github.com/Wlad553/ImageSearch/assets/142036699/28b65dc2-87f7-4cb9-82d6-af5d3607c7cd">
+<img width="411" alt="image" src="https://github.com/Wlad553/ImageSearch/assets/142036699/3afb48bc-2439-4e6a-9ed5-0262333df196">
+<img width="411" alt="image" src="https://github.com/Wlad553/ImageSearch/assets/142036699/4a56b17f-c08a-43d9-9177-bbbed03e06f4">
+<img width="411" alt="image" src="https://github.com/Wlad553/ImageSearch/assets/142036699/0ee91981-67e2-47da-9879-0e935c1d72d9">
+<img width="411" alt="image" src="https://github.com/Wlad553/ImageSearch/assets/142036699/6ad8207c-eb18-49b1-af3c-a8a9b0afc927">
 
 # Author
 Vladyslav Petrenko
