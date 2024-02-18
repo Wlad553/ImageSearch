@@ -6,18 +6,14 @@
 //
 
 import UIKit
+import netfox
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    var window: UIWindow?
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        if #unavailable(iOS 13.0) {
-            window = UIWindow()
-            let navigationController = UINavigationController(rootViewController: SearchView())
-            window?.rootViewController = navigationController
-            window?.makeKeyAndVisible()
-        }
+#if DEBUG
+        NFX.sharedInstance().start()
+#endif
         return true
     }
 }
