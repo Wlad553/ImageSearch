@@ -33,7 +33,7 @@ https://github.com/Wlad553/ImageSearch/assets/142036699/8dd9b668-fd3c-4f97-bd85-
 https://github.com/Wlad553/ImageSearch/assets/142036699/26d5c3d4-3952-4c14-a784-69479b49cbb6
 
 
-https://github.com/Wlad553/ImageSearch/assets/142036699/59a9717a-2dd3-49ea-9b03-8da833166e84
+https://github.com/Wlad553/ImageSearch/assets/142036699/d6472cd2-abaa-4076-87b7-aba34210492a
 
 
 # Author
