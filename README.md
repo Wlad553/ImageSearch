@@ -1,16 +1,16 @@
 # Image Search
-Application for royalty free images search at Pixabay.
+ImageSearch is an iOS application for searching royalty-free images from Pixabay. It offers a variety of features including search filters, image caching, sharing, and editing capabilities. Built with Swift, UIKit, and an MVVM architecture.
 
 # Features
-* Image search
-* Image caching
-* Filter for image search
-* Related to the search query categories
-* Related images results after image opening
-* Share image links/download to galery
-* Search using different languages
-* Open a picture on a separate screen for viewing.
-* Image cropping
+* Image Search: Search for images using keywords.
+* Image Caching: Cache images to improve performance and reduce network data usage.
+* Filter for Image Search: Apply filters to refine search results.
+* Related Categories: Discover related categories based on the search query.
+* Related Images: View images related to the selected image.
+* Share and Download: Share image links or download images to your gallery.
+* Multi-language Support: Search using different languages.
+* Detailed Image View: Open a picture on a separate screen for an enhanced viewing experience.
+* Image Cropping: Crop images using an intuitive interface.
 
 # Stack
 * Swift
@@ -37,6 +37,6 @@ https://github.com/Wlad553/ImageSearch/assets/142036699/d6472cd2-abaa-4076-87b7-
 
 
 # Author
-Vladyslav Petrenko
+Developed by Vladyslav Petrenko
 
 t.me/VladP22
