@@ -39,4 +39,4 @@ https://github.com/Wlad553/ImageSearch/assets/142036699/d6472cd2-abaa-4076-87b7-
 # Author
 Developed by Vladyslav Petrenko
 
-t.me/VladP22
+t.me/VladP533
